@@ -8,6 +8,9 @@ import {
 } from 'lucide-react';
 import UploadTest from './components/UploadTest';
 import Quiz from './components/Quiz';
+import ForensicLab from './components/ForensicLab';
+import ForensicsDemo from './components/ForensicsDemo';
+import LearningHub from './components/LearningHub';
 import SocialFeed from './components/SocialFeed';
 import Leaderboard from './components/Leaderboard';
 import './index.css';
@@ -32,7 +35,9 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage username={username} />} />
             <Route path="/upload" element={<UploadTest />} />
-            <Route path="/quiz" element={<Quiz username={username} />} />
+            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/forensic-lab" element={<ForensicLab />} />
+            <Route path="/resources" element={<LearningHub />} />
             <Route path="/feed" element={<SocialFeed />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
           </Routes>
@@ -237,7 +242,7 @@ function Navigation() {
             <NavLink to="/" icon={Home} text="Hub" />
             <NavLink to="/feed" icon={Globe} text="Cases" />
             <NavLink to="/upload" icon={Microscope} text="Scan" />
-            <NavLink to="/quiz" icon={Brain} text="Train" />
+            <NavLink to="/resources" icon={BookOpen} text="Learn" />
             <NavLink to="/leaderboard" icon={Award} text="Ranks" />
           </div>
         </div>
@@ -467,7 +472,7 @@ function HomePage({ username }) {
 
         {/* Interactive Feature Grid */}
         <motion.div 
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
@@ -482,22 +487,13 @@ function HomePage({ username }) {
             delay={0}
           />
           <FeatureCard
-            to="/quiz"
-            icon={Brain}
-            title="Skills Development"
-            description="Build expertise through interactive exercises and evidence-based assessment modules."
-            color="electric"
-            emoji=""
-            delay={0.1}
-          />
-          <FeatureCard
             to="/feed"
             icon={Globe}
             title="Case Research"
             description="Analyze documented misinformation campaigns and learn from real-world examples."
             color="neon"
             emoji=""
-            delay={0.2}
+            delay={0.1}
           />
           <FeatureCard
             to="/leaderboard"
@@ -506,7 +502,7 @@ function HomePage({ username }) {
             description="Monitor learning outcomes and benchmark performance against industry standards."
             color="deepblue"
             emoji=""
-            delay={0.3}
+            delay={0.2}
           />
         </motion.div>
         
@@ -792,7 +788,6 @@ function Footer() {
               <h4 className="text-lg font-bold text-white mb-4">Quick Access</h4>
               <ul className="space-y-3">
                 <li><Link to="/upload" className="text-white/70 hover:text-violet-300 transition-colors duration-200 flex items-center space-x-2"><Microscope className="h-4 w-4" /><span>Media Scanner</span></Link></li>
-                <li><Link to="/quiz" className="text-white/70 hover:text-violet-300 transition-colors duration-200 flex items-center space-x-2"><Brain className="h-4 w-4" /><span>Training Arena</span></Link></li>
                 <li><Link to="/feed" className="text-white/70 hover:text-violet-300 transition-colors duration-200 flex items-center space-x-2"><Globe className="h-4 w-4" /><span>Case Studies</span></Link></li>
                 <li><Link to="/leaderboard" className="text-white/70 hover:text-violet-300 transition-colors duration-200 flex items-center space-x-2"><Trophy className="h-4 w-4" /><span>Leaderboard</span></Link></li>
               </ul>
