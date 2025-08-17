@@ -1,4 +1,4 @@
-# 🕵️ Provenance - Provenance - Media Literacy Platform
+# 🕵️ Provenance - Media Literacy Platform
 
 *Become a digital truth seeker! Learn to spot AI-generated content and protect yourself from misinformation*
 
