@@ -1,0 +1,73 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Production builds
+build/
+dist/
+frontend/build/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploads
+uploads/
+backend/uploads/
+
+# Logs
+*.log
+logs/
+
+# Cache directories
+.cache/
+frontend/.cache/
+frontend/node_modules/.cache/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE/Editor files
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Coverage reports
+coverage/
+.nyc_output/
+.coverage
+htmlcov/
+
+# Package files
+*.tgz
+*.tar.gz
