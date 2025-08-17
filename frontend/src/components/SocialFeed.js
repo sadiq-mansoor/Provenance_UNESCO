@@ -802,7 +802,7 @@ const FactCheckLab = ({ userLevel, getUserLevelInfo }) => {
                             </span>
                           </div>
                         </div>
-                        <button className="ml-4 px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">
+                        <button className="ml-4 btn-primary text-sm px-3 py-1">
                           View Details
                         </button>
                       </div>
@@ -1208,13 +1208,13 @@ const AIProvenanceLab = () => {
     <div className="space-y-8">
       {/* Header */}
       <div className="text-center">
-        <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 px-6 py-3 rounded-full text-sm font-semibold mb-6">
+        <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-deepblue-100 to-violet-100 text-deepblue-800 px-6 py-3 rounded-full text-sm font-semibold mb-6">
           <Brain className="h-5 w-5" />
           <span>AI-Powered Provenance Analysis</span>
-          {isLoadingModels && <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600 ml-2"></div>}
+          {isLoadingModels && <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-deepblue-600 ml-2"></div>}
         </div>
         
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent mb-4">
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-deepblue-600 via-violet-600 to-electric-600 bg-clip-text text-transparent mb-4">
           AI Provenance Lab
         </h1>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6">
@@ -1247,7 +1247,7 @@ const AIProvenanceLab = () => {
       <div className="grid lg:grid-cols-5 gap-6">
         {/* Upload Area - 2 columns */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-blue-400 hover:bg-gray-50 transition-all duration-300">
+          <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-deepblue-400 hover:bg-gray-50 transition-all duration-300">
             <input
               type="file"
               onChange={handleFileUpload}
@@ -1277,7 +1277,7 @@ const AIProvenanceLab = () => {
           </div>
 
           {/* Test Files */}
-          <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-4">
+          <div className="bg-gradient-to-r from-gray-50 to-deepblue-50 rounded-xl p-4">
             <h3 className="font-bold text-gray-900 mb-3 flex items-center">
               <FileText className="h-4 w-4 mr-2" />
               AI Test Scenarios
@@ -1318,21 +1318,21 @@ const AIProvenanceLab = () => {
 
           {/* Analysis Progress */}
           {isAnalyzing && (
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4">
+            <div className="bg-gradient-to-r from-deepblue-50 to-violet-50 rounded-xl p-4">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
-                <span className="font-bold text-blue-700">AI Analysis in Progress</span>
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-deepblue-600"></div>
+                <span className="font-bold text-deepblue-700">AI Analysis in Progress</span>
               </div>
               
               <div className="space-y-2">
                 {analysisSteps.map((step, idx) => (
                   <div key={idx} className={`flex items-center space-x-2 p-2 rounded-lg transition-all ${
-                    idx < currentStep ? 'bg-green-100 text-green-700' : 
-                    idx === currentStep ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-500'
+                    idx < currentStep ? 'bg-neon-100 text-neon-700' : 
+                    idx === currentStep ? 'bg-deepblue-100 text-deepblue-700' : 'bg-gray-100 text-gray-500'
                   }`}>
                     <div className={`w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold ${
-                      idx < currentStep ? 'bg-green-500 text-white' :
-                      idx === currentStep ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-600'
+                      idx < currentStep ? 'bg-neon-500 text-white' :
+                      idx === currentStep ? 'bg-deepblue-500 text-white' : 'bg-gray-300 text-gray-600'
                     }`}>
                       {idx < currentStep ? '✓' : idx === currentStep ? '⟳' : idx + 1}
                     </div>

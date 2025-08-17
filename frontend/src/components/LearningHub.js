@@ -376,7 +376,7 @@ const LearningHub = () => {
                           <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center space-x-2 transition-colors"
+                            className="btn-primary px-6 py-3 rounded-xl font-semibold flex items-center space-x-2"
                           >
                             <span>Start Training</span>
                             <ArrowRight className="h-4 w-4" />
@@ -483,7 +483,7 @@ const LearningHub = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => setSelectedVideo(videosContent.find(v => v.featured))}
-                        className="bg-white text-purple-600 px-6 py-3 rounded-xl font-semibold flex items-center space-x-2 hover:bg-purple-50 transition-colors"
+                        className="btn-secondary px-6 py-3 rounded-xl font-semibold flex items-center space-x-2"
                       >
                         <Play className="h-5 w-5" />
                         <span>Watch Now</span>
@@ -586,7 +586,7 @@ const LearningHub = () => {
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold flex items-center space-x-2 transition-colors"
+                        className="btn-primary px-4 py-2 rounded-lg font-semibold flex items-center space-x-2"
                       >
                         <Play className="h-4 w-4" />
                         <span>Listen</span>

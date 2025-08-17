@@ -59,145 +59,220 @@ function UsernamePrompt({ onSubmit }) {
   };
 
   return (
-    <div className="min-h-screen hero-gradient flex items-center justify-center relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="grid-pattern absolute inset-0 opacity-20"></div>
-        <div className="animated-bg absolute inset-0 opacity-30"></div>
-        
-        {/* Floating Geometric Shapes */}
-        <motion.div
-          className="absolute top-20 left-20 w-20 h-20 bg-gradient-to-br from-violet-400 to-electric-400 rounded-2xl opacity-20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.2 }}
-          transition={{ duration: 1 }}
-        />
-        <motion.div
-          className="absolute top-40 right-32 w-16 h-16 bg-gradient-to-br from-electric-400 to-neon-400 rounded-full opacity-20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.2 }}
-          transition={{ duration: 1, delay: 0.3 }}
-        />
-        <motion.div
-          className="absolute bottom-32 left-1/4 w-12 h-12 bg-gradient-to-br from-violet-400 to-deepblue-400 transform rotate-45 opacity-20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.2 }}
-          transition={{ duration: 1, delay: 0.6 }}
-        />
-      </div>
-      
-      <motion.div
-        initial={{ opacity: 0, y: 50, scale: 0.9 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="glass-card max-w-2xl w-full mx-6 relative z-10"
-      >
-        {/* Glowing Header */}
-        <div className="text-center mb-12">
+    <div className="min-h-screen bg-gradient-to-br from-softgray-50 via-deepblue-50 to-violet-50 flex">
+      {/* Left Side - Professional Branding */}
+      <div className="flex-1 flex items-center justify-center p-8 lg:p-16 relative overflow-hidden">
+        {/* Subtle Background Pattern */}
+        <div className="absolute inset-0">
+          <div className="grid-pattern absolute inset-0 opacity-5"></div>
           <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-            className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-violet-500 to-electric-500 rounded-3xl mb-6 shadow-2xl floating-element"
+            className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-deepblue-400/20 to-violet-400/20 rounded-3xl"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 2, delay: 0.5 }}
+          />
+          <motion.div
+            className="absolute bottom-32 right-16 w-24 h-24 bg-gradient-to-br from-violet-400/20 to-electric-400/20 rounded-full"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 2, delay: 1 }}
+          />
+        </div>
+        
+        <div className="relative z-10 max-w-xl">
+          {/* Professional Logo */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex items-center mb-12"
           >
-            <Shield className="h-12 w-12 text-white" />
+            <div className="w-16 h-16 bg-gradient-to-br from-deepblue-500 to-violet-600 rounded-2xl flex items-center justify-center shadow-xl mr-4">
+              <Shield className="h-8 w-8 text-white" />
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-deepblue-700 to-violet-700 bg-clip-text text-transparent">
+                Provenance
+              </h1>
+              <p className="text-sm text-softgray-600 font-medium">Media Literacy Platform</p>
+            </div>
           </motion.div>
           
-          <motion.h1 
-            className="text-6xl font-bold text-white mb-4 neon-text"
+          {/* Professional Tagline */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="mb-12"
           >
-            Provenance
-          </motion.h1>
+            <h2 className="text-3xl lg:text-4xl font-bold text-softgray-900 mb-6 leading-tight">
+              Master AI Detection &
+              <span className="block text-deepblue-600">Combat MDM</span>
+            </h2>
+            <p className="text-lg text-softgray-600 leading-relaxed mb-8">
+              Professional-grade media literacy training designed for educators, journalists, and digital truth seekers. Master AI-generated content detection and combat misinformation, disinformation, and malinformation across social feeds and news platforms.
+            </p>
+          </motion.div>
           
-          <motion.p 
-            className="text-xl text-white/80 leading-relaxed mb-8 max-w-lg mx-auto"
+          {/* Feature Highlights */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="grid grid-cols-1 gap-4 mb-12"
           >
-            Become a digital truth seeker! Learn to spot AI-generated content and protect yourself from misinformation
-          </motion.p>
+            <div className="flex items-center space-x-4 p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-deepblue-100">
+              <div className="w-12 h-12 bg-gradient-to-br from-deepblue-500 to-violet-500 rounded-xl flex items-center justify-center">
+                <Microscope className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-softgray-900">AI Content Detection</h3>
+                <p className="text-sm text-softgray-600">Advanced forensic analysis of AI-generated media and deepfakes</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center space-x-4 p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-violet-100">
+              <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-electric-500 rounded-xl flex items-center justify-center">
+                <Brain className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-softgray-900">MDM Detection Suite</h3>
+                <p className="text-sm text-softgray-600">Identify misinformation, disinformation, and malinformation patterns</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center space-x-4 p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-electric-100">
+              <div className="w-12 h-12 bg-gradient-to-br from-electric-500 to-neon-500 rounded-xl flex items-center justify-center">
+                <Globe className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-softgray-900">Social Feed Training</h3>
+                <p className="text-sm text-softgray-600">Real-world practice across major social feeds and news platforms</p>
+              </div>
+            </div>
+          </motion.div>
           
-          {/* Animated Feature Pills */}
-          <motion.div 
-            className="flex flex-wrap justify-center gap-4 mb-8"
+          {/* Professional Credentials */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="flex items-center space-x-6 text-sm text-softgray-500"
           >
-            <div className="glass-card px-4 py-2 flex items-center space-x-2">
-              <Zap className="h-4 w-4 text-electric-400" />
-              <span className="text-white/90 text-sm font-medium">Real-time Analysis</span>
+            <div className="flex items-center space-x-2">
+              <CheckCircle2 className="h-4 w-4 text-neon-500" />
+              <span>Open Source</span>
             </div>
-            <div className="glass-card px-4 py-2 flex items-center space-x-2">
-              <Eye className="h-4 w-4 text-violet-400" />
-              <span className="text-white/90 text-sm font-medium">Deepfake Detection</span>
+            <div className="flex items-center space-x-2">
+              <Shield className="h-4 w-4 text-deepblue-500" />
+              <span>Privacy Protected</span>
             </div>
-            <div className="glass-card px-4 py-2 flex items-center space-x-2">
-              <Brain className="h-4 w-4 text-neon-400" />
-              <span className="text-white/90 text-sm font-medium">AI Training</span>
+            <div className="flex items-center space-x-2">
+              <Award className="h-4 w-4 text-violet-500" />
+              <span>Educational Certified</span>
             </div>
           </motion.div>
         </div>
+      </div>
+      
+      {/* Right Side - Username Form */}
+      <div className="flex-1 flex items-center justify-center p-8 lg:p-16 bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 relative">
+        {/* Subtle Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            className="absolute top-16 right-16 w-20 h-20 bg-white/10 rounded-3xl"
+            initial={{ opacity: 0, rotate: -45 }}
+            animate={{ opacity: 1, rotate: 0 }}
+            transition={{ duration: 3, delay: 0.8 }}
+          />
+          <motion.div
+            className="absolute bottom-20 left-16 w-16 h-16 bg-electric-400/20 rounded-full"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 2, delay: 1.2 }}
+          />
+        </div>
         
-        <motion.form 
-          onSubmit={handleSubmit} 
-          className="space-y-8"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1 }}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="w-full max-w-md relative z-10"
         >
-          <div>
-            <label htmlFor="username" className="block text-lg font-semibold text-white/90 mb-4">
-              Choose your username
-            </label>
-            <input
-              type="text"
-              id="username"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full px-6 py-4 bg-white/10 border-2 border-white/20 rounded-2xl focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent transition-all duration-300 text-white text-lg placeholder-white/50 backdrop-blur-sm"
-              placeholder="Enter your username..."
-              required
-            />
+          {/* Form Header */}
+          <div className="text-center mb-10">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
+              className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-electric-500 to-neon-500 rounded-2xl mb-6 shadow-xl"
+            >
+              <Eye className="h-8 w-8 text-white" />
+            </motion.div>
+            
+            <h2 className="text-3xl font-bold text-white mb-3">Begin Your Journey</h2>
+            <p className="text-white/70 leading-relaxed">
+              Join thousands of educators, journalists, and citizens mastering AI-generated content and MDM detection across social feeds and news platforms
+            </p>
           </div>
           
-          <motion.button 
-            type="submit" 
-            className="btn-neon w-full text-xl py-6 font-bold"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
+          {/* Professional Form */}
+          <motion.form
+            onSubmit={handleSubmit}
+            className="space-y-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
           >
-            Start Analysis
-          </motion.button>
-        </motion.form>
-        
-        {/* Trust Badges */}
-        <motion.div 
-          className="mt-8 pt-8 border-t border-white/20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.3 }}
-        >
-          <div className="flex items-center justify-center space-x-8 text-sm text-white/70">
-            <div className="flex items-center space-x-2 interactive-hover">
-              <CheckCircle2 className="h-4 w-4 text-neon-400" />
-              <span>Industry Verified</span>
+            <div>
+              <label htmlFor="username" className="block text-sm font-semibold text-white/90 mb-3">
+                Choose your username
+              </label>
+              <input
+                type="text"
+                id="username"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full px-4 py-4 bg-white/10 border-2 border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-electric-400 focus:border-transparent transition-all duration-300 text-white placeholder-white/50 backdrop-blur-sm"
+                placeholder="Enter your username..."
+                required
+              />
             </div>
-            <div className="flex items-center space-x-2 interactive-hover">
-              <Shield className="h-4 w-4 text-electric-400" />
-              <span>Privacy Protected</span>
+            
+            <motion.button
+              type="submit"
+              className="w-full bg-gradient-to-r from-electric-500 to-neon-500 text-white font-bold py-4 px-6 rounded-xl hover:from-electric-600 hover:to-neon-600 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Start Analysis
+            </motion.button>
+          </motion.form>
+          
+          {/* Key Features */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2 }}
+            className="mt-8 pt-6 border-t border-white/20"
+          >
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div>
+              <div className="text-lg font-bold text-electric-400">Learning</div>
+              <div className="text-xs text-white/60">Platform</div>
             </div>
-            <div className="flex items-center space-x-2 interactive-hover">
-              <Award className="h-4 w-4 text-violet-400" />
-              <span>Educational Certified</span>
+            <div>
+              <div className="text-lg font-bold text-neon-400">Training</div>
+              <div className="text-xs text-white/60">Modules</div>
+            </div>
+            <div>
+              <div className="text-lg font-bold text-violet-400">Skills</div>
+              <div className="text-xs text-white/60">Development</div>
             </div>
           </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -459,11 +534,11 @@ function HomePage({ username }) {
               <div className="flex justify-center space-x-4">
                 <div className="flex items-center space-x-2 bg-white rounded-full px-6 py-3 shadow-lg">
                   <CheckCircle2 className="h-5 w-5 text-neon-500" />
-                  <span className="font-semibold text-softgray-800">C2PA Verified</span>
+                  <span className="font-semibold text-softgray-800">Interactive Learning</span>
                 </div>
                 <div className="flex items-center space-x-2 bg-white rounded-full px-6 py-3 shadow-lg">
                   <Eye className="h-5 w-5 text-electric-500" />
-                  <span className="font-semibold text-softgray-800">SynthID Detection</span>
+                  <span className="font-semibold text-softgray-800">Hands-on Training</span>
                 </div>
               </div>
             </div>
@@ -603,7 +678,7 @@ function HomePage({ username }) {
           transition={{ delay: 2.2 }}
           className="card-glow text-center"
         >
-          <h3 className="text-2xl font-bold text-softgray-900 mb-8">Powered by Industry Leaders</h3>
+          <h3 className="text-2xl font-bold text-softgray-900 mb-8">Built on Open Standards</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
             <motion.div 
               className="flex flex-col items-center space-y-3 interactive-hover"
@@ -612,7 +687,7 @@ function HomePage({ username }) {
               <div className="w-16 h-16 bg-gradient-to-br from-deepblue-500 to-violet-500 rounded-2xl flex items-center justify-center shadow-xl">
                 <Shield className="h-8 w-8 text-white" />
               </div>
-              <span className="text-sm font-bold text-softgray-700">C2PA Coalition</span>
+              <span className="text-sm font-bold text-softgray-700">C2PA Standard</span>
             </motion.div>
             <motion.div 
               className="flex flex-col items-center space-y-3 interactive-hover"
@@ -621,7 +696,7 @@ function HomePage({ username }) {
               <div className="w-16 h-16 bg-gradient-to-br from-electric-500 to-neon-500 rounded-2xl flex items-center justify-center shadow-xl">
                 <Eye className="h-8 w-8 text-white" />
               </div>
-              <span className="text-sm font-bold text-softgray-700">Google SynthID</span>
+              <span className="text-sm font-bold text-softgray-700">AI Detection</span>
             </motion.div>
             <motion.div 
               className="flex flex-col items-center space-y-3 interactive-hover"
@@ -630,7 +705,7 @@ function HomePage({ username }) {
               <div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-deepblue-500 rounded-2xl flex items-center justify-center shadow-xl">
                 <BookOpen className="h-8 w-8 text-white" />
               </div>
-              <span className="text-sm font-bold text-softgray-700">Linux Foundation</span>
+              <span className="text-sm font-bold text-softgray-700">Open Source</span>
             </motion.div>
             <motion.div 
               className="flex flex-col items-center space-y-3 interactive-hover"
@@ -639,7 +714,7 @@ function HomePage({ username }) {
               <div className="w-16 h-16 bg-gradient-to-br from-neon-500 to-electric-500 rounded-2xl flex items-center justify-center shadow-xl">
                 <Globe className="h-8 w-8 text-white" />
               </div>
-              <span className="text-sm font-bold text-softgray-700">Meta Research</span>
+              <span className="text-sm font-bold text-softgray-700">Research Based</span>
             </motion.div>
           </div>
         </motion.div>
