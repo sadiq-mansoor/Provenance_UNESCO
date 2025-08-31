@@ -96,28 +96,28 @@ const LearningHub = () => {
       id: 'training', 
       label: 'Training', 
       icon: Brain, 
-      color: 'blue',
+       color: 'violet',
       description: 'Interactive quizzes and exercises'
     },
     { 
       id: 'videos', 
       label: 'Videos', 
       icon: Video, 
-      color: 'purple',
+       color: 'violet',
       description: 'Educational video content' 
     },
     { 
       id: 'podcasts', 
       label: 'Podcasts', 
       icon: Headphones, 
-      color: 'green',
+       color: 'violet',
       description: 'Expert discussions and interviews'
     },
     { 
       id: 'stories', 
       label: 'Stories', 
       icon: Newspaper, 
-      color: 'orange',
+       color: 'violet',
       description: 'Case studies and real examples'
     }
   ];
@@ -136,7 +136,7 @@ const LearningHub = () => {
       link: '/quiz',
       features: ['Multi-select questions', 'Real-time scoring', 'Skill breakdown', 'Video analysis'],
       icon: Brain,
-      color: 'from-blue-500 to-blue-600',
+       color: 'from-violet-500 to-electric-500',
       stats: {
         'Questions:': 12,
         'Max Points:': 300,
@@ -156,7 +156,7 @@ const LearningHub = () => {
       link: '/forensic-lab',
       features: ['Metadata Inspector', 'Error Level Analysis', 'Spectrogram Tool', 'AI Classifier Demo', 'Compression Artifact Viewer', 'Real-time Results'],
       icon: Microscope,
-      color: 'from-purple-500 to-purple-600',
+       color: 'from-violet-500 to-electric-500',
       stats: {
         'Detection Tools:': 6,
         'Test Files:': '12 (6 real, 6 fake)',
@@ -175,7 +175,7 @@ const LearningHub = () => {
       status: 'Coming Soon',
       features: ['Bias scenarios', 'Psychology insights', 'Self-assessment', 'Improvement tips'],
       icon: Target,
-      color: 'from-green-500 to-green-600'
+       color: 'from-violet-500 to-electric-500'
     }
   ];
 
@@ -286,7 +286,7 @@ const LearningHub = () => {
       publishDate: '2025-01-20',
       tags: ['Interactive', 'Beginner Friendly', 'Story-based Learning', 'Youth Education'],
       videoPath: '/images/maya-truth-compass.mp4',
-      thumbnail: '/images/maya-thumbnail.jpg' // You can add this later
+       thumbnail: '/images/fake-news-keyboard.jpg' // Use static image as thumbnail
     },
     {
       id: 1,
@@ -652,21 +652,21 @@ const LearningHub = () => {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.8, opacity: 0 }}
-          className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-auto"
+          className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-auto border border-white/10 shadow-2xl"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="p-6">
             <div className="flex justify-between items-start mb-4">
-              <h3 className="text-2xl font-bold text-gray-900">{video.title}</h3>
+              <h3 className="text-2xl font-bold text-white">{video.title}</h3>
               <button
                 onClick={onClose}
-                className="text-gray-500 hover:text-gray-700 text-2xl"
+                className="text-white/60 hover:text-white text-2xl transition-colors"
               >
                 ×
               </button>
             </div>
             
-            <div className="aspect-video mb-6 rounded-xl overflow-hidden">
+            <div className="aspect-video mb-6 rounded-xl overflow-hidden border border-white/20 shadow-lg">
               <iframe
                 src={video.embedUrl}
                 title={video.title}
@@ -678,24 +678,24 @@ const LearningHub = () => {
             
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold text-gray-900 mb-3">Learning Objectives</h4>
+                <h4 className="font-semibold text-white mb-3">Learning Objectives</h4>
                 <ul className="space-y-2">
                   {video.learningObjectives?.map((objective, index) => (
                     <li key={index} className="flex items-start space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700 text-sm">{objective}</span>
+                      <CheckCircle className="h-4 w-4 text-green-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-white/90 text-sm">{objective}</span>
                     </li>
                   ))}
                 </ul>
               </div>
               
               <div>
-                <h4 className="font-semibold text-gray-900 mb-3">Key Topics Covered</h4>
+                <h4 className="font-semibold text-white mb-3">Key Topics Covered</h4>
                 <ul className="space-y-2">
                   {video.keyTopics?.map((topic, index) => (
                     <li key={index} className="flex items-start space-x-2">
-                      <Target className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700 text-sm">{topic}</span>
+                      <Target className="h-4 w-4 text-violet-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-white/90 text-sm">{topic}</span>
                     </li>
                   ))}
                 </ul>
@@ -713,60 +713,114 @@ const LearningHub = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
+         className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4"
         onClick={onClose}
       >
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.8, opacity: 0 }}
-          className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-auto"
+           className="bg-white rounded-3xl max-w-5xl w-full max-h-[95vh] overflow-hidden shadow-2xl"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="p-8">
-            <div className="flex justify-between items-start mb-6">
-              <div>
-                <div className="flex items-center space-x-3 mb-2">
-                  <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
+           {/* Header */}
+           <div className="bg-gradient-to-r from-deepblue-900 via-violet-900 to-deepblue-800 text-white p-8 rounded-t-3xl">
+             <div className="flex justify-between items-start">
+               <div className="flex-1">
+                 <div className="flex items-center space-x-3 mb-4">
+                   <span className="bg-gradient-to-r from-violet-500 to-electric-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg border border-white/20">
                     {story.category}
                   </span>
-                  <span className="text-gray-500 text-sm">{story.readTime}</span>
-                  <span className="text-gray-500 text-sm">{story.difficulty}</span>
+                   <span className="bg-white/10 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium border border-white/20">
+                     {story.readTime}
+                   </span>
+                   <span className={`px-3 py-1 rounded-full text-sm font-semibold border border-white/20 ${
+                     story.difficulty === 'Advanced' ? 'bg-red-500/20 text-red-300' :
+                     story.difficulty === 'Intermediate' ? 'bg-yellow-500/20 text-yellow-300' :
+                     'bg-green-500/20 text-green-300'
+                   }`}>
+                     {story.difficulty}
+                   </span>
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">{story.title}</h2>
-                <p className="text-gray-600 mb-4">By {story.author} • {story.publishDate}</p>
+                 <h2 className="text-4xl font-bold mb-3 bg-gradient-to-r from-white via-violet-100 to-white bg-clip-text text-transparent leading-tight">
+                   {story.title}
+                 </h2>
+                 <p className="text-violet-200 text-lg font-medium">
+                   By {story.author} • {story.publishDate}
+                 </p>
               </div>
               <button
                 onClick={onClose}
-                className="text-gray-500 hover:text-gray-700 text-2xl p-2"
+                 className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-xl transition-all duration-300 ml-4"
               >
                 <X className="h-6 w-6" />
               </button>
+             </div>
             </div>
             
-            <div className="prose prose-lg max-w-none">
+           {/* Content */}
+           <div className="flex h-[calc(95vh-200px)]">
+             {/* Main Content */}
+             <div className="flex-1 overflow-y-auto p-8">
+               <div className="max-w-4xl mx-auto">
+                 <div className="prose prose-lg prose-headings:text-gray-900 prose-headings:font-bold prose-h2:text-3xl prose-h2:mb-6 prose-h2:mt-12 prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-8 prose-h4:text-xl prose-h4:mb-3 prose-h4:mt-6 prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:mb-2 prose-strong:text-gray-900 prose-strong:font-semibold prose-em:text-gray-600 prose-blockquote:border-l-4 prose-blockquote:border-violet-500 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-600">
               <div dangerouslySetInnerHTML={{ __html: story.content }} />
+                 </div>
+               </div>
             </div>
             
-            <div className="mt-8 pt-6 border-t border-gray-200">
-              <h4 className="font-semibold text-gray-900 mb-3">Key Learning Points</h4>
-              <div className="grid md:grid-cols-2 gap-4">
+             {/* Sidebar */}
+             <div className="w-80 bg-gray-50 border-l border-gray-200 p-6 overflow-y-auto">
+               <div className="sticky top-0">
+                 <h4 className="font-bold text-gray-900 mb-4 text-lg flex items-center space-x-2">
+                   <Target className="h-5 w-5 text-violet-600" />
+                   <span>Key Learning Points</span>
+                 </h4>
+                 <div className="space-y-3 mb-8">
                 {story.keyLessons.map((lesson, index) => (
-                  <div key={index} className="flex items-start space-x-2">
-                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">{lesson}</span>
+                     <div key={index} className="flex items-start space-x-3 p-3 bg-white rounded-lg border border-gray-200 shadow-sm">
+                       <div className="w-6 h-6 bg-gradient-to-br from-violet-500 to-electric-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                         <CheckCircle className="h-3 w-3 text-white" />
+                       </div>
+                       <span className="text-gray-700 text-sm font-medium leading-relaxed">{lesson}</span>
                   </div>
                 ))}
-              </div>
             </div>
             
-            <div className="mt-6">
+                 <div className="border-t border-gray-200 pt-6">
+                   <h4 className="font-bold text-gray-900 mb-4 text-lg flex items-center space-x-2">
+                     <Bookmark className="h-5 w-5 text-violet-600" />
+                     <span>Tags</span>
+                   </h4>
               <div className="flex flex-wrap gap-2">
                 {story.tags.map((tag, idx) => (
-                  <span key={idx} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                       <span key={idx} className="bg-gradient-to-r from-violet-500 to-electric-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-sm">
                     #{tag}
                   </span>
                 ))}
+                   </div>
+                 </div>
+
+                 <div className="border-t border-gray-200 pt-6 mt-6">
+                   <h4 className="font-bold text-gray-900 mb-4 text-lg flex items-center space-x-2">
+                     <Clock className="h-5 w-5 text-violet-600" />
+                     <span>Reading Stats</span>
+                   </h4>
+                   <div className="space-y-2 text-sm text-gray-600">
+                     <div className="flex justify-between">
+                       <span>Estimated time:</span>
+                       <span className="font-medium">{story.readTime}</span>
+                     </div>
+                     <div className="flex justify-between">
+                       <span>Difficulty:</span>
+                       <span className="font-medium">{story.difficulty}</span>
+                     </div>
+                     <div className="flex justify-between">
+                       <span>Category:</span>
+                       <span className="font-medium">{story.category}</span>
+                     </div>
+                   </div>
+                 </div>
               </div>
             </div>
           </div>
@@ -883,7 +937,7 @@ const LearningHub = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                                     className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 border border-white/10 rounded-2xl overflow-hidden shadow-2xl hover:shadow-violet-500/10 transition-all duration-500"
                 >
                   <div className="p-8">
                     <div className="flex items-start justify-between mb-6">
@@ -892,8 +946,8 @@ const LearningHub = () => {
                           <item.icon className="h-8 w-8 text-white" />
                         </div>
                         <div>
-                          <h3 className="text-2xl font-bold text-gray-900 mb-1">{item.title}</h3>
-                          <div className="flex items-center space-x-4 text-sm text-gray-600">
+                           <h3 className="text-2xl font-bold text-white mb-1">{item.title}</h3>
+                           <div className="flex items-center space-x-4 text-sm text-white/80">
                             <span className="flex items-center">
                               <Clock className="h-4 w-4 mr-1" />
                               {item.duration}
@@ -902,10 +956,10 @@ const LearningHub = () => {
                               <Target className="h-4 w-4 mr-1" />
                               {item.difficulty}
                             </span>
-                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                                                         <span className={`px-3 py-1 rounded-full text-xs font-medium border border-white/20 ${
                               item.status === 'Coming Soon' 
-                                ? 'bg-orange-100 text-orange-800' 
-                                : 'bg-green-100 text-green-800'
+                                 ? 'bg-orange-500/20 text-orange-300' 
+                                 : 'bg-green-500/20 text-green-300'
                             }`}>
                               {item.status || 'Available'}
                             </span>
@@ -918,7 +972,7 @@ const LearningHub = () => {
                           <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="btn-primary px-6 py-3 rounded-xl font-semibold flex items-center space-x-2"
+                             className="bg-gradient-to-r from-violet-500 to-electric-500 hover:from-violet-400 hover:to-electric-400 text-white px-6 py-3 rounded-xl font-semibold flex items-center space-x-2 transition-all duration-300 shadow-lg border border-white/20 hover:shadow-violet-500/25"
                           >
                             <span>Start Training</span>
                             <ArrowRight className="h-4 w-4" />
@@ -927,31 +981,31 @@ const LearningHub = () => {
                       )}
                     </div>
                     
-                    <p className="text-gray-600 leading-relaxed mb-6">{item.description}</p>
+                                         <p className="text-white/90 leading-relaxed mb-6">{item.description}</p>
                     
                     <div className="grid md:grid-cols-2 gap-6 mb-6">
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-3">Features</h4>
+                         <h4 className="font-semibold text-white mb-3">Features</h4>
                         <ul className="space-y-2">
                           {item.features.map((feature, idx) => (
                             <li key={idx} className="flex items-center space-x-2">
-                              <CheckCircle className="h-4 w-4 text-green-500" />
-                              <span className="text-sm text-gray-600">{feature}</span>
+                               <CheckCircle className="h-4 w-4 text-electric-400" />
+                               <span className="text-sm text-white/90">{feature}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                       
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-3">Stats</h4>
+                         <h4 className="font-semibold text-white mb-3">Stats</h4>
                         <div className="space-y-2">
                           {item.stats && Object.entries(item.stats).map(([key, value], idx) => (
                             <div key={idx} className="flex justify-between text-sm">
-                              <span className="text-gray-600">{key}</span>
+                               <span className="text-white/80">{key}</span>
                               <span className={`font-medium ${
-                                key.includes('Points') ? 'text-blue-600' : 
-                                key.includes('Rate') || key.includes('Success') ? 'text-green-600' : 
-                                key.includes('Status') ? 'text-orange-600' : ''
+                                 key.includes('Points') ? 'text-electric-400' : 
+                                 key.includes('Rate') || key.includes('Success') ? 'text-green-400' : 
+                                 key.includes('Status') ? 'text-orange-400' : 'text-violet-400'
                               }`}>
                                 {value}
                               </span>
@@ -975,7 +1029,7 @@ const LearningHub = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl overflow-hidden shadow-2xl mb-8"
+                                 className="bg-gradient-to-r from-deepblue-900 via-violet-900 to-deepblue-800 rounded-2xl overflow-hidden shadow-2xl mb-8 border border-white/10"
               >
                 <div className="grid lg:grid-cols-2 gap-8 p-8">
                   <div className="relative">
@@ -992,7 +1046,7 @@ const LearningHub = () => {
                           onClick={() => setSelectedVideo(videosContent.find(v => v.featured))}
                           className="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-6 transition-all duration-300"
                         >
-                          <Play className="h-12 w-12 text-purple-600 ml-1" />
+                                                     <Play className="h-12 w-12 text-violet-500 ml-1" />
                         </motion.button>
                       </div>
                       
@@ -1014,9 +1068,9 @@ const LearningHub = () => {
                     </div>
                     
                     <h2 className="text-3xl font-bold mb-2">{videosContent.find(v => v.featured).title}</h2>
-                    <p className="text-purple-100 text-lg mb-4">by {videosContent.find(v => v.featured).speaker}</p>
+                                         <p className="text-violet-200 text-lg mb-4">by {videosContent.find(v => v.featured).speaker}</p>
                     
-                    <p className="text-purple-50 leading-relaxed mb-6">
+                                         <p className="text-violet-100 leading-relaxed mb-6">
                       {videosContent.find(v => v.featured).description}
                     </p>
                     
@@ -1045,7 +1099,7 @@ const LearningHub = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ y: -5 }}
-                  className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                                     className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 border border-white/10 rounded-xl overflow-hidden shadow-2xl hover:shadow-violet-500/10 transition-all duration-500"
                 >
                   <div className="aspect-video bg-gray-200 relative">
                     <img 
@@ -1060,14 +1114,14 @@ const LearningHub = () => {
                   
                   <div className="p-6">
                     <div className="flex items-center space-x-2 mb-2">
-                      <Video className="h-4 w-4 text-purple-600" />
-                      <span className="text-sm font-medium text-gray-500">{video.platform}</span>
-                      <span className="text-gray-300">•</span>
-                      <span className="text-sm text-gray-500">{video.views}</span>
+                       <Video className="h-4 w-4 text-violet-400" />
+                       <span className="text-sm font-medium text-white/80">{video.platform}</span>
+                       <span className="text-white/60">•</span>
+                       <span className="text-sm text-white/80">{video.views}</span>
                     </div>
                     
-                    <h4 className="font-semibold text-gray-900 mb-2">{video.title}</h4>
-                    <p className="text-gray-600 text-sm mb-4">{video.description}</p>
+                     <h4 className="font-semibold text-white mb-2">{video.title}</h4>
+                     <p className="text-white/90 text-sm mb-4">{video.description}</p>
                     
                     <motion.a
                       whileHover={{ scale: 1.02 }}
@@ -1075,7 +1129,7 @@ const LearningHub = () => {
                       href={video.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-2 text-purple-600 hover:text-purple-700 font-medium"
+                                             className="inline-flex items-center space-x-2 text-violet-400 hover:text-violet-300 font-medium"
                     >
                       <span>Watch on YouTube</span>
                       <ExternalLink className="h-4 w-4" />
@@ -1096,27 +1150,27 @@ const LearningHub = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white border border-gray-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                                 className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 border border-white/10 rounded-xl p-6 shadow-2xl hover:shadow-violet-500/10 transition-all duration-500"
               >
                 <div className="flex items-start space-x-6">
-                  <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                     <div className="w-20 h-20 bg-gradient-to-r from-violet-500 to-electric-500 rounded-xl flex items-center justify-center flex-shrink-0">
                     <Headphones className="h-10 w-10 text-white" />
                   </div>
                   
                   <div className="flex-grow">
                     <div className="flex items-center space-x-3 mb-2">
-                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">
+                                             <span className="bg-violet-100 text-violet-800 px-2 py-1 rounded text-xs font-medium">
                         {podcast.platform}
                       </span>
-                      <span className="text-sm text-gray-500">{podcast.episode}</span>
-                      <span className="text-sm text-gray-500">{podcast.duration}</span>
+                                           <span className="text-sm text-white/80">{podcast.episode}</span>
+                     <span className="text-sm text-white/80">{podcast.duration}</span>
                     </div>
                     
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{podcast.title}</h3>
-                    <p className="text-gray-600 mb-4">{podcast.description}</p>
+                   <h3 className="text-xl font-bold text-white mb-2">{podcast.title}</h3>
+                   <p className="text-white/90 mb-4">{podcast.description}</p>
                     
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4 text-sm text-gray-500">
+                                           <div className="flex items-center space-x-4 text-sm text-white/80">
                         <span>By {podcast.host}</span>
                         <span>{podcast.downloads} downloads</span>
                         <div className="flex items-center space-x-1">
@@ -1130,7 +1184,7 @@ const LearningHub = () => {
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => handlePodcastPlay(podcast)}
-                          className="btn-primary px-4 py-2 rounded-lg font-semibold flex items-center space-x-2"
+                           className="bg-gradient-to-r from-violet-500 to-electric-500 hover:from-violet-400 hover:to-electric-400 text-white px-4 py-2 rounded-lg font-semibold flex items-center space-x-2 transition-all duration-300 shadow-lg border border-white/20 hover:shadow-violet-500/25"
                         >
                           {currentPodcastId === podcast.id && isPlaying ? (
                             <Pause className="h-4 w-4" />
@@ -1146,7 +1200,7 @@ const LearningHub = () => {
                             whileTap={{ scale: 0.95 }}
                             href={podcast.audioFile}
                             download
-                            className="btn-secondary px-4 py-2 rounded-lg font-semibold flex items-center space-x-2"
+                           className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-4 py-2 rounded-lg font-semibold flex items-center space-x-2 transition-all duration-300 border border-white/20"
                           >
                             <Download className="h-4 w-4" />
                             <span>Download</span>
@@ -1155,10 +1209,10 @@ const LearningHub = () => {
                       </div>
                     </div>
                     
-                    <div className="mt-4 pt-4 border-t border-gray-100">
+                                       <div className="mt-4 pt-4 border-t border-white/20">
                       <div className="flex flex-wrap gap-2">
                         {podcast.topics.map((topic, idx) => (
-                          <span key={idx} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                         <span key={idx} className="bg-white/10 backdrop-blur-sm text-white/90 px-2 py-1 rounded text-xs border border-white/20">
                             {topic}
                           </span>
                         ))}
@@ -1179,83 +1233,140 @@ const LearningHub = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-gradient-to-r from-violet-600 to-electric-600 rounded-2xl overflow-hidden shadow-2xl mb-8"
+                className="bg-gradient-to-r from-deepblue-900 via-violet-900 to-deepblue-800 rounded-2xl overflow-hidden shadow-xl mb-6 border border-white/10"
               >
-                <div className="grid lg:grid-cols-2 gap-8 p-8">
-                  <div className="relative">
-                    <div className="aspect-video rounded-xl overflow-hidden bg-black relative group cursor-pointer">
-                      <div className="w-full h-full bg-gradient-to-br from-violet-900 to-electric-900 flex items-center justify-center relative">
-                        <div className="text-center text-white">
-                          <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <Play className="h-10 w-10 text-white ml-1" />
+                <div className="grid lg:grid-cols-2 gap-0">
+                  {/* Video Container - Left Side */}
+                  <div className="relative p-6">
+                    <div className="aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-deepblue-950 to-violet-950 relative group cursor-pointer border border-white/20 shadow-lg">
+                                             {/* Video Thumbnail Background */}
+                       <div className="w-full h-full bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 relative overflow-hidden">
+                         {/* Image Thumbnail */}
+                         <img 
+                           src={storiesContent.find(s => s.featured).thumbnail}
+                           alt="Maya and the Truth Compass"
+                           className="absolute inset-0 w-full h-full object-cover"
+                           onError={(e) => {
+                             // If image fails to load, hide it and show fallback
+                             e.target.style.display = 'none';
+                           }}
+                         />
+                        
+                                                 {/* Fallback Background Pattern */}
+                         <div className="absolute inset-0 bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800">
+                           {/* Decorative Pattern */}
+                           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(139,92,246,0.3)_0%,transparent_50%)]"></div>
+                           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(14,165,233,0.2)_0%,transparent_50%)]"></div>
+                           
+                           {/* Animated Elements */}
+                           <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-br from-violet-500/20 to-electric-500/20 rounded-full blur-3xl animate-pulse"></div>
+                           <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-br from-electric-500/20 to-violet-500/20 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+                           
+                           {/* Video Icon Placeholder */}
+                           <div className="absolute inset-0 flex items-center justify-center">
+                             <div className="w-20 h-20 bg-gradient-to-br from-violet-500/30 to-electric-500/30 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20">
+                               <Video className="h-10 w-10 text-white/80" />
                           </div>
-                          <h3 className="text-2xl font-bold mb-2">Maya and the Truth Compass</h3>
-                          <p className="text-white/80">Interactive Story Experience</p>
                         </div>
-                        <video 
-                          className="absolute inset-0 w-full h-full object-cover opacity-0"
-                          muted
-                          preload="metadata"
-                        >
-                          <source src={storiesContent.find(s => s.featured).videoPath} type="video/mp4" />
-                        </video>
                       </div>
-                      <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center group-hover:bg-opacity-30 transition-all duration-300">
+                        
+                        {/* Overlay for better text readability */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        
+                        {/* Video Title Overlay */}
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <h3 className="text-xl font-bold text-white mb-1">
+                            Maya and the Truth Compass
+                          </h3>
+                          <p className="text-white/80 text-sm">Interactive Story Experience</p>
+                        </div>
+                      </div>
+                      
+                      {/* Single Play Button Overlay */}
+                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-all duration-300">
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => setSelectedStory(storiesContent.find(s => s.featured))}
-                          className="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-6 transition-all duration-300"
+                          className="bg-gradient-to-br from-violet-500 to-electric-500 hover:from-violet-400 hover:to-electric-400 rounded-full p-4 transition-all duration-300 shadow-xl border-2 border-white/30"
                         >
-                          <Play className="h-12 w-12 text-violet-600 ml-1" />
+                          <Play className="h-8 w-8 text-white ml-1" />
                         </motion.button>
                       </div>
                       
-                      <div className="absolute top-4 left-4 bg-violet-600 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-2">
-                        <Video className="h-4 w-4" />
-                        <span>Featured Story</span>
+                      {/* Professional Badges */}
+                      <div className="absolute top-4 left-4">
+                        <div className="bg-gradient-to-r from-violet-600 to-electric-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center space-x-1 shadow-lg border border-white/20">
+                          <Video className="h-3 w-3" />
+                          <span>Featured</span>
+                        </div>
                       </div>
                       
-                      <div className="absolute bottom-4 right-4 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-sm">
+                      <div className="absolute top-4 right-4">
+                        <div className="bg-black/80 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-xs font-medium border border-white/20">
                         {storiesContent.find(s => s.featured).duration}
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="text-white">
+                  {/* Content Container - Right Side */}
+                  <div className="text-white p-6 flex flex-col justify-center">
                     <div className="flex items-center space-x-2 mb-4">
-                      <Star className="h-5 w-5 text-yellow-400" />
-                      <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-medium">Interactive Story</span>
+                      <div className="w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                        <Star className="h-3 w-3 text-white" />
+                      </div>
+                      <span className="bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold border border-white/20">
+                        Interactive Story
+                      </span>
                     </div>
                     
-                    <h2 className="text-3xl font-bold mb-2">{storiesContent.find(s => s.featured).title}</h2>
-                    <p className="text-violet-100 text-lg mb-4">by {storiesContent.find(s => s.featured).author}</p>
+                    <h2 className="text-2xl font-bold mb-3 bg-gradient-to-r from-white via-violet-100 to-white bg-clip-text text-transparent leading-tight">
+                      {storiesContent.find(s => s.featured).title}
+                    </h2>
+                    <p className="text-violet-200 text-sm mb-4 font-medium">
+                      by {storiesContent.find(s => s.featured).author}
+                    </p>
                     
-                    <p className="text-violet-50 leading-relaxed mb-6">
+                    <p className="text-white/90 leading-relaxed mb-6 text-sm">
                       {storiesContent.find(s => s.featured).description}
                     </p>
                     
                     <div className="mb-6">
-                      <h4 className="font-semibold text-white mb-3">What You'll Learn</h4>
+                      <h4 className="font-bold text-white mb-3 text-sm flex items-center space-x-2">
+                        <Target className="h-4 w-4 text-electric-400" />
+                        <span>What You'll Learn</span>
+                      </h4>
                       <ul className="space-y-2">
                         {storiesContent.find(s => s.featured).keyLessons.slice(0, 3).map((lesson, idx) => (
                           <li key={idx} className="flex items-center space-x-2">
-                            <CheckCircle className="h-4 w-4 text-electric-300" />
-                            <span className="text-violet-100 text-sm">{lesson}</span>
+                            <div className="w-4 h-4 bg-gradient-to-br from-electric-500 to-violet-500 rounded-full flex items-center justify-center flex-shrink-0">
+                              <CheckCircle className="h-2 w-2 text-white" />
+                            </div>
+                            <span className="text-white/90 text-xs font-medium">{lesson}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                     
-                    <div className="flex space-x-4">
+                    <div className="flex space-x-3">
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => setSelectedStory(storiesContent.find(s => s.featured))}
-                        className="bg-white text-violet-600 px-6 py-3 rounded-xl font-semibold flex items-center space-x-2 hover:bg-violet-50 transition-colors"
+                        className="bg-gradient-to-r from-violet-500 to-electric-500 hover:from-violet-400 hover:to-electric-400 text-white px-6 py-2 rounded-xl font-semibold flex items-center space-x-2 transition-all duration-300 shadow-lg border border-white/20 hover:shadow-violet-500/25 text-sm"
                       >
-                        <Play className="h-5 w-5" />
+                        <Play className="h-4 w-4" />
                         <span>Watch Story</span>
+                      </motion.button>
+                      
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-4 py-2 rounded-xl font-semibold flex items-center space-x-2 transition-all duration-300 border border-white/20 text-sm"
+                      >
+                        <Bookmark className="h-4 w-4" />
+                        <span>Save</span>
                       </motion.button>
                     </div>
                   </div>
@@ -1271,40 +1382,49 @@ const LearningHub = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white border border-gray-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 border border-white/10 rounded-xl p-6 shadow-lg hover:shadow-violet-500/10 transition-all duration-500 group"
                 >
-                  <div className="flex items-center space-x-3 mb-4">
-                    <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
+                  <div className="flex items-center space-x-2 mb-4">
+                    <span className="bg-gradient-to-r from-violet-500 to-electric-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg border border-white/20">
                       {story.category}
                     </span>
-                    <span className="text-sm text-gray-500">{story.readTime || story.duration}</span>
-                    <span className={`px-2 py-1 rounded text-xs font-medium ${
-                      story.difficulty === 'Advanced' ? 'bg-red-100 text-red-800' :
-                      story.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-green-100 text-green-800'
+                    <span className="text-white/70 text-xs font-medium">{story.readTime || story.duration}</span>
+                    <span className={`px-2 py-1 rounded-full text-xs font-semibold border border-white/20 ${
+                      story.difficulty === 'Advanced' ? 'bg-red-500/20 text-red-300' :
+                      story.difficulty === 'Intermediate' ? 'bg-yellow-500/20 text-yellow-300' :
+                      'bg-green-500/20 text-green-300'
                     }`}>
                       {story.difficulty}
                     </span>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{story.title}</h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">{story.description}</p>
+                  <h3 className="text-lg font-bold text-white mb-3 leading-tight group-hover:text-violet-200 transition-colors">
+                    {story.title}
+                  </h3>
+                  <p className="text-white/80 mb-4 leading-relaxed text-sm">
+                    {story.description}
+                  </p>
                   
                   <div className="mb-4">
-                    <h4 className="font-semibold text-gray-900 mb-2">Key Lessons</h4>
+                    <h4 className="font-bold text-white mb-2 text-sm flex items-center space-x-2">
+                      <Target className="h-3 w-3 text-electric-400" />
+                      <span>Key Lessons</span>
+                    </h4>
                     <ul className="space-y-1">
                       {story.keyLessons.map((lesson, idx) => (
                         <li key={idx} className="flex items-start space-x-2">
-                          <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-gray-600">{lesson}</span>
+                          <div className="w-4 h-4 bg-gradient-to-br from-electric-500 to-violet-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <CheckCircle className="h-2 w-2 text-white" />
+                          </div>
+                          <span className="text-white/90 text-xs font-medium">{lesson}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <div className="text-sm text-gray-500">
-                      <div>By {story.author}</div>
+                  <div className="flex items-center justify-between pt-4 border-t border-white/20">
+                    <div className="text-xs text-white/70">
+                      <div className="font-medium">By {story.author}</div>
                       <div>{story.publishDate}</div>
                     </div>
                     
@@ -1312,17 +1432,17 @@ const LearningHub = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setSelectedStory(story)}
-                      className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg font-semibold flex items-center space-x-2 transition-colors"
+                      className="bg-gradient-to-r from-violet-500 to-electric-500 hover:from-violet-400 hover:to-electric-400 text-white px-4 py-2 rounded-lg font-semibold flex items-center space-x-2 transition-all duration-300 shadow-lg border border-white/20 hover:shadow-violet-500/25 text-sm"
                     >
-                      {story.type === 'video' ? <Play className="h-4 w-4" /> : <BookOpen className="h-4 w-4" />}
-                      <span>{story.type === 'video' ? 'Watch Story' : 'Read Story'}</span>
+                      {story.type === 'video' ? <Play className="h-3 w-3" /> : <BookOpen className="h-3 w-3" />}
+                      <span>{story.type === 'video' ? 'Watch' : 'Read'}</span>
                     </motion.button>
                   </div>
                   
-                  <div className="mt-4 pt-4 border-t border-gray-100">
-                    <div className="flex flex-wrap gap-2">
+                  <div className="mt-4 pt-4 border-t border-white/20">
+                    <div className="flex flex-wrap gap-1">
                       {story.tags.map((tag, idx) => (
-                        <span key={idx} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                        <span key={idx} className="bg-white/10 backdrop-blur-sm text-white/80 px-2 py-1 rounded-full text-xs font-medium border border-white/20">
                           #{tag}
                         </span>
                       ))}

@@ -535,7 +535,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
     <div className="max-w-7xl mx-auto">
       {/* Learning Hub Style Header */}
       <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold text-gray-900 mb-6">Cases</h1>
+        <h1 className="text-5xl font-bold bg-gradient-to-r from-deepblue-900 via-violet-900 to-deepblue-800 bg-clip-text text-transparent mb-6">Cases</h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
           Master media literacy through comprehensive training, expert videos, insightful
           podcasts, and real-world case studies
@@ -559,12 +559,12 @@ const CommunityReports = ({ userScore, setUserScore }) => {
             <button
               key={option.value}
               onClick={() => setFilter(option.value)}
-              className={`flex items-center space-x-3 px-6 py-4 rounded-2xl border transition-all duration-200 min-w-[200px] ${isActive
-                ? 'bg-blue-600 border-blue-600 text-white shadow-lg'
-                : 'bg-white border-gray-200 text-gray-700 hover:border-blue-300 hover:shadow-md'
+              className={`flex items-center space-x-3 px-6 py-4 rounded-2xl border transition-all duration-300 min-w-[200px] ${isActive
+                ? 'bg-gradient-to-r from-deepblue-900 via-violet-900 to-deepblue-800 border-white/20 text-white shadow-2xl'
+                : 'bg-white border-gray-200 text-gray-700 hover:border-violet-300 hover:shadow-lg hover:shadow-violet-500/10'
                 }`}
             >
-              <div className={`p-2 rounded-lg ${isActive ? 'bg-blue-500' : 'bg-gray-100'
+              <div className={`p-2 rounded-lg ${isActive ? 'bg-white/20 backdrop-blur-sm' : 'bg-gray-100'
                 }`}>
                 <IconComponent className={`h-5 w-5 ${isActive ? 'text-white' : 'text-gray-600'}`} />
               </div>
@@ -572,7 +572,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                 <div className={`font-semibold text-base ${isActive ? 'text-white' : 'text-gray-900'}`}>
                   {option.label}
                 </div>
-                <div className={`text-sm ${isActive ? 'text-blue-100' : 'text-gray-500'}`}>
+                <div className={`text-sm ${isActive ? 'text-white/80' : 'text-gray-500'}`}>
                   {count} {count === 1 ? 'case' : 'cases'}
                 </div>
               </div>
@@ -585,7 +585,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
       <div className="text-center mb-8">
         <button
           onClick={() => setShowSubmitForm(true)}
-          className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors shadow-lg"
+          className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-violet-500 to-electric-500 hover:from-violet-400 hover:to-electric-400 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg border border-white/20 hover:shadow-violet-500/25"
         >
           <Flag className="h-5 w-5 mr-2" />
           <span>Report Content</span>
@@ -600,7 +600,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="group relative bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg hover:border-purple-200 transition-all duration-300"
+            className="group relative bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 rounded-xl shadow-2xl border border-white/10 overflow-hidden hover:shadow-violet-500/10 transition-all duration-500"
           >
             {/* Professional Media Display */}
             <div className="relative overflow-hidden bg-gray-100">
@@ -690,27 +690,27 @@ const CommunityReports = ({ userScore, setUserScore }) => {
               <div className="mb-4">
                 <h3
                   id={`case-title-${report.id}`}
-                  className="text-lg font-bold text-gray-900 mb-2 leading-tight line-clamp-2"
+                  className="text-lg font-bold text-white mb-2 leading-tight line-clamp-2"
                 >
                   {report.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed text-sm line-clamp-3">
+                <p className="text-white/90 leading-relaxed text-sm line-clamp-3">
                   {report.description}
                 </p>
               </div>
 
               {/* Simplified Metadata */}
-              <div className="flex items-center justify-between mb-4 text-sm text-gray-500">
+              <div className="flex items-center justify-between mb-4 text-sm text-white/80">
                 <div className="flex items-center space-x-1">
-                  <User className="h-4 w-4 text-gray-400" />
+                  <User className="h-4 w-4 text-violet-400" />
                   <span>{report.submittedBy}</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <Globe className="h-4 w-4 text-gray-400" />
+                  <Globe className="h-4 w-4 text-violet-400" />
                   <span>{report.location}</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <Clock className="h-4 w-4 text-gray-400" />
+                  <Clock className="h-4 w-4 text-violet-400" />
                   <span>{report.timestamp}</span>
                 </div>
               </div>
@@ -720,7 +720,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                 {/* Voting Buttons */}
                 <button
                   onClick={() => handleVote(report.id, 'up')}
-                  className={`flex items-center space-x-1 text-sm ${userVotes[report.id] === 'up' ? 'text-green-600' : 'text-gray-500 hover:text-green-600'}`}
+                  className={`flex items-center space-x-1 text-sm ${userVotes[report.id] === 'up' ? 'text-green-400' : 'text-white/60 hover:text-green-400'}`}
                 >
                   <ThumbsUp className="h-4 w-4" />
                   <span>{report.upvotes}</span>
@@ -728,7 +728,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
 
                 <button
                   onClick={() => handleVote(report.id, 'down')}
-                  className={`flex items-center space-x-1 text-sm ${userVotes[report.id] === 'down' ? 'text-red-600' : 'text-gray-500 hover:text-red-600'}`}
+                  className={`flex items-center space-x-1 text-sm ${userVotes[report.id] === 'down' ? 'text-red-400' : 'text-white/60 hover:text-red-400'}`}
                 >
                   <ThumbsDown className="h-4 w-4" />
                   <span>{report.downvotes}</span>
@@ -743,27 +743,27 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="mt-6 pt-6 border-t border-gray-200"
+                  className="mt-6 pt-6 border-t border-white/20"
                 >
                   {/* Verification Process for Under Review Items */}
                   {report.verificationStatus === 'under-review' && report.verificationDetails?.reviewProcess && (
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4">
                       <div className="flex items-center space-x-2 mb-3">
-                        <RefreshCw className="h-4 w-4 text-blue-600 animate-spin" />
-                        <h4 className="font-medium text-blue-900">Verification in Progress</h4>
+                        <RefreshCw className="h-4 w-4 text-violet-400 animate-spin" />
+                        <h4 className="font-medium text-white">Verification in Progress</h4>
                       </div>
 
                       <div className="space-y-3">
                         <div className="flex justify-between text-sm">
-                          <span className="text-blue-700">Current Stage:</span>
-                          <span className="font-medium text-blue-900 capitalize">
+                          <span className="text-white/80">Current Stage:</span>
+                          <span className="font-medium text-white capitalize">
                             {report.verificationDetails.reviewProcess.stage.replace('_', ' ')}
                           </span>
                         </div>
 
                         <div className="flex justify-between text-sm">
-                          <span className="text-blue-700">Estimated Time:</span>
-                          <span className="font-medium text-blue-900">
+                          <span className="text-white/80">Estimated Time:</span>
+                          <span className="font-medium text-white">
                             {report.verificationDetails.reviewProcess.estimatedTime}
                           </span>
                         </div>
@@ -771,12 +771,12 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                         {/* Progress Bar */}
                         <div className="space-y-2">
                           <div className="flex justify-between text-xs">
-                            <span className="text-blue-600">Progress</span>
-                            <span className="text-blue-600">{report.verificationDetails.reviewProcess.progress}%</span>
+                            <span className="text-violet-400">Progress</span>
+                            <span className="text-violet-400">{report.verificationDetails.reviewProcess.progress}%</span>
                           </div>
-                          <div className="w-full bg-blue-100 rounded-full h-2">
+                          <div className="w-full bg-white/20 rounded-full h-2">
                             <div
-                              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                              className="bg-gradient-to-r from-violet-500 to-electric-500 h-2 rounded-full transition-all duration-300"
                               style={{ width: `${report.verificationDetails.reviewProcess.progress}%` }}
                             ></div>
                           </div>
@@ -788,11 +788,11 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                           <div className="space-y-1">
                             {report.verificationDetails.reviewProcess.nextSteps.map((step, index) => (
                               <div key={index} className="flex items-center space-x-2 text-xs">
-                                <div className={`w-2 h-2 rounded-full ${index === 0 ? 'bg-blue-500 animate-pulse' :
-                                  index < 1 ? 'bg-green-500' : 'bg-gray-300'
+                                <div className={`w-2 h-2 rounded-full ${index === 0 ? 'bg-violet-400 animate-pulse' :
+                                  index < 1 ? 'bg-green-400' : 'bg-white/40'
                                   }`}></div>
-                                <span className={`${index === 0 ? 'text-blue-700 font-medium' :
-                                  index < 1 ? 'text-green-700' : 'text-gray-600'
+                                <span className={`${index === 0 ? 'text-violet-300 font-medium' :
+                                  index < 1 ? 'text-green-300' : 'text-white/60'
                                   }`}>
                                   {step}
                                 </span>
@@ -801,7 +801,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                           </div>
                         </div>
 
-                        <div className="bg-white bg-opacity-50 rounded p-2 text-xs text-blue-700">
+                        <div className="bg-white/10 backdrop-blur-sm rounded p-2 text-xs text-white/90 border border-white/20">
                           <strong>What happens next:</strong> Our AI systems will analyze your submission for technical indicators,
                           then expert moderators will review the findings and cross-reference with trusted fact-checking sources.
                           You'll be notified when verification is complete.
@@ -919,28 +919,28 @@ const CommunityReports = ({ userScore, setUserScore }) => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="bg-white rounded-2xl border border-gray-200 p-12 text-center"
+              className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 rounded-2xl border border-white/10 p-12 text-center shadow-2xl"
             >
               <div className="max-w-md mx-auto">
-                <div className="p-4 bg-gray-100 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-                  <Search className="h-10 w-10 text-gray-400" />
+                <div className="p-4 bg-white/10 backdrop-blur-sm rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center border border-white/20">
+                  <Search className="h-10 w-10 text-violet-400" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">No cases match your filter</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <h3 className="text-xl font-semibold text-white mb-3">No cases match your filter</h3>
+                <p className="text-white/90 mb-6 leading-relaxed">
                   We couldn't find any verified cases matching your current filter criteria.
                   Try adjusting your filters or explore all available cases.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <button
                     onClick={() => setFilter('all')}
-                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-200"
+                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-violet-500 to-electric-500 hover:from-violet-400 hover:to-electric-400 text-white font-medium rounded-lg transition-all duration-300 shadow-lg border border-white/20 hover:shadow-violet-500/25"
                   >
                     <Filter className="h-4 w-4 mr-2" />
                     Show All Cases
                   </button>
                   <button
                     onClick={() => setShowSubmitForm(true)}
-                    className="inline-flex items-center px-6 py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors"
+                    className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-medium rounded-lg hover:bg-white/20 transition-all duration-300 border border-white/20"
                   >
                     <Flag className="h-4 w-4 mr-2" />
                     Report New Case
@@ -967,13 +967,13 @@ const CommunityReports = ({ userScore, setUserScore }) => {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-white rounded-xl p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto"
+              className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 rounded-xl p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto border border-white/10 shadow-2xl"
             >
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-bold text-gray-900">Report Suspicious Content</h3>
+                <h3 className="text-xl font-bold text-white">Report Suspicious Content</h3>
                 <button
                   onClick={closeSubmitForm}
-                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                  className="text-white/60 hover:text-white transition-colors"
                 >
                   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -984,11 +984,11 @@ const CommunityReports = ({ userScore, setUserScore }) => {
               <div className="space-y-6">
                 {/* Content Type */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Content Type</label>
+                  <label className="block text-sm font-medium text-white mb-2">Content Type</label>
                   <select
                     value={newReport.type}
                     onChange={(e) => handleInputChange('type', e.target.value)}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-white/10 backdrop-blur-sm text-white placeholder-white/60"
                   >
                     <option value="image">Image</option>
                     <option value="video">Video</option>
@@ -1000,41 +1000,41 @@ const CommunityReports = ({ userScore, setUserScore }) => {
 
                 {/* Title */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Title *</label>
+                  <label className="block text-sm font-medium text-white mb-2">Title *</label>
                   <input
                     type="text"
                     value={newReport.title}
                     onChange={(e) => handleInputChange('title', e.target.value)}
                     placeholder="Brief title describing the suspicious content"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-white/10 backdrop-blur-sm text-white placeholder-white/60"
                     maxLength={100}
                   />
-                  <p className="text-xs text-gray-500 mt-1">{newReport.title.length}/100 characters</p>
+                  <p className="text-xs text-white/60 mt-1">{newReport.title.length}/100 characters</p>
                 </div>
 
                 {/* Description */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Description *</label>
+                  <label className="block text-sm font-medium text-white mb-2">Description *</label>
                   <textarea
                     rows={4}
                     value={newReport.description}
                     onChange={(e) => handleInputChange('description', e.target.value)}
                     placeholder="Describe what makes this content suspicious. Include details about why you think it might be fake, misleading, or harmful."
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-white/10 backdrop-blur-sm text-white placeholder-white/60"
                     maxLength={500}
                   />
-                  <p className="text-xs text-gray-500 mt-1">{newReport.description.length}/500 characters</p>
+                  <p className="text-xs text-white/60 mt-1">{newReport.description.length}/500 characters</p>
                 </div>
 
                 {/* Location */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Where did you find this?</label>
+                  <label className="block text-sm font-medium text-white mb-2">Where did you find this?</label>
                   <input
                     type="text"
                     value={newReport.location}
                     onChange={(e) => handleInputChange('location', e.target.value)}
                     placeholder="e.g., Facebook, Twitter, WhatsApp, News website"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-white/10 backdrop-blur-sm text-white placeholder-white/60"
                   />
                 </div>
 
@@ -1141,14 +1141,14 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                   <button
                     onClick={closeSubmitForm}
                     disabled={isSubmitting}
-                    className="flex-1 bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 bg-white/10 backdrop-blur-sm text-white py-3 rounded-lg hover:bg-white/20 transition-all duration-300 border border-white/20 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={submitReport}
                     disabled={isSubmitting || !newReport.title.trim() || !newReport.description.trim() || !newReport.media}
-                    className="flex-1 btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                    className="flex-1 bg-gradient-to-r from-violet-500 to-electric-500 hover:from-violet-400 hover:to-electric-400 text-white py-3 rounded-lg transition-all duration-300 shadow-lg border border-white/20 hover:shadow-violet-500/25 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                   >
                     {isSubmitting ? (
                       <>
