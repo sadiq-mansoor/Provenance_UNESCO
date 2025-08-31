@@ -1476,7 +1476,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 };
 
