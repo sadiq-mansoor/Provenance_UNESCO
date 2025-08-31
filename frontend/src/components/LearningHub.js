@@ -243,29 +243,31 @@ const LearningHub = () => {
     },
     {
       id: 2,
-      title: 'Deepfakes and Digital Forensics',
-      host: 'Prof. Michael Rodriguez',
-      platform: 'Tech Ethics Today',
+      title: 'ڈیپ فیکس کا دور: ڈیجیٹل سچ اور فریب کی جنگ میں اصل کی پہچان کیسے کریں؟',
+      host: 'Provenance',
+      platform: 'Media Literacy Podcast',
       duration: '38:15',
-      episode: 'Episode 94',
-      description: 'Expert insights into detecting AI-generated content and the future of digital authentication.',
-      topics: ['AI detection', 'Digital watermarks', 'C2PA standards', 'Future threats'],
-      releaseDate: '2025-01-10',
-      downloads: '125K',
-      rating: 0
+      episode: 'Episode 128',
+      description: 'ڈیپ فیکس اور AI سے بنائے گئے مواد کی شناخت کے طریقے اور ڈیجیٹل تصدیق کا مستقبل۔',
+      topics: ['AI detection', 'Digital watermarks', 'Deepfakes', 'Digital authentication'],
+      releaseDate: '2025-01-16',
+      downloads: '0',
+      rating: 0,
+      audioFile: '/images/podcast/ڈیپ_فیکس_کا_دور__ڈیجیٹل_سچ_اور_فریب_کی_جنگ_میں_اصل_کی_پہچان_کیسے_کریں؟.m4a'
     },
     {
       id: 3,
-      title: 'Social Media Echo Chambers',
-      host: 'Dr. Jessica Park',
-      platform: 'Digital Society',
+      title: 'Breaking the Algorithmic Echo Chamber: How to Dismantle Your Digital Walls',
+      host: 'Provenance',
+      platform: 'Media Literacy Podcast',
       duration: '52:18',
-      episode: 'Episode 203',
-      description: 'How algorithms create filter bubbles and what we can do to break free from them.',
-      topics: ['Algorithm design', 'Filter bubbles', 'Echo chambers', 'Information diversity'],
-      releaseDate: '2025-01-08',
-      downloads: '125K',
-      rating: 0
+      episode: 'Episode 129',
+      description: 'Learn how to break free from algorithmic filter bubbles and echo chambers that limit your information diversity and critical thinking.',
+      topics: ['Algorithm design', 'Filter bubbles', 'Echo chambers', 'Information diversity', 'Critical thinking', 'Digital literacy'],
+      releaseDate: '2025-01-17',
+      downloads: '0',
+      rating: 0,
+      audioFile: '/images/podcast/Breaking_the_Algorithmic_Echo_Chamber__How_to_Dismantle_Your_Digital_Walls.m4a'
     }
   ];
 
@@ -294,9 +296,123 @@ const LearningHub = () => {
       difficulty: 'Intermediate',
       description: 'How social engineering and insider threats led to one of the biggest social media security breaches.',
       keyLessons: ['Social engineering tactics', 'Insider threats', 'Verification importance', 'Crisis response'],
-      author: 'Cybersecurity Research Team',
+      author: 'Provenance MLP',
       publishDate: '2024-12-15',
-      tags: ['Social Engineering', 'Platform Security', 'Verification']
+      tags: ['Social Engineering', 'Platform Security', 'Verification'],
+      content: `
+        <h2>Insider Threats and the 2020 Twitter Hack: A Detailed Briefing</h2>
+        
+        <h3>Executive Summary</h3>
+        <p>Insider threats represent a multifaceted and growing risk to organisations across all sectors. These threats originate from individuals with authorised access to a company's resources and can be either malicious (intentional harm) or negligent (unintentional harm). The 2020 Twitter account hijacking serves as a stark example of how social engineering tactics, targeting insider vulnerabilities, can lead to significant data breaches, financial loss, reputational damage, and even broader societal risks to financial markets, elections, and national security. This briefing reviews the definition, types, and manifestations of insider threats, with a particular focus on the 2020 Twitter hack as a critical case study, and outlines essential mitigation strategies.</p>
+        
+        <h3>1. Defining Insider Threats</h3>
+        <p>According to the Cybersecurity and Infrastructure Security Agency (CISA), an "insider threat is the threat that an insider will use their authorized access, intentionally or unintentionally, to do harm to the department's mission, resources, personnel, facilities, information, equipment, networks, or systems." An "insider" is broadly defined as "any person who has or had authorized access to or knowledge of an organization's resources, including personnel, facilities, information, equipment, networks, and systems." This can encompass employees, partners, vendors, interns, suppliers, contractors, and even repair personnel.</p>
+        
+        <p>The harm caused by insider threats can include:</p>
+        <ul>
+          <li><strong>Malicious acts:</strong> Intentional actions to damage an organisation, such as espionage, sabotage, theft, unauthorised disclosure of information, corruption, or workplace violence.</li>
+          <li><strong>Complacent or unintentional acts:</strong> Careless behaviours that expose an organisation to risk, such as negligence or accidental data leaks.</li>
+        </ul>
+        
+        <h3>2. Types of Insider Threats</h3>
+        <p>While often categorised simply as malicious or negligent, a more nuanced classification reveals several distinct types of insider threats:</p>
+        
+        <ul>
+          <li><strong>Departing employees:</strong> These individuals, leaving voluntarily or involuntarily, might take company materials for a new job or, more maliciously, steal and expose sensitive data out of revenge.</li>
+          <li><strong>Malicious insiders:</strong> Current employees who, driven by grievances, alter or delete crucial data, disclose secret information, or engage in other forms of sabotage.</li>
+          <li><strong>Negligent workers:</strong> These employees unintentionally jeopardise the organisation through poor security hygiene, such as weak passwords, lack of multi-factor authentication (MFA), or allowing others to use their work devices. "Human error is one of the leading causes of data breaches and cyberattacks, contributing to 95% of data breaches."</li>
+          <li><strong>Security evaders:</strong> Workers who bypass security policies for convenience, increasing the risk of a data breach.</li>
+          <li><strong>Inside agents:</strong> Individuals who act on behalf of external groups, either knowingly (through blackmail or bribery) or unknowingly (through social engineering deception).</li>
+          <li><strong>Third-party partners:</strong> External parties like suppliers, contractors, and vendors who have some level of inside access and can pose similar risks to employees.</li>
+        </ul>
+        
+        <h3>3. The 2020 Twitter Account Hijacking: A Case Study in Social Engineering and Insider Threat</h3>
+        <p>The 2020 Twitter account hijacking, described by cybersecurity expert Dmitri Alperovitch as "the worst hack of a major social media platform yet," perfectly illustrates the dangers of insider threats exploited through social engineering.</p>
+        
+        <h4>3.1. Incident Overview</h4>
+        <p>On July 15, 2020, between 20:00 and 22:00 UTC, "69 high-profile Twitter accounts were compromised by outside parties to promote a bitcoin scam." Accounts belonging to prominent figures like Barack Obama, Joe Biden, Bill Gates, Elon Musk, and companies such as Apple and Uber, were used to tweet a "double your bitcoin" scam, soliciting cryptocurrency donations with a promise of doubling the return. This "smash and grab" operation resulted in "bitcoins to a value of more than US$110,000" being deposited.</p>
+        
+        <h4>3.2. Method of Attack: Social Engineering</h4>
+        <p>The attackers did not employ "any of the high-tech or sophisticated techniques often used in cyberattacks – no malware, no exploits, and no backdoors." Instead, they leveraged social engineering, particularly "vishing" (voice phishing), targeting Twitter employees.</p>
+        
+        <p>The attack unfolded in three phases:</p>
+        <ol>
+          <li><strong>Stealing Credentials through Social Engineering:</strong> The hackers "called several Twitter employees and claimed to be calling from the Help Desk in Twitter's IT department." They exploited the fact that "VPN problems were common at Twitter" due to the shift to remote working during the COVID-19 pandemic. They directed employees to a fake internal VPN website to steal credentials and bypass MFA by simultaneously entering stolen credentials into the real Twitter VPN and asking the employees for the MFA code.</li>
+          <li><strong>Stealing "OG" Twitter Accounts:</strong> Initially, the hackers focused on "original gangster" (OG) usernames, which are highly coveted and can be sold for significant amounts. This demonstrated their access to Twitter's internal systems.</li>
+          <li><strong>The High-Profile Bitcoin Scam:</strong> Escalating the attack, the hackers targeted "verified" accounts, knowing that tweets from these accounts would lend credibility to their fraudulent demands. They first compromised cryptocurrency-related accounts before moving on to high-profile individuals and companies, reaching millions of potential victims.</li>
+        </ol>
+        
+        <p>Twitter later confirmed that "The attackers successfully manipulated a small number of employees and used their credentials to access Twitter's internal systems, including getting through our two-factor protections."</p>
+        
+        <h4>3.3. Contributing Cybersecurity Weaknesses at Twitter</h4>
+        <p>The success of the Twitter Hack was largely attributed to several internal cybersecurity weaknesses:</p>
+        
+        <ul>
+          <li><strong>Lack of Strong Leadership:</strong> Twitter had been without a Chief Information Security Officer (CISO) for seven months prior to the attack, indicating a lack of senior-level engagement and prioritisation of cybersecurity.</li>
+          <li><strong>Vulnerability to Social Engineering:</strong> The company's employees were susceptible to sophisticated social engineering tactics that played on their trust and the new challenges of remote work. "Social engineering is the use of deception to manipulate individuals into divulging confidential or personal information which is later used for fraudulent purposes."</li>
+          <li><strong>Failure to Address Remote Working Vulnerabilities:</strong> The rapid transition to mass remote working due to the COVID-19 pandemic created new security challenges that Twitter "did not implement any significant compensating controls" to mitigate.</li>
+          <li><strong>Inadequate Access Management and Authentication:</strong> While Twitter had some access controls, "over 1,000 Twitter employees still had access to them for job functions and duties such as Twitter user account maintenance and support." The application-based MFA used was also circumvented, highlighting the need for stronger methods like physical security keys.</li>
+          <li><strong>Insufficient Employee Education and Training:</strong> Despite the prevalence of social engineering, Twitter's employees were not adequately prepared to recognise and resist these attacks.</li>
+          <li><strong>Weak Security Monitoring:</strong> A robust security monitoring program, including Security Information and Event Management (SIEM) systems, could have detected the anomalous activity in near real-time, allowing for a quicker response.</li>
+        </ul>
+        
+        <h4>3.4. Impact and Aftermath</h4>
+        <p>Beyond the financial losses from the bitcoin scam, the Twitter hack had significant implications:</p>
+        
+        <ul>
+          <li><strong>Exposure of Nonpublic Information:</strong> "130 Twitter user accounts were compromised," with "45 accounts were used to send tweets." Account data for eight non-verified accounts was downloaded, and direct messages for "up to 36" accounts were accessed, including that of a Dutch Parliament Representative.</li>
+          <li><strong>Disruption of Critical Communications:</strong> Twitter temporarily disabled tweeting for many verified accounts, affecting essential communications, such as "the National Weather Service could not tweet a tornado advisory."</li>
+          <li><strong>Reputational Damage and Investor Concern:</strong> The incident caused Twitter, Inc.'s stock price to fall and severely damaged the brand's security reputation.</li>
+          <li><strong>Societal Risks:</strong> Security experts expressed concern about the hack's potential to "affect the use of social media in important online discussions, including the lead-up into the 2020 United States presidential election," and cause "confusion, havoc and political mischief." The incident underscored the "central role [Twitter] plays in how we communicate and how news is spread."</li>
+          <li><strong>Legal and Regulatory Scrutiny:</strong> The FBI launched an investigation, and the incident prompted calls for increased cybersecurity oversight of large social media companies.</li>
+        </ul>
+        
+        <h3>4. Mitigating Insider Threats</h3>
+        <p>Effective insider threat mitigation requires a holistic approach combining physical security, personnel awareness, and information-centric principles. Key steps include:</p>
+        
+        <ul>
+          <li><strong>Defining Insider Threats:</strong> A clear understanding of what constitutes an insider threat is the first step in building a mitigation program.</li>
+          <li><strong>Detecting and Identifying Insider Threats:</strong> This involves both human observation of concerning behaviours and technological monitoring of data movement. Solutions like Mimecast Incydr can "automatically detect data leaks to untrusted cloud apps, blocks unacceptable exfiltrations, and tailors security's response."</li>
+          <li><strong>Assessing Insider Threats:</strong> Evaluating the interest, motive, and ability of a person of concern to carry out a harmful act.</li>
+          <li><strong>Managing Insider Threats:</strong> Proactive measures to monitor, manage, and mitigate the risk of harmful actions, including continuous monitoring and automated responses.</li>
+        </ul>
+        
+        <h4>4.1. Cybersecurity Best Practices (General)</h4>
+        <ul>
+          <li><strong>Leadership:</strong> Establish a strong cybersecurity culture from the top, with a dedicated CISO and sufficient independence to implement robust protocols.</li>
+          <li><strong>Access Management and Authentication:</strong> Implement strict "least privilege" access controls, ensuring users only have access necessary for their job roles. Mandate stronger authentication, such as physical security keys, for high-risk applications and functions.</li>
+          <li><strong>Employee Education and Training:</strong> Conduct regular cybersecurity awareness training, including social engineering techniques like phishing and vishing. This should also include uniform communication standards and methods for reporting suspicious activity.</li>
+          <li><strong>Security Monitoring:</strong> Implement robust Security Information and Event Management (SIEM) systems to log, aggregate, analyse, and correlate security information, identifying anomalous activity and insider threats in near real-time.</li>
+          <li><strong>Secure Devices and Digital Footprint:</strong> Keep anti-malware and anti-virus software updated, regularly patch software and firmware, avoid administrator mode for daily use, use unique and strong passwords with MFA for all critical accounts, and be mindful of over-sharing personal information online.</li>
+        </ul>
+        
+        <h4>4.2. Best Practices for Cryptocurrency Companies (Specific)</h4>
+        <p>The New York State Department of Financial Services (DFS) identified several best practices for cryptocurrency companies following the Twitter hack, many of which are applicable to other industries:</p>
+        
+        <ul>
+          <li><strong>Block Cryptocurrency Addresses Associated with Scammers:</strong> Proactively identify and quickly block fraudulent addresses.</li>
+          <li><strong>Restrict Transfers to Pre-Approved Addresses (Safelisting):</strong> Where practical, limit transfers to a list of pre-approved addresses. For larger transfers, implement additional controls like MFA or transfer delays.</li>
+          <li><strong>Improve Marketing of Legitimate Promotions:</strong> Ensure promotions are clearly distinguishable from scams and accompanied by verification information.</li>
+          <li><strong>Educate Consumers About Spotting Scams:</strong> Regularly update customers on identified and potential risks.</li>
+          <li><strong>Conduct Scam Monitoring:</strong> Actively monitor for patterns and trends in fraudulent activity, such as "romance" attacks, and coordinate with law enforcement and regulators.</li>
+          <li><strong>Share Information with Other Companies:</strong> Participate in information-sharing groups to stay updated on attacks and mitigation strategies.</li>
+        </ul>
+        
+        <h3>5. Call for Expanded Oversight of Social Media Companies</h3>
+        <p>The Twitter Hack highlighted a significant regulatory gap: "Social media companies currently have no dedicated regulator." Given their immense influence on "financial markets, elections, and national security," the report by the New York State Department of Financial Services calls for a new regulatory framework.</p>
+        
+        <p>Key recommendations include:</p>
+        <ul>
+          <li><strong>Cybersecurity Regulation for Large Social Media Companies:</strong> Implement comprehensive, risk-based cybersecurity regulations, similar to those in the financial services industry, but "more detailed and require more security in high-risk areas."</li>
+          <li><strong>Designation of "Systemically Important" Social Media Companies:</strong> Establish an "analogue to the FSOC [Financial Stability Oversight Council]" to identify companies whose misuse could pose systemic risks to society.</li>
+          <li><strong>New Expert Regulator:</strong> Create a dedicated, expert agency to oversee the cybersecurity of designated "systemically important" social media companies, potentially through "stress tests" to evaluate their susceptibility to threats.</li>
+        </ul>
+        
+        <p><em>"The Twitter Hack demonstrates, more than anything, the risk to society when systemically important institutions are left to regulate themselves."</em></p>
+        
+        <h3>Conclusion</h3>
+        <p>The 2020 Twitter Hack stands as a critical reminder that even technologically advanced organisations are vulnerable to insider threats, particularly when combined with sophisticated social engineering. Protecting against these threats requires a comprehensive, proactive, and continuously evolving strategy that prioritises strong leadership, robust technical controls, ongoing employee education, and vigilant monitoring. Furthermore, the incident underscores the urgent need for enhanced regulatory oversight of systemically important social media platforms to safeguard against their potential weaponisation and ensure the integrity of our digital landscape.</p>
+      `
     },
     {
       id: 2,
@@ -306,9 +422,72 @@ const LearningHub = () => {
       difficulty: 'Advanced',
       description: 'A detailed analysis of how deepfake technology was used in a recent political campaign and its implications.',
       keyLessons: ['Political misinformation', 'Deepfake detection', 'Media verification', 'Public awareness'],
-      author: 'Political Media Analysis Lab',
+      author: 'Provenance MLP',
       publishDate: '2024-12-10',
-      tags: ['Deepfakes', 'Politics', 'Elections', 'AI Ethics']
+      tags: ['Deepfakes', 'Politics', 'Elections', 'AI Ethics'],
+      content: `
+        <h2>When AI Enters the Political Arena</h2>
+        <p>In a recent election cycle, deepfake technology emerged as a powerful tool for political manipulation, marking a new era in digital misinformation. This case study examines how synthetic media was weaponized to influence public opinion and the broader implications for democratic processes.</p>
+        
+        <h3>The Campaign That Never Was</h3>
+        <p>During the 2023 regional elections in Eastern Europe, voters were confronted with highly convincing video content showing a leading candidate making inflammatory statements about minority groups. The videos spread rapidly across social media platforms, garnering millions of views within 48 hours.</p>
+        
+        <h3>Technical Analysis</h3>
+        <p>Forensic analysis revealed sophisticated deepfake techniques:</p>
+        <ul>
+          <li><strong>Face-swap technology:</strong> High-resolution facial mapping using GANs (Generative Adversarial Networks)</li>
+          <li><strong>Voice synthesis:</strong> AI-generated speech matching the candidate's vocal patterns</li>
+          <li><strong>Contextual placement:</strong> Videos placed in realistic settings to enhance credibility</li>
+          <li><strong>Temporal consistency:</strong> Maintained lighting and shadow consistency across frames</li>
+        </ul>
+        
+        <h3>Detection Challenges</h3>
+        <p>The deepfakes were particularly challenging to detect because they:</p>
+        <ul>
+          <li>Used high-quality source material from legitimate speeches</li>
+          <li>Incorporated subtle facial expressions and micro-movements</li>
+          <li>Maintained consistent audio-visual synchronization</li>
+          <li>Were distributed through multiple channels simultaneously</li>
+        </ul>
+        
+        <h3>Detection Methods</h3>
+        <p>Experts used several techniques to identify the synthetic content:</p>
+        <ul>
+          <li><strong>Temporal inconsistencies:</strong> Frame-by-frame analysis revealed unnatural blinking patterns</li>
+          <li><strong>Compression artifacts:</strong> Different compression levels between face and background</li>
+          <li><strong>Physiological impossibilities:</strong> Inconsistent pulse detection in facial blood flow</li>
+          <li><strong>Metadata analysis:</strong> Creation timestamps and device fingerprints</li>
+        </ul>
+        
+        <h3>Media Verification Response</h3>
+        <p>News organizations and fact-checkers implemented rapid response protocols:</p>
+        <ul>
+          <li>Cross-referencing with verified campaign schedules</li>
+          <li>Consulting with campaign representatives</li>
+          <li>Using AI detection tools and forensic analysis</li>
+          <li>Publishing detailed debunking reports with technical evidence</li>
+        </ul>
+        
+        <h3>Public Awareness Impact</h3>
+        <p>The incident led to significant changes in media literacy education:</p>
+        <ul>
+          <li>Schools integrated deepfake awareness into curricula</li>
+          <li>Social media platforms enhanced detection algorithms</li>
+          <li>Governments considered legislation requiring synthetic media labeling</li>
+          <li>News organizations adopted stricter verification standards</li>
+        </ul>
+        
+        <h3>Long-term Implications</h3>
+        <p>This case highlighted the urgent need for:</p>
+        <ul>
+          <li>Advanced detection technologies accessible to journalists and citizens</li>
+          <li>Legal frameworks addressing synthetic media in political contexts</li>
+          <li>International cooperation on digital election security</li>
+          <li>Public education on identifying and reporting suspicious content</li>
+        </ul>
+        
+        <p>The incident serves as a wake-up call for democratic societies, demonstrating how AI technology can be weaponized to undermine trust in electoral processes and the critical importance of media literacy in the digital age.</p>
+      `
     },
     {
       id: 3,
@@ -318,9 +497,145 @@ const LearningHub = () => {
       difficulty: 'Intermediate',
       description: 'Tracking the spread of health misinformation during the pandemic and lessons learned.',
       keyLessons: ['Health misinformation', 'Fact-checking', 'Source verification', 'Crisis communication'],
-      author: 'Global Health Communication Institute',
+      author: 'Provenance MLP',
       publishDate: '2024-12-05',
-      tags: ['Health', 'Pandemic', 'Fact-checking', 'Public Health']
+      tags: ['Health', 'Pandemic', 'Fact-checking', 'Public Health'],
+      content: `
+        <h2>The Parallel Pandemic: Misinformation in a Health Crisis</h2>
+        <p>As COVID-19 spread globally in early 2020, a parallel "infodemic" of misinformation spread even faster through digital channels. This investigation traces how false health information proliferated, its real-world consequences, and the lessons learned for future crisis communication.</p>
+        
+        <h3>The Perfect Storm</h3>
+        <p>Several factors created ideal conditions for health misinformation:</p>
+        <ul>
+          <li><strong>Scientific uncertainty:</strong> Rapidly evolving understanding of the virus</li>
+          <li><strong>Information vacuum:</strong> Limited official guidance in early stages</li>
+          <li><strong>Fear and anxiety:</strong> Public desperation for answers and solutions</li>
+          <li><strong>Social isolation:</strong> Increased reliance on digital information sources</li>
+        </ul>
+        
+        <h3>Common Misinformation Themes</h3>
+        <p>Our analysis identified recurring patterns in false health claims:</p>
+        
+        <h4>Origin Theories</h4>
+        <ul>
+          <li>Laboratory creation conspiracies</li>
+          <li>Bioweapon allegations</li>
+          <li>5G network connections</li>
+          <li>Population control schemes</li>
+        </ul>
+        
+        <h4>Prevention Myths</h4>
+        <ul>
+          <li>Miracle cures and supplements</li>
+          <li>Household remedies (bleach, UV light)</li>
+          <li>Religious or spiritual protection</li>
+          <li>Dietary interventions without scientific basis</li>
+        </ul>
+        
+        <h4>Treatment Misinformation</h4>
+        <ul>
+          <li>Unproven medications (hydroxychloroquine, ivermectin)</li>
+          <li>Dangerous home remedies</li>
+          <li>Anti-vaccination propaganda</li>
+          <li>Alternative medicine claims</li>
+        </ul>
+        
+        <h3>Spread Patterns and Amplification</h3>
+        <p>Misinformation spread through predictable channels:</p>
+        
+        <h4>Social Media Ecosystems</h4>
+        <ul>
+          <li><strong>Facebook groups:</strong> Closed communities sharing unverified remedies</li>
+          <li><strong>WhatsApp chains:</strong> Personal networks spreading "insider information"</li>
+          <li><strong>YouTube videos:</strong> Pseudo-experts presenting alternative theories</li>
+          <li><strong>Twitter threads:</strong> Rapid dissemination of unverified claims</li>
+        </ul>
+        
+        <h4>Amplification Mechanisms</h4>
+        <ul>
+          <li>Emotional content receiving higher engagement</li>
+          <li>Algorithm-driven recommendation systems</li>
+          <li>Influencer and celebrity endorsements</li>
+          <li>Cross-platform content migration</li>
+        </ul>
+        
+        <h3>Real-World Consequences</h3>
+        <p>The infodemic had measurable impacts on public health:</p>
+        
+        <h4>Direct Health Harms</h4>
+        <ul>
+          <li>Poisonings from ingesting disinfectants</li>
+          <li>Delayed medical treatment due to fear</li>
+          <li>Medication shortages from hoarding</li>
+          <li>Attacks on healthcare workers</li>
+        </ul>
+        
+        <h4>Public Health Measures</h4>
+        <ul>
+          <li>Reduced compliance with mask mandates</li>
+          <li>Vaccine hesitancy and refusal</li>
+          <li>Violation of social distancing guidelines</li>
+          <li>Undermining of contact tracing efforts</li>
+        </ul>
+        
+        <h3>Fact-Checking Response</h3>
+        <p>The crisis prompted unprecedented fact-checking efforts:</p>
+        
+        <h4>Rapid Response Systems</h4>
+        <ul>
+          <li>24/7 monitoring of emerging claims</li>
+          <li>Collaboration between international fact-checkers</li>
+          <li>Direct partnerships with social media platforms</li>
+          <li>Real-time debunking of viral content</li>
+        </ul>
+        
+        <h4>Source Verification Protocols</h4>
+        <ul>
+          <li>Direct consultation with medical experts</li>
+          <li>Cross-referencing with peer-reviewed research</li>
+          <li>Verification of clinical trial data</li>
+          <li>Authentication of official health communications</li>
+        </ul>
+        
+        <h3>Platform Interventions</h3>
+        <p>Social media companies implemented various countermeasures:</p>
+        <ul>
+          <li><strong>Content removal:</strong> Deletion of dangerous health misinformation</li>
+          <li><strong>Warning labels:</strong> Flagging disputed or unverified claims</li>
+          <li><strong>Reduced distribution:</strong> Limiting reach of flagged content</li>
+          <li><strong>Authoritative sources:</strong> Promoting WHO and CDC information</li>
+        </ul>
+        
+        <h3>Crisis Communication Lessons</h3>
+        <p>The pandemic revealed critical insights for future health crises:</p>
+        
+        <h4>Proactive Communication</h4>
+        <ul>
+          <li>Fill information vacuums quickly with accurate data</li>
+          <li>Acknowledge uncertainty while providing best available guidance</li>
+          <li>Use multiple channels to reach diverse audiences</li>
+          <li>Prepare for misinformation before it spreads</li>
+        </ul>
+        
+        <h4>Trust Building</h4>
+        <ul>
+          <li>Maintain transparency about evolving scientific understanding</li>
+          <li>Partner with trusted community leaders and influencers</li>
+          <li>Address concerns and questions directly</li>
+          <li>Admit mistakes and correct course when necessary</li>
+        </ul>
+        
+        <h3>Long-term Implications</h3>
+        <p>The COVID-19 infodemic has lasting effects on public health communication:</p>
+        <ul>
+          <li>Increased investment in health literacy programs</li>
+          <li>Development of rapid-response misinformation monitoring systems</li>
+          <li>Enhanced collaboration between health authorities and tech platforms</li>
+          <li>Recognition of misinformation as a public health threat</li>
+        </ul>
+        
+        <p>This investigation demonstrates that in health crises, accurate information is as crucial as medical interventions. The battle against misinformation requires coordinated efforts from health authorities, technology platforms, media organizations, and educated citizens working together to protect public health.</p>
+      `
     }
   ];
 
@@ -384,6 +699,74 @@ const LearningHub = () => {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+
+  const StoryTextModal = ({ story, onClose }) => (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
+        onClick={onClose}
+      >
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.8, opacity: 0 }}
+          className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-auto"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="p-8">
+            <div className="flex justify-between items-start mb-6">
+              <div>
+                <div className="flex items-center space-x-3 mb-2">
+                  <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
+                    {story.category}
+                  </span>
+                  <span className="text-gray-500 text-sm">{story.readTime}</span>
+                  <span className="text-gray-500 text-sm">{story.difficulty}</span>
+                </div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">{story.title}</h2>
+                <p className="text-gray-600 mb-4">By {story.author} • {story.publishDate}</p>
+              </div>
+              <button
+                onClick={onClose}
+                className="text-gray-500 hover:text-gray-700 text-2xl p-2"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            
+            <div className="prose prose-lg max-w-none">
+              <div dangerouslySetInnerHTML={{ __html: story.content }} />
+            </div>
+            
+            <div className="mt-8 pt-6 border-t border-gray-200">
+              <h4 className="font-semibold text-gray-900 mb-3">Key Learning Points</h4>
+              <div className="grid md:grid-cols-2 gap-4">
+                {story.keyLessons.map((lesson, index) => (
+                  <div key={index} className="flex items-start space-x-2">
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">{lesson}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="mt-6">
+              <div className="flex flex-wrap gap-2">
+                {story.tags.map((tag, idx) => (
+                  <span key={idx} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                    #{tag}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
@@ -928,7 +1311,7 @@ const LearningHub = () => {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={() => story.type === 'video' ? setSelectedStory(story) : null}
+                      onClick={() => setSelectedStory(story)}
                       className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg font-semibold flex items-center space-x-2 transition-colors"
                     >
                       {story.type === 'video' ? <Play className="h-4 w-4" /> : <BookOpen className="h-4 w-4" />}
@@ -1028,9 +1411,16 @@ const LearningHub = () => {
         />
       )}
 
-      {/* Story Video Modal */}
-      {selectedStory && (
+      {/* Story Modals */}
+      {selectedStory && selectedStory.type === 'video' && (
         <StoryVideoModal 
+          story={selectedStory} 
+          onClose={() => setSelectedStory(null)} 
+        />
+      )}
+      
+      {selectedStory && selectedStory.type !== 'video' && (
+        <StoryTextModal 
           story={selectedStory} 
           onClose={() => setSelectedStory(null)} 
         />
