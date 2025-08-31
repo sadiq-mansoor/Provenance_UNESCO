@@ -41,63 +41,7 @@ const MediaLiteracyPlatform = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      {/* Professional Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          {/* Top Bar with User Info */}
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <Shield className="h-8 w-8 text-blue-600" />
-                <h1 className="text-2xl font-bold text-gray-900">🔥 Provenance - PROFESSIONAL DESIGN</h1>
-              </div>
-              <div className="hidden md:block h-6 w-px bg-gray-300"></div>
-              <div className="hidden md:flex items-center space-x-2 text-sm text-gray-600">
-                <Globe className="h-4 w-4" />
-                <span>Media Verification Platform</span>
-              </div>
-            </div>
-
-            {/* User Status */}
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2 bg-blue-50 px-3 py-2 rounded-lg">
-                <Target className="h-4 w-4 text-blue-600" />
-                <span className="text-sm font-medium text-blue-900">{userLevel}</span>
-                <span className="text-xs text-blue-600">{userScore} pts</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Navigation Tabs */}
-          <nav className="flex space-x-1" role="tablist">
-            {sections.map((section) => (
-              <button
-                key={section.id}
-                onClick={() => setActiveSection(section.id)}
-                role="tab"
-                aria-selected={activeSection === section.id}
-                aria-controls={`${section.id}-panel`}
-                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-medium transition-all duration-200 ${activeSection === section.id
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                  }`}
-              >
-                <section.icon className={`h-5 w-5 ${activeSection === section.id ? 'text-white' : 'text-gray-400 group-hover:text-gray-600'
-                  }`} />
-                <div className="text-left">
-                  <div className="font-semibold">{section.name}</div>
-                  <div className={`text-xs ${activeSection === section.id ? 'text-blue-100' : 'text-gray-500'
-                    }`}>
-                    {section.description}
-                  </div>
-                </div>
-              </button>
-            ))}
-          </nav>
-        </div>
-      </div>
-
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50">
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-8">
         <AnimatePresence mode="wait">
@@ -589,137 +533,92 @@ const CommunityReports = ({ userScore, setUserScore }) => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      {/* Modern Professional Header */}
-      <div className="mb-8">
-        <div className="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
-          {/* Header with Gradient */}
-          <div className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 px-8 py-8 text-white">
-            <div className="absolute inset-0 bg-black/10"></div>
-            <div className="relative z-10">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-                <div className="flex-1">
-                  <div className="flex items-center space-x-4 mb-4">
-                    <div className="p-3 bg-white/20 backdrop-blur-sm rounded-2xl">
-                      <Shield className="h-8 w-8 text-white" />
-                    </div>
-                    <div>
-                      <h1 className="text-3xl font-bold mb-2">Verified Cases</h1>
-                      <p className="text-blue-100 text-lg">Documented misinformation cases for education and awareness</p>
-                    </div>
-                  </div>
+      {/* Learning Hub Style Header */}
+      <div className="text-center mb-12">
+        <h1 className="text-5xl font-bold text-gray-900 mb-6">Cases</h1>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          Master media literacy through comprehensive training, expert videos, insightful
+          podcasts, and real-world case studies
+        </p>
+      </div>
 
-                  {/* Professional Stats Bar */}
-                  <div className="flex flex-wrap items-center gap-6">
-                    <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      <span className="text-white font-medium">{filteredReports.length} Active Cases</span>
-                    </div>
-                    <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                      <CheckCircle className="h-4 w-4 text-green-400" />
-                      <span className="text-white font-medium">94.2% Accuracy</span>
-                    </div>
-                    <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                      <Users className="h-4 w-4 text-purple-400" />
-                      <span className="text-white font-medium">Community Verified</span>
-                    </div>
-                  </div>
+      {/* Learning Hub Style Filter Cards */}
+      <div className="flex flex-wrap justify-center gap-4 mb-8">
+        {filterOptions.map((option) => {
+          const IconComponent = option.icon;
+          const isActive = filter === option.value;
+          const count = filteredReports.filter(r =>
+            option.value === 'all' ? true :
+              option.value === 'verified-fake' ? r.verificationStatus === 'verified-fake' :
+                option.value === 'under-review' ? r.verificationStatus === 'under-review' :
+                  option.value === 'health-misinformation' ? r.category === 'health-misinformation' :
+                    option.value === 'celebrity-hoax' ? r.category === 'celebrity-hoax' : false
+          ).length;
+
+          return (
+            <button
+              key={option.value}
+              onClick={() => setFilter(option.value)}
+              className={`flex items-center space-x-3 px-6 py-4 rounded-2xl border transition-all duration-200 min-w-[200px] ${isActive
+                ? 'bg-blue-600 border-blue-600 text-white shadow-lg'
+                : 'bg-white border-gray-200 text-gray-700 hover:border-blue-300 hover:shadow-md'
+                }`}
+            >
+              <div className={`p-2 rounded-lg ${isActive ? 'bg-blue-500' : 'bg-gray-100'
+                }`}>
+                <IconComponent className={`h-5 w-5 ${isActive ? 'text-white' : 'text-gray-600'}`} />
+              </div>
+              <div className="text-left">
+                <div className={`font-semibold text-base ${isActive ? 'text-white' : 'text-gray-900'}`}>
+                  {option.label}
                 </div>
-
-                {/* CTA Button */}
-                <div className="flex-shrink-0">
-                  <button
-                    onClick={() => setShowSubmitForm(true)}
-                    className="group relative inline-flex items-center px-8 py-4 bg-white text-blue-700 font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/30"
-                  >
-                    <Flag className="h-5 w-5 mr-3 group-hover:rotate-12 transition-transform duration-300" />
-                    <span>Report Content</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                  </button>
+                <div className={`text-sm ${isActive ? 'text-blue-100' : 'text-gray-500'}`}>
+                  {count} {count === 1 ? 'case' : 'cases'}
                 </div>
               </div>
-            </div>
-          </div>
+            </button>
+          );
+        })}
+      </div>
 
-          {/* Professional Filter Section */}
-          <div className="px-8 py-6 bg-gray-50 border-t border-gray-100">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-              <div className="flex items-center space-x-3">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <Filter className="h-5 w-5 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Filter Cases</h3>
-                  <p className="text-sm text-gray-600">Browse by verification status or category</p>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                {filterOptions.map((option) => {
-                  const IconComponent = option.icon;
-                  const isActive = filter === option.value;
-                  const count = filteredReports.filter(r =>
-                    option.value === 'all' ? true :
-                      option.value === 'verified-fake' ? r.verificationStatus === 'verified-fake' :
-                        option.value === 'under-review' ? r.verificationStatus === 'under-review' :
-                          option.value === 'health-misinformation' ? r.category === 'health-misinformation' :
-                            option.value === 'celebrity-hoax' ? r.category === 'celebrity-hoax' : false
-                  ).length;
-
-                  return (
-                    <button
-                      key={option.value}
-                      onClick={() => setFilter(option.value)}
-                      className={`group relative inline-flex items-center space-x-3 px-5 py-3 rounded-xl font-medium transition-all duration-200 ${isActive
-                        ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 scale-105'
-                        : 'bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-700 shadow-sm hover:shadow-md border border-gray-200'
-                        }`}
-                    >
-                      <IconComponent className="h-4 w-4" />
-                      <span>{option.label}</span>
-                      {count > 0 && (
-                        <span className={`inline-flex items-center justify-center min-w-[20px] h-5 text-xs font-bold rounded-full ${isActive ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 group-hover:bg-blue-200 group-hover:text-blue-800'
-                          }`}>
-                          {count}
-                        </span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* Report Content Button */}
+      <div className="text-center mb-8">
+        <button
+          onClick={() => setShowSubmitForm(true)}
+          className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors shadow-lg"
+        >
+          <Flag className="h-5 w-5 mr-2" />
+          <span>Report Content</span>
+        </button>
       </div>
 
       {/* Professional Cases Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {filteredReports.length > 0 ? filteredReports.map((report) => (
           <motion.div
             key={report.id}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="group relative bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2"
+            className="group relative bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg hover:border-purple-200 transition-all duration-300"
           >
             {/* Professional Media Display */}
             <div className="relative overflow-hidden bg-gray-100">
               <button
                 onClick={() => openMediaPreview(report)}
-                className="relative w-full h-64 group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
+                className="relative w-full h-40 group focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-inset"
                 aria-label={`View details for ${report.title}`}
               >
-                {report.type === 'video' && report.media.endsWith('.mp4') ? (
-                  <div className="relative h-full">
-                    <video
-                      src={report.media}
-                      className="w-full h-full object-cover"
-                      preload="metadata"
-                      poster={report.media.replace('.mp4', '-poster.jpg')}
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      <source src={report.media} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
+                {report.type === 'video' ? (
+                  <div className="relative h-full bg-gray-900 flex items-center justify-center">
+                    {/* Video Placeholder/Thumbnail */}
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <Play className="h-16 w-16 mx-auto mb-4 opacity-80" />
+                        <p className="text-sm font-medium">Video Content</p>
+                        <p className="text-xs opacity-75">Click to view</p>
+                      </div>
+                    </div>
 
                     {/* Video Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
@@ -769,10 +668,6 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                       report.impact === 'medium' ? 'bg-yellow-100 text-yellow-800 border border-yellow-200' :
                         'bg-blue-100 text-blue-800 border border-blue-200'
                     }`}>
-                    {report.impact === 'critical' && '🚨'}
-                    {report.impact === 'high' && '⚠️'}
-                    {report.impact === 'medium' && '📊'}
-                    {report.impact === 'low' && '📋'}
                     {report.impact.toUpperCase()} IMPACT
                   </span>
                 </div>
@@ -790,112 +685,53 @@ const CommunityReports = ({ userScore, setUserScore }) => {
             </div>
 
             {/* Professional Content Section */}
-            <div className="p-8">
+            <div className="p-6">
               {/* Title and Description */}
-              <div className="mb-6">
+              <div className="mb-4">
                 <h3
                   id={`case-title-${report.id}`}
-                  className="text-xl font-bold text-gray-900 mb-3 leading-tight"
+                  className="text-lg font-bold text-gray-900 mb-2 leading-tight line-clamp-2"
                 >
                   {report.title}
                 </h3>
-                <p className="text-gray-700 leading-relaxed text-base">
+                <p className="text-gray-600 leading-relaxed text-sm line-clamp-3">
                   {report.description}
                 </p>
               </div>
 
-              {/* Enhanced Metadata */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 p-4 bg-gray-50 rounded-xl">
-                <div className="flex items-center space-x-2 text-sm">
-                  <div className="p-1.5 bg-blue-100 rounded-lg">
-                    <User className="h-4 w-4 text-blue-600" />
-                  </div>
-                  <div>
-                    <div className="text-gray-500 text-xs">Submitted by</div>
-                    <div className="font-medium text-gray-900">{report.submittedBy}</div>
-                  </div>
+              {/* Simplified Metadata */}
+              <div className="flex items-center justify-between mb-4 text-sm text-gray-500">
+                <div className="flex items-center space-x-1">
+                  <User className="h-4 w-4 text-gray-400" />
+                  <span>{report.submittedBy}</span>
                 </div>
-
-                <div className="flex items-center space-x-2 text-sm">
-                  <div className="p-1.5 bg-green-100 rounded-lg">
-                    <Globe className="h-4 w-4 text-green-600" />
-                  </div>
-                  <div>
-                    <div className="text-gray-500 text-xs">Location</div>
-                    <div className="font-medium text-gray-900">{report.location}</div>
-                  </div>
+                <div className="flex items-center space-x-1">
+                  <Globe className="h-4 w-4 text-gray-400" />
+                  <span>{report.location}</span>
                 </div>
-
-                <div className="flex items-center space-x-2 text-sm">
-                  <div className="p-1.5 bg-purple-100 rounded-lg">
-                    <Clock className="h-4 w-4 text-purple-600" />
-                  </div>
-                  <div>
-                    <div className="text-gray-500 text-xs">Verified</div>
-                    <div className="font-medium text-gray-900">{report.timestamp}</div>
-                  </div>
+                <div className="flex items-center space-x-1">
+                  <Clock className="h-4 w-4 text-gray-400" />
+                  <span>{report.timestamp}</span>
                 </div>
               </div>
 
-              {/* Professional Action Bar */}
-              <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                <div className="flex items-center space-x-1">
-                  {/* Voting Buttons */}
-                  <button
-                    onClick={() => handleVote(report.id, 'up')}
-                    className={`inline-flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${userVotes[report.id] === 'up'
-                      ? 'bg-green-100 text-green-700 border border-green-200'
-                      : 'text-gray-600 hover:bg-green-50 hover:text-green-700 border border-transparent hover:border-green-200'
-                      }`}
-                    aria-label={`Upvote case (${report.upvotes} votes)`}
-                  >
-                    <ThumbsUp className="h-4 w-4" />
-                    <span className="text-sm font-semibold">{report.upvotes}</span>
-                  </button>
-
-                  <button
-                    onClick={() => handleVote(report.id, 'down')}
-                    className={`inline-flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${userVotes[report.id] === 'down'
-                      ? 'bg-red-100 text-red-700 border border-red-200'
-                      : 'text-gray-600 hover:bg-red-50 hover:text-red-700 border border-transparent hover:border-red-200'
-                      }`}
-                    aria-label={`Downvote case (${report.downvotes} votes)`}
-                  >
-                    <ThumbsDown className="h-4 w-4" />
-                    <span className="text-sm font-semibold">{report.downvotes}</span>
-                  </button>
-
-                  <div className="h-6 w-px bg-gray-300 mx-2"></div>
-
-                  {/* Details Toggle */}
-                  <button
-                    onClick={() => toggleReportDetails(report.id)}
-                    className="inline-flex items-center space-x-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200"
-                    aria-expanded={expandedReports[report.id]}
-                    aria-controls={`details-${report.id}`}
-                  >
-                    <MessageCircle className="h-4 w-4" />
-                    <span className="text-sm">
-                      {expandedReports[report.id] ? 'Hide Details' : 'View Analysis'}
-                    </span>
-                    {expandedReports[report.id] ?
-                      <ChevronUp className="h-4 w-4" /> :
-                      <ChevronDown className="h-4 w-4" />
-                    }
-                  </button>
-                </div>
-
-                {/* Share Button */}
+              {/* Simplified Action Bar */}
+              <div className="flex items-center space-x-4 pt-4">
+                {/* Voting Buttons */}
                 <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(window.location.href + '#case-' + report.id);
-                    setUserScore(prev => prev + 1);
-                  }}
-                  className="inline-flex items-center space-x-2 px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg font-medium transition-all duration-200"
-                  aria-label="Share this case"
+                  onClick={() => handleVote(report.id, 'up')}
+                  className={`flex items-center space-x-1 text-sm ${userVotes[report.id] === 'up' ? 'text-green-600' : 'text-gray-500 hover:text-green-600'}`}
                 >
-                  <Share className="h-4 w-4" />
-                  <span className="text-sm">Share</span>
+                  <ThumbsUp className="h-4 w-4" />
+                  <span>{report.upvotes}</span>
+                </button>
+
+                <button
+                  onClick={() => handleVote(report.id, 'down')}
+                  className={`flex items-center space-x-1 text-sm ${userVotes[report.id] === 'down' ? 'text-red-600' : 'text-gray-500 hover:text-red-600'}`}
+                >
+                  <ThumbsDown className="h-4 w-4" />
+                  <span>{report.downvotes}</span>
                 </button>
               </div>
 
@@ -1097,7 +933,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <button
                     onClick={() => setFilter('all')}
-                    className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-200"
                   >
                     <Filter className="h-4 w-4 mr-2" />
                     Show All Cases
@@ -1113,11 +949,12 @@ const CommunityReports = ({ userScore, setUserScore }) => {
               </div>
             </motion.div>
           </div>
-        )}
-      </div>
+        )
+        }
+      </div >
 
       {/* Submit Form Modal */}
-      <AnimatePresence>
+      < AnimatePresence >
         {showSubmitForm && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -1330,10 +1167,10 @@ const CommunityReports = ({ userScore, setUserScore }) => {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence >
 
       {/* Media Preview Modal */}
-      <AnimatePresence>
+      < AnimatePresence >
         {previewMedia && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -1475,8 +1312,8 @@ const CommunityReports = ({ userScore, setUserScore }) => {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
-    </div>
+      </AnimatePresence >
+    </div >
   );
 };
 
@@ -2072,7 +1909,7 @@ const TrendingAlerts = () => {
 
                   {selectedAlert.realDetails.harmPotential && (
                     <div className="bg-red-50 rounded-lg p-4 border border-red-200">
-                      <h3 className="font-semibold text-red-900 mb-2">⚠️ Potential Impact</h3>
+                      <h3 className="font-semibold text-red-900 mb-2">Potential Impact</h3>
                       <p className="text-red-700 text-sm">{selectedAlert.realDetails.harmPotential}</p>
                     </div>
                   )}
