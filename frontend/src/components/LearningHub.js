@@ -50,6 +50,46 @@ const LearningHub = () => {
   const [activeTab, setActiveTab] = useState('training');
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [selectedStory, setSelectedStory] = useState(null);
+  const [currentAudio, setCurrentAudio] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentPodcastId, setCurrentPodcastId] = useState(null);
+
+  const handlePodcastPlay = (podcast) => {
+    if (!podcast.audioFile) return;
+
+    // If same podcast is playing, toggle play/pause
+    if (currentPodcastId === podcast.id && currentAudio) {
+      if (isPlaying) {
+        currentAudio.pause();
+        setIsPlaying(false);
+      } else {
+        currentAudio.play();
+        setIsPlaying(true);
+      }
+      return;
+    }
+
+    // Stop current audio if playing
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+
+    // Create new audio instance
+    const audio = new Audio(podcast.audioFile);
+    
+    audio.addEventListener('play', () => setIsPlaying(true));
+    audio.addEventListener('pause', () => setIsPlaying(false));
+    audio.addEventListener('ended', () => {
+      setIsPlaying(false);
+      setCurrentPodcastId(null);
+      setCurrentAudio(null);
+    });
+
+    setCurrentAudio(audio);
+    setCurrentPodcastId(podcast.id);
+    audio.play();
+  };
 
   const tabs = [
     { 
@@ -190,15 +230,16 @@ const LearningHub = () => {
     {
       id: 1,
       title: 'The Psychology of Misinformation',
-      host: 'Dr. Sarah Chen',
+      host: 'Provenance',
       platform: 'Media Literacy Podcast',
       duration: '45:32',
       episode: 'Episode 127',
       description: 'Deep dive into the psychological mechanisms that make people susceptible to false information.',
       topics: ['Cognitive biases', 'Emotional manipulation', 'Social proof', 'Authority figures'],
       releaseDate: '2025-01-15',
-      downloads: '125K',
-      rating: 4.8
+      downloads: '0',
+      rating: 0,
+      audioFile: '/images/podcast/Beyond_Fake_News__Mastering_Your_Mind_s_Defenses_Against_Misinformation.m4a'
     },
     {
       id: 2,
@@ -210,8 +251,8 @@ const LearningHub = () => {
       description: 'Expert insights into detecting AI-generated content and the future of digital authentication.',
       topics: ['AI detection', 'Digital watermarks', 'C2PA standards', 'Future threats'],
       releaseDate: '2025-01-10',
-      downloads: '89K',
-      rating: 4.9
+      downloads: '125K',
+      rating: 0
     },
     {
       id: 3,
@@ -223,8 +264,8 @@ const LearningHub = () => {
       description: 'How algorithms create filter bubbles and what we can do to break free from them.',
       topics: ['Algorithm design', 'Filter bubbles', 'Echo chambers', 'Information diversity'],
       releaseDate: '2025-01-08',
-      downloads: '156K',
-      rating: 4.7
+      downloads: '125K',
+      rating: 0
     }
   ];
 
@@ -701,14 +742,34 @@ const LearningHub = () => {
                         </div>
                       </div>
                       
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="btn-primary px-4 py-2 rounded-lg font-semibold flex items-center space-x-2"
-                      >
-                        <Play className="h-4 w-4" />
-                        <span>Listen</span>
-                      </motion.button>
+                      <div className="flex items-center space-x-3">
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => handlePodcastPlay(podcast)}
+                          className="btn-primary px-4 py-2 rounded-lg font-semibold flex items-center space-x-2"
+                        >
+                          {currentPodcastId === podcast.id && isPlaying ? (
+                            <Pause className="h-4 w-4" />
+                          ) : (
+                            <Play className="h-4 w-4" />
+                          )}
+                          <span>{currentPodcastId === podcast.id && isPlaying ? 'Pause' : 'Listen'}</span>
+                        </motion.button>
+                        
+                        {podcast.audioFile && (
+                          <motion.a
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            href={podcast.audioFile}
+                            download
+                            className="btn-secondary px-4 py-2 rounded-lg font-semibold flex items-center space-x-2"
+                          >
+                            <Download className="h-4 w-4" />
+                            <span>Download</span>
+                          </motion.a>
+                        )}
+                      </div>
                     </div>
                     
                     <div className="mt-4 pt-4 border-t border-gray-100">
