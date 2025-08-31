@@ -670,8 +670,8 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                       key={option.value}
                       onClick={() => setFilter(option.value)}
                       className={`group relative inline-flex items-center space-x-3 px-5 py-3 rounded-xl font-medium transition-all duration-200 ${isActive
-                          ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 scale-105'
-                          : 'bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-700 shadow-sm hover:shadow-md border border-gray-200'
+                        ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 scale-105'
+                        : 'bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-700 shadow-sm hover:shadow-md border border-gray-200'
                         }`}
                     >
                       <IconComponent className="h-4 w-4" />
@@ -703,781 +703,782 @@ const CommunityReports = ({ userScore, setUserScore }) => {
           >
             {/* Professional Media Display */}
             <div className="relative overflow-hidden bg-gray-100">
-          <button
-            onClick={() => openMediaPreview(report)}
-            className="relative w-full h-64 group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
-            aria-label={`View details for ${report.title}`}
-          >
-            {report.type === 'video' && report.media.endsWith('.mp4') ? (
-              <div className="relative h-full">
-                <video
-                  src={report.media}
-                  className="w-full h-full object-cover"
-                  preload="metadata"
-                  poster={report.media.replace('.mp4', '-poster.jpg')}
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <source src={report.media} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-
-                {/* Video Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center space-x-2 text-white">
-                      <Play className="h-5 w-5" />
-                      <span className="text-sm font-medium">Video Evidence</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="relative h-full">
-                <img
-                  src={report.media}
-                  alt={report.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
-                />
-
-                {/* Image Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-full p-3 transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                      <Eye className="h-6 w-6 text-gray-800" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Status Badges */}
-            <div className="absolute top-4 left-4 flex flex-col space-y-2">
-              <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold shadow-sm ${report.verificationStatus === 'verified-fake' ? 'bg-red-100 text-red-800 border border-red-200' :
-                report.verificationStatus === 'verified-real' ? 'bg-green-100 text-green-800 border border-green-200' :
-                  report.verificationStatus === 'under-review' ? 'bg-yellow-100 text-yellow-800 border border-yellow-200' :
-                    'bg-gray-100 text-gray-800 border border-gray-200'
-                }`}>
-                {report.verificationStatus === 'verified-fake' && <AlertTriangle className="h-3 w-3 mr-1" />}
-                {report.verificationStatus === 'verified-real' && <CheckCircle className="h-3 w-3 mr-1" />}
-                {report.verificationStatus === 'under-review' && <Clock className="h-3 w-3 mr-1" />}
-                {report.verificationStatus.replace('-', ' ').toUpperCase()}
-              </span>
-
-              <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold shadow-sm ${report.impact === 'critical' ? 'bg-red-100 text-red-800 border border-red-200' :
-                report.impact === 'high' ? 'bg-orange-100 text-orange-800 border border-orange-200' :
-                  report.impact === 'medium' ? 'bg-yellow-100 text-yellow-800 border border-yellow-200' :
-                    'bg-blue-100 text-blue-800 border border-blue-200'
-                }`}>
-                {report.impact === 'critical' && '🚨'}
-                {report.impact === 'high' && '⚠️'}
-                {report.impact === 'medium' && '📊'}
-                {report.impact === 'low' && '📋'}
-                {report.impact.toUpperCase()} IMPACT
-              </span>
-            </div>
-
-            {/* Media Type Indicator */}
-            {report.type === 'video' && (
-              <div className="absolute top-4 right-4">
-                <div className="bg-black/70 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
-                  <Video className="h-3 w-3" />
-                  <span>VIDEO</span>
-                </div>
-              </div>
-            )}
-          </button>
-            </div>
-
-      {/* Professional Content Section */}
-      <div className="p-8">
-        {/* Title and Description */}
-        <div className="mb-6">
-          <h3
-            id={`case-title-${report.id}`}
-            className="text-xl font-bold text-gray-900 mb-3 leading-tight"
-          >
-            {report.title}
-          </h3>
-          <p className="text-gray-700 leading-relaxed text-base">
-            {report.description}
-          </p>
-        </div>
-
-        {/* Enhanced Metadata */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 p-4 bg-gray-50 rounded-xl">
-          <div className="flex items-center space-x-2 text-sm">
-            <div className="p-1.5 bg-blue-100 rounded-lg">
-              <User className="h-4 w-4 text-blue-600" />
-            </div>
-            <div>
-              <div className="text-gray-500 text-xs">Submitted by</div>
-              <div className="font-medium text-gray-900">{report.submittedBy}</div>
-            </div>
-          </div>
-
-          <div className="flex items-center space-x-2 text-sm">
-            <div className="p-1.5 bg-green-100 rounded-lg">
-              <Globe className="h-4 w-4 text-green-600" />
-            </div>
-            <div>
-              <div className="text-gray-500 text-xs">Location</div>
-              <div className="font-medium text-gray-900">{report.location}</div>
-            </div>
-          </div>
-
-          <div className="flex items-center space-x-2 text-sm">
-            <div className="p-1.5 bg-purple-100 rounded-lg">
-              <Clock className="h-4 w-4 text-purple-600" />
-            </div>
-            <div>
-              <div className="text-gray-500 text-xs">Verified</div>
-              <div className="font-medium text-gray-900">{report.timestamp}</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Professional Action Bar */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-          <div className="flex items-center space-x-1">
-            {/* Voting Buttons */}
-            <button
-              onClick={() => handleVote(report.id, 'up')}
-              className={`inline-flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${userVotes[report.id] === 'up'
-                ? 'bg-green-100 text-green-700 border border-green-200'
-                : 'text-gray-600 hover:bg-green-50 hover:text-green-700 border border-transparent hover:border-green-200'
-                }`}
-              aria-label={`Upvote case (${report.upvotes} votes)`}
-            >
-              <ThumbsUp className="h-4 w-4" />
-              <span className="text-sm font-semibold">{report.upvotes}</span>
-            </button>
-
-            <button
-              onClick={() => handleVote(report.id, 'down')}
-              className={`inline-flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${userVotes[report.id] === 'down'
-                ? 'bg-red-100 text-red-700 border border-red-200'
-                : 'text-gray-600 hover:bg-red-50 hover:text-red-700 border border-transparent hover:border-red-200'
-                }`}
-              aria-label={`Downvote case (${report.downvotes} votes)`}
-            >
-              <ThumbsDown className="h-4 w-4" />
-              <span className="text-sm font-semibold">{report.downvotes}</span>
-            </button>
-
-            <div className="h-6 w-px bg-gray-300 mx-2"></div>
-
-            {/* Details Toggle */}
-            <button
-              onClick={() => toggleReportDetails(report.id)}
-              className="inline-flex items-center space-x-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200"
-              aria-expanded={expandedReports[report.id]}
-              aria-controls={`details-${report.id}`}
-            >
-              <MessageCircle className="h-4 w-4" />
-              <span className="text-sm">
-                {expandedReports[report.id] ? 'Hide Details' : 'View Analysis'}
-              </span>
-              {expandedReports[report.id] ?
-                <ChevronUp className="h-4 w-4" /> :
-                <ChevronDown className="h-4 w-4" />
-              }
-            </button>
-          </div>
-
-          {/* Share Button */}
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(window.location.href + '#case-' + report.id);
-              setUserScore(prev => prev + 1);
-            }}
-            className="inline-flex items-center space-x-2 px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg font-medium transition-all duration-200"
-            aria-label="Share this case"
-          >
-            <Share className="h-4 w-4" />
-            <span className="text-sm">Share</span>
-          </button>
-        </div>
-
-        {/* Enhanced Expandable Details */}
-        {expandedReports[report.id] && (
-          <motion.div
-            id={`details-${report.id}`}
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="mt-6 pt-6 border-t border-gray-200"
-          >
-            {/* Verification Process for Under Review Items */}
-            {report.verificationStatus === 'under-review' && report.verificationDetails?.reviewProcess && (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <div className="flex items-center space-x-2 mb-3">
-                  <RefreshCw className="h-4 w-4 text-blue-600 animate-spin" />
-                  <h4 className="font-medium text-blue-900">Verification in Progress</h4>
-                </div>
-
-                <div className="space-y-3">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-blue-700">Current Stage:</span>
-                    <span className="font-medium text-blue-900 capitalize">
-                      {report.verificationDetails.reviewProcess.stage.replace('_', ' ')}
-                    </span>
-                  </div>
-
-                  <div className="flex justify-between text-sm">
-                    <span className="text-blue-700">Estimated Time:</span>
-                    <span className="font-medium text-blue-900">
-                      {report.verificationDetails.reviewProcess.estimatedTime}
-                    </span>
-                  </div>
-
-                  {/* Progress Bar */}
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-xs">
-                      <span className="text-blue-600">Progress</span>
-                      <span className="text-blue-600">{report.verificationDetails.reviewProcess.progress}%</span>
-                    </div>
-                    <div className="w-full bg-blue-100 rounded-full h-2">
-                      <div
-                        className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                        style={{ width: `${report.verificationDetails.reviewProcess.progress}%` }}
-                      ></div>
-                    </div>
-                  </div>
-
-                  {/* Next Steps */}
-                  <div>
-                    <p className="text-xs text-blue-700 font-medium mb-2">Verification Process:</p>
-                    <div className="space-y-1">
-                      {report.verificationDetails.reviewProcess.nextSteps.map((step, index) => (
-                        <div key={index} className="flex items-center space-x-2 text-xs">
-                          <div className={`w-2 h-2 rounded-full ${index === 0 ? 'bg-blue-500 animate-pulse' :
-                            index < 1 ? 'bg-green-500' : 'bg-gray-300'
-                            }`}></div>
-                          <span className={`${index === 0 ? 'text-blue-700 font-medium' :
-                            index < 1 ? 'text-green-700' : 'text-gray-600'
-                            }`}>
-                            {step}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="bg-white bg-opacity-50 rounded p-2 text-xs text-blue-700">
-                    <strong>What happens next:</strong> Our AI systems will analyze your submission for technical indicators,
-                    then expert moderators will review the findings and cross-reference with trusted fact-checking sources.
-                    You'll be notified when verification is complete.
-                  </div>
-                </div>
-              </div>
-            )}
-            <div className="space-y-6">
-              {/* Enhanced Real Context Section */}
-              {report.realContext && (
-                <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-6">
-                  <div className="flex items-start space-x-3">
-                    <div className="p-2 bg-amber-100 rounded-lg flex-shrink-0">
-                      <Lightbulb className="h-5 w-5 text-amber-600" />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-amber-900 mb-2">Real Context & Background</h4>
-                      <p className="text-amber-800 leading-relaxed">
-                        {report.realContext}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Enhanced Verification Analysis */}
-              {report.verificationDetails && (
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6">
-                  <div className="flex items-start space-x-3 mb-4">
-                    <div className="p-2 bg-green-100 rounded-lg flex-shrink-0">
-                      <Microscope className="h-5 w-5 text-green-600" />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-green-900 mb-2">Verification Analysis</h4>
-                      <p className="text-green-700 text-sm">
-                        How our experts identified and verified this case
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {/* Detection Methods */}
-                    {report.verificationDetails.detectionMethods && (
-                      <div className="bg-white/60 rounded-lg p-4">
-                        <h5 className="font-medium text-green-900 mb-3 flex items-center">
-                          <Search className="h-4 w-4 mr-2" />
-                          Detection Methods
-                        </h5>
-                        <div className="flex flex-wrap gap-2">
-                          {Array.isArray(report.verificationDetails.detectionMethods)
-                            ? report.verificationDetails.detectionMethods.map((method, index) => (
-                              <span key={index} className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full border border-green-200">
-                                <CheckCircle className="h-3 w-3 mr-1" />
-                                {method.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
-                              </span>
-                            ))
-                            : <span className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full border border-green-200">
-                              <CheckCircle className="h-3 w-3 mr-1" />
-                              {String(report.verificationDetails.detectionMethods).replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
-                            </span>
-                          }
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Educational Value */}
-                    {report.verificationDetails.educationalValue && (
-                      <div className="bg-white/60 rounded-lg p-4">
-                        <h5 className="font-medium text-green-900 mb-3 flex items-center">
-                          <BookOpen className="h-4 w-4 mr-2" />
-                          Key Learning
-                        </h5>
-                        <p className="text-green-800 text-sm leading-relaxed">
-                          {report.verificationDetails.educationalValue}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Sources */}
-                  {report.sources && report.sources.length > 0 && (
-                    <div className="mt-4 bg-white/60 rounded-lg p-4">
-                      <h5 className="font-medium text-green-900 mb-3 flex items-center">
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Verification Sources
-                      </h5>
-                      <div className="space-y-2">
-                        {report.sources.map((source, index) => (
-                          <a
-                            key={index}
-                            href={source}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center space-x-2 text-green-700 hover:text-green-900 text-sm transition-colors"
-                          >
-                            <Globe className="h-3 w-3 flex-shrink-0" />
-                            <span className="truncate">{source}</span>
-                            <ExternalLink className="h-3 w-3 flex-shrink-0" />
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </motion.div>
-        )}
-
-
-      </div>
-    </motion.div>
-  )) : (
-    <div className="col-span-full">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="bg-white rounded-2xl border border-gray-200 p-12 text-center"
-      >
-        <div className="max-w-md mx-auto">
-          <div className="p-4 bg-gray-100 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-            <Search className="h-10 w-10 text-gray-400" />
-          </div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-3">No cases match your filter</h3>
-          <p className="text-gray-600 mb-6 leading-relaxed">
-            We couldn't find any verified cases matching your current filter criteria.
-            Try adjusting your filters or explore all available cases.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button
-              onClick={() => setFilter('all')}
-              className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              <Filter className="h-4 w-4 mr-2" />
-              Show All Cases
-            </button>
-            <button
-              onClick={() => setShowSubmitForm(true)}
-              className="inline-flex items-center px-6 py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors"
-            >
-              <Flag className="h-4 w-4 mr-2" />
-              Report New Case
-            </button>
-          </div>
-        </div>
-      </motion.div>
-    </div>
-  )
-}
-      </div >
-
-  {/* Submit Form Modal */}
-  <AnimatePresence>
-  { showSubmitForm && (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-      onClick={(e) => e.target === e.currentTarget && closeSubmitForm()}
-    >
-      <motion.div
-        initial={{ scale: 0.95, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.95, opacity: 0 }}
-        className="bg-white rounded-xl p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto"
-      >
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-xl font-bold text-gray-900">Report Suspicious Content</h3>
-          <button
-            onClick={closeSubmitForm}
-            className="text-gray-400 hover:text-gray-600 transition-colors"
-          >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-
-        <div className="space-y-6">
-          {/* Content Type */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Content Type</label>
-            <select
-              value={newReport.type}
-              onChange={(e) => handleInputChange('type', e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            >
-              <option value="image">Image</option>
-              <option value="video">Video</option>
-              <option value="article">News Article</option>
-              <option value="text">Text/Message</option>
-              <option value="social">Social Media Post</option>
-            </select>
-          </div>
-
-          {/* Title */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Title *</label>
-            <input
-              type="text"
-              value={newReport.title}
-              onChange={(e) => handleInputChange('title', e.target.value)}
-              placeholder="Brief title describing the suspicious content"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              maxLength={100}
-            />
-            <p className="text-xs text-gray-500 mt-1">{newReport.title.length}/100 characters</p>
-          </div>
-
-          {/* Description */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Description *</label>
-            <textarea
-              rows={4}
-              value={newReport.description}
-              onChange={(e) => handleInputChange('description', e.target.value)}
-              placeholder="Describe what makes this content suspicious. Include details about why you think it might be fake, misleading, or harmful."
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              maxLength={500}
-            />
-            <p className="text-xs text-gray-500 mt-1">{newReport.description.length}/500 characters</p>
-          </div>
-
-          {/* Location */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Where did you find this?</label>
-            <input
-              type="text"
-              value={newReport.location}
-              onChange={(e) => handleInputChange('location', e.target.value)}
-              placeholder="e.g., Facebook, Twitter, WhatsApp, News website"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            />
-          </div>
-
-          {/* Category */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
-            <select
-              value={newReport.category}
-              onChange={(e) => handleInputChange('category', e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            >
-              <option value="misinformation">General Misinformation</option>
-              <option value="health-misinformation">Health Misinformation</option>
-              <option value="political-misinformation">Political Misinformation</option>
-              <option value="celebrity-hoax">Celebrity Hoax</option>
-              <option value="financial-scam">Financial Scam</option>
-              <option value="deepfake-content">Deepfake/AI Generated</option>
-              <option value="disaster-misinformation">Disaster Misinformation</option>
-              <option value="conspiracy-theory">Conspiracy Theory</option>
-            </select>
-          </div>
-
-          {/* Upload Content */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Upload Content *</label>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*,video/*"
-              onChange={handleFileUpload}
-              className="hidden"
-            />
-
-            {!newReport.mediaPreview ? (
-              <div
-                onClick={() => fileInputRef.current?.click()}
-                className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colors"
+              <button
+                onClick={() => openMediaPreview(report)}
+                className="relative w-full h-64 group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
+                aria-label={`View details for ${report.title}`}
               >
-                <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-lg font-medium text-gray-700 mb-2">Upload suspicious content</p>
-                <p className="text-sm text-gray-500 mb-2">Click to browse or drag and drop</p>
-                <p className="text-xs text-gray-400">Supports: JPEG, PNG, GIF, WebP, MP4, WebM (max 10MB)</p>
-              </div>
-            ) : (
-              <div className="relative">
-                <div className="border-2 border-green-300 rounded-lg p-4 bg-green-50">
-                  {newReport.type === 'video' ? (
-                    <div className="flex items-center space-x-3">
-                      <Video className="h-8 w-8 text-green-600" />
-                      <div>
-                        <p className="font-medium text-green-800">Video uploaded</p>
-                        <p className="text-sm text-green-600">{newReport.media?.name}</p>
+                {report.type === 'video' && report.media.endsWith('.mp4') ? (
+                  <div className="relative h-full">
+                    <video
+                      src={report.media}
+                      className="w-full h-full object-cover"
+                      preload="metadata"
+                      poster={report.media.replace('.mp4', '-poster.jpg')}
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      <source src={report.media} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+
+                    {/* Video Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <div className="flex items-center space-x-2 text-white">
+                          <Play className="h-5 w-5" />
+                          <span className="text-sm font-medium">Video Evidence</span>
+                        </div>
                       </div>
                     </div>
-                  ) : (
-                    <div className="flex items-center space-x-3">
-                      <img
-                        src={newReport.mediaPreview}
-                        alt="Preview"
-                        className="h-16 w-16 object-cover rounded-lg"
-                      />
-                      <div>
-                        <p className="font-medium text-green-800">Image uploaded</p>
-                        <p className="text-sm text-green-600">{newReport.media?.name}</p>
+                  </div>
+                ) : (
+                  <div className="relative h-full">
+                    <img
+                      src={report.media}
+                      alt={report.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+
+                    {/* Image Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="bg-white/90 backdrop-blur-sm rounded-full p-3 transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                          <Eye className="h-6 w-6 text-gray-800" />
+                        </div>
                       </div>
                     </div>
-                  )}
+                  </div>
+                )}
+
+                {/* Status Badges */}
+                <div className="absolute top-4 left-4 flex flex-col space-y-2">
+                  <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold shadow-sm ${report.verificationStatus === 'verified-fake' ? 'bg-red-100 text-red-800 border border-red-200' :
+                    report.verificationStatus === 'verified-real' ? 'bg-green-100 text-green-800 border border-green-200' :
+                      report.verificationStatus === 'under-review' ? 'bg-yellow-100 text-yellow-800 border border-yellow-200' :
+                        'bg-gray-100 text-gray-800 border border-gray-200'
+                    }`}>
+                    {report.verificationStatus === 'verified-fake' && <AlertTriangle className="h-3 w-3 mr-1" />}
+                    {report.verificationStatus === 'verified-real' && <CheckCircle className="h-3 w-3 mr-1" />}
+                    {report.verificationStatus === 'under-review' && <Clock className="h-3 w-3 mr-1" />}
+                    {report.verificationStatus.replace('-', ' ').toUpperCase()}
+                  </span>
+
+                  <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold shadow-sm ${report.impact === 'critical' ? 'bg-red-100 text-red-800 border border-red-200' :
+                    report.impact === 'high' ? 'bg-orange-100 text-orange-800 border border-orange-200' :
+                      report.impact === 'medium' ? 'bg-yellow-100 text-yellow-800 border border-yellow-200' :
+                        'bg-blue-100 text-blue-800 border border-blue-200'
+                    }`}>
+                    {report.impact === 'critical' && '🚨'}
+                    {report.impact === 'high' && '⚠️'}
+                    {report.impact === 'medium' && '📊'}
+                    {report.impact === 'low' && '📋'}
+                    {report.impact.toUpperCase()} IMPACT
+                  </span>
                 </div>
+
+                {/* Media Type Indicator */}
+                {report.type === 'video' && (
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-black/70 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
+                      <Video className="h-3 w-3" />
+                      <span>VIDEO</span>
+                    </div>
+                  </div>
+                )}
+              </button>
+            </div>
+
+            {/* Professional Content Section */}
+            <div className="p-8">
+              {/* Title and Description */}
+              <div className="mb-6">
+                <h3
+                  id={`case-title-${report.id}`}
+                  className="text-xl font-bold text-gray-900 mb-3 leading-tight"
+                >
+                  {report.title}
+                </h3>
+                <p className="text-gray-700 leading-relaxed text-base">
+                  {report.description}
+                </p>
+              </div>
+
+              {/* Enhanced Metadata */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 p-4 bg-gray-50 rounded-xl">
+                <div className="flex items-center space-x-2 text-sm">
+                  <div className="p-1.5 bg-blue-100 rounded-lg">
+                    <User className="h-4 w-4 text-blue-600" />
+                  </div>
+                  <div>
+                    <div className="text-gray-500 text-xs">Submitted by</div>
+                    <div className="font-medium text-gray-900">{report.submittedBy}</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-2 text-sm">
+                  <div className="p-1.5 bg-green-100 rounded-lg">
+                    <Globe className="h-4 w-4 text-green-600" />
+                  </div>
+                  <div>
+                    <div className="text-gray-500 text-xs">Location</div>
+                    <div className="font-medium text-gray-900">{report.location}</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-2 text-sm">
+                  <div className="p-1.5 bg-purple-100 rounded-lg">
+                    <Clock className="h-4 w-4 text-purple-600" />
+                  </div>
+                  <div>
+                    <div className="text-gray-500 text-xs">Verified</div>
+                    <div className="font-medium text-gray-900">{report.timestamp}</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Professional Action Bar */}
+              <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+                <div className="flex items-center space-x-1">
+                  {/* Voting Buttons */}
+                  <button
+                    onClick={() => handleVote(report.id, 'up')}
+                    className={`inline-flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${userVotes[report.id] === 'up'
+                      ? 'bg-green-100 text-green-700 border border-green-200'
+                      : 'text-gray-600 hover:bg-green-50 hover:text-green-700 border border-transparent hover:border-green-200'
+                      }`}
+                    aria-label={`Upvote case (${report.upvotes} votes)`}
+                  >
+                    <ThumbsUp className="h-4 w-4" />
+                    <span className="text-sm font-semibold">{report.upvotes}</span>
+                  </button>
+
+                  <button
+                    onClick={() => handleVote(report.id, 'down')}
+                    className={`inline-flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${userVotes[report.id] === 'down'
+                      ? 'bg-red-100 text-red-700 border border-red-200'
+                      : 'text-gray-600 hover:bg-red-50 hover:text-red-700 border border-transparent hover:border-red-200'
+                      }`}
+                    aria-label={`Downvote case (${report.downvotes} votes)`}
+                  >
+                    <ThumbsDown className="h-4 w-4" />
+                    <span className="text-sm font-semibold">{report.downvotes}</span>
+                  </button>
+
+                  <div className="h-6 w-px bg-gray-300 mx-2"></div>
+
+                  {/* Details Toggle */}
+                  <button
+                    onClick={() => toggleReportDetails(report.id)}
+                    className="inline-flex items-center space-x-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200"
+                    aria-expanded={expandedReports[report.id]}
+                    aria-controls={`details-${report.id}`}
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    <span className="text-sm">
+                      {expandedReports[report.id] ? 'Hide Details' : 'View Analysis'}
+                    </span>
+                    {expandedReports[report.id] ?
+                      <ChevronUp className="h-4 w-4" /> :
+                      <ChevronDown className="h-4 w-4" />
+                    }
+                  </button>
+                </div>
+
+                {/* Share Button */}
                 <button
                   onClick={() => {
-                    if (newReport.mediaPreview) {
-                      URL.revokeObjectURL(newReport.mediaPreview);
-                    }
-                    setNewReport(prev => ({ ...prev, media: null, mediaPreview: null }));
+                    navigator.clipboard.writeText(window.location.href + '#case-' + report.id);
+                    setUserScore(prev => prev + 1);
                   }}
-                  className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors"
+                  className="inline-flex items-center space-x-2 px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg font-medium transition-all duration-200"
+                  aria-label="Share this case"
                 >
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <Share className="h-4 w-4" />
+                  <span className="text-sm">Share</span>
+                </button>
+              </div>
+
+              {/* Enhanced Expandable Details */}
+              {expandedReports[report.id] && (
+                <motion.div
+                  id={`details-${report.id}`}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="mt-6 pt-6 border-t border-gray-200"
+                >
+                  {/* Verification Process for Under Review Items */}
+                  {report.verificationStatus === 'under-review' && report.verificationDetails?.reviewProcess && (
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <div className="flex items-center space-x-2 mb-3">
+                        <RefreshCw className="h-4 w-4 text-blue-600 animate-spin" />
+                        <h4 className="font-medium text-blue-900">Verification in Progress</h4>
+                      </div>
+
+                      <div className="space-y-3">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-blue-700">Current Stage:</span>
+                          <span className="font-medium text-blue-900 capitalize">
+                            {report.verificationDetails.reviewProcess.stage.replace('_', ' ')}
+                          </span>
+                        </div>
+
+                        <div className="flex justify-between text-sm">
+                          <span className="text-blue-700">Estimated Time:</span>
+                          <span className="font-medium text-blue-900">
+                            {report.verificationDetails.reviewProcess.estimatedTime}
+                          </span>
+                        </div>
+
+                        {/* Progress Bar */}
+                        <div className="space-y-2">
+                          <div className="flex justify-between text-xs">
+                            <span className="text-blue-600">Progress</span>
+                            <span className="text-blue-600">{report.verificationDetails.reviewProcess.progress}%</span>
+                          </div>
+                          <div className="w-full bg-blue-100 rounded-full h-2">
+                            <div
+                              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                              style={{ width: `${report.verificationDetails.reviewProcess.progress}%` }}
+                            ></div>
+                          </div>
+                        </div>
+
+                        {/* Next Steps */}
+                        <div>
+                          <p className="text-xs text-blue-700 font-medium mb-2">Verification Process:</p>
+                          <div className="space-y-1">
+                            {report.verificationDetails.reviewProcess.nextSteps.map((step, index) => (
+                              <div key={index} className="flex items-center space-x-2 text-xs">
+                                <div className={`w-2 h-2 rounded-full ${index === 0 ? 'bg-blue-500 animate-pulse' :
+                                  index < 1 ? 'bg-green-500' : 'bg-gray-300'
+                                  }`}></div>
+                                <span className={`${index === 0 ? 'text-blue-700 font-medium' :
+                                  index < 1 ? 'text-green-700' : 'text-gray-600'
+                                  }`}>
+                                  {step}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="bg-white bg-opacity-50 rounded p-2 text-xs text-blue-700">
+                          <strong>What happens next:</strong> Our AI systems will analyze your submission for technical indicators,
+                          then expert moderators will review the findings and cross-reference with trusted fact-checking sources.
+                          You'll be notified when verification is complete.
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  <div className="space-y-6">
+                    {/* Enhanced Real Context Section */}
+                    {report.realContext && (
+                      <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-6">
+                        <div className="flex items-start space-x-3">
+                          <div className="p-2 bg-amber-100 rounded-lg flex-shrink-0">
+                            <Lightbulb className="h-5 w-5 text-amber-600" />
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-amber-900 mb-2">Real Context & Background</h4>
+                            <p className="text-amber-800 leading-relaxed">
+                              {report.realContext}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Enhanced Verification Analysis */}
+                    {report.verificationDetails && (
+                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6">
+                        <div className="flex items-start space-x-3 mb-4">
+                          <div className="p-2 bg-green-100 rounded-lg flex-shrink-0">
+                            <Microscope className="h-5 w-5 text-green-600" />
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-green-900 mb-2">Verification Analysis</h4>
+                            <p className="text-green-700 text-sm">
+                              How our experts identified and verified this case
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-6">
+                          {/* Detection Methods */}
+                          {report.verificationDetails.detectionMethods && (
+                            <div className="bg-white/60 rounded-lg p-4">
+                              <h5 className="font-medium text-green-900 mb-3 flex items-center">
+                                <Search className="h-4 w-4 mr-2" />
+                                Detection Methods
+                              </h5>
+                              <div className="flex flex-wrap gap-2">
+                                {Array.isArray(report.verificationDetails.detectionMethods)
+                                  ? report.verificationDetails.detectionMethods.map((method, index) => (
+                                    <span key={index} className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full border border-green-200">
+                                      <CheckCircle className="h-3 w-3 mr-1" />
+                                      {method.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                                    </span>
+                                  ))
+                                  : <span className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full border border-green-200">
+                                    <CheckCircle className="h-3 w-3 mr-1" />
+                                    {String(report.verificationDetails.detectionMethods).replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                                  </span>
+                                }
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Educational Value */}
+                          {report.verificationDetails.educationalValue && (
+                            <div className="bg-white/60 rounded-lg p-4">
+                              <h5 className="font-medium text-green-900 mb-3 flex items-center">
+                                <BookOpen className="h-4 w-4 mr-2" />
+                                Key Learning
+                              </h5>
+                              <p className="text-green-800 text-sm leading-relaxed">
+                                {report.verificationDetails.educationalValue}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Sources */}
+                        {report.sources && report.sources.length > 0 && (
+                          <div className="mt-4 bg-white/60 rounded-lg p-4">
+                            <h5 className="font-medium text-green-900 mb-3 flex items-center">
+                              <ExternalLink className="h-4 w-4 mr-2" />
+                              Verification Sources
+                            </h5>
+                            <div className="space-y-2">
+                              {report.sources.map((source, index) => (
+                                <a
+                                  key={index}
+                                  href={source}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="flex items-center space-x-2 text-green-700 hover:text-green-900 text-sm transition-colors"
+                                >
+                                  <Globe className="h-3 w-3 flex-shrink-0" />
+                                  <span className="truncate">{source}</span>
+                                  <ExternalLink className="h-3 w-3 flex-shrink-0" />
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+
+
+            </div>
+          </motion.div>
+        )) : (
+          <div className="col-span-full">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-white rounded-2xl border border-gray-200 p-12 text-center"
+            >
+              <div className="max-w-md mx-auto">
+                <div className="p-4 bg-gray-100 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                  <Search className="h-10 w-10 text-gray-400" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">No cases match your filter</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  We couldn't find any verified cases matching your current filter criteria.
+                  Try adjusting your filters or explore all available cases.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <button
+                    onClick={() => setFilter('all')}
+                    className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    <Filter className="h-4 w-4 mr-2" />
+                    Show All Cases
+                  </button>
+                  <button
+                    onClick={() => setShowSubmitForm(true)}
+                    className="inline-flex items-center px-6 py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors"
+                  >
+                    <Flag className="h-4 w-4 mr-2" />
+                    Report New Case
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )
+        }
+      </div >
+
+      {/* Submit Form Modal */}
+      <AnimatePresence>
+        {showSubmitForm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+            onClick={(e) => e.target === e.currentTarget && closeSubmitForm()}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-white rounded-xl p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-xl font-bold text-gray-900">Report Suspicious Content</h3>
+                <button
+                  onClick={closeSubmitForm}
+                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>
-            )}
-          </div>
 
-          {/* Submission Guidelines */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <div className="flex items-start space-x-3">
-              <Info className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
-              <div>
-                <h4 className="font-medium text-blue-900 mb-2">Submission Guidelines</h4>
-                <ul className="text-sm text-blue-800 space-y-1">
-                  <li>• Only submit content you believe may be false or misleading</li>
-                  <li>• Provide clear reasons why you think the content is suspicious</li>
-                  <li>• Do not submit content that violates privacy or contains personal information</li>
-                  <li>• Your submission will be reviewed by community moderators</li>
-                </ul>
+              <div className="space-y-6">
+                {/* Content Type */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Content Type</label>
+                  <select
+                    value={newReport.type}
+                    onChange={(e) => handleInputChange('type', e.target.value)}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="image">Image</option>
+                    <option value="video">Video</option>
+                    <option value="article">News Article</option>
+                    <option value="text">Text/Message</option>
+                    <option value="social">Social Media Post</option>
+                  </select>
+                </div>
+
+                {/* Title */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Title *</label>
+                  <input
+                    type="text"
+                    value={newReport.title}
+                    onChange={(e) => handleInputChange('title', e.target.value)}
+                    placeholder="Brief title describing the suspicious content"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    maxLength={100}
+                  />
+                  <p className="text-xs text-gray-500 mt-1">{newReport.title.length}/100 characters</p>
+                </div>
+
+                {/* Description */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Description *</label>
+                  <textarea
+                    rows={4}
+                    value={newReport.description}
+                    onChange={(e) => handleInputChange('description', e.target.value)}
+                    placeholder="Describe what makes this content suspicious. Include details about why you think it might be fake, misleading, or harmful."
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    maxLength={500}
+                  />
+                  <p className="text-xs text-gray-500 mt-1">{newReport.description.length}/500 characters</p>
+                </div>
+
+                {/* Location */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Where did you find this?</label>
+                  <input
+                    type="text"
+                    value={newReport.location}
+                    onChange={(e) => handleInputChange('location', e.target.value)}
+                    placeholder="e.g., Facebook, Twitter, WhatsApp, News website"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+
+                {/* Category */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                  <select
+                    value={newReport.category}
+                    onChange={(e) => handleInputChange('category', e.target.value)}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="misinformation">General Misinformation</option>
+                    <option value="health-misinformation">Health Misinformation</option>
+                    <option value="political-misinformation">Political Misinformation</option>
+                    <option value="celebrity-hoax">Celebrity Hoax</option>
+                    <option value="financial-scam">Financial Scam</option>
+                    <option value="deepfake-content">Deepfake/AI Generated</option>
+                    <option value="disaster-misinformation">Disaster Misinformation</option>
+                    <option value="conspiracy-theory">Conspiracy Theory</option>
+                  </select>
+                </div>
+
+                {/* Upload Content */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Upload Content *</label>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*,video/*"
+                    onChange={handleFileUpload}
+                    className="hidden"
+                  />
+
+                  {!newReport.mediaPreview ? (
+                    <div
+                      onClick={() => fileInputRef.current?.click()}
+                      className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colors"
+                    >
+                      <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                      <p className="text-lg font-medium text-gray-700 mb-2">Upload suspicious content</p>
+                      <p className="text-sm text-gray-500 mb-2">Click to browse or drag and drop</p>
+                      <p className="text-xs text-gray-400">Supports: JPEG, PNG, GIF, WebP, MP4, WebM (max 10MB)</p>
+                    </div>
+                  ) : (
+                    <div className="relative">
+                      <div className="border-2 border-green-300 rounded-lg p-4 bg-green-50">
+                        {newReport.type === 'video' ? (
+                          <div className="flex items-center space-x-3">
+                            <Video className="h-8 w-8 text-green-600" />
+                            <div>
+                              <p className="font-medium text-green-800">Video uploaded</p>
+                              <p className="text-sm text-green-600">{newReport.media?.name}</p>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="flex items-center space-x-3">
+                            <img
+                              src={newReport.mediaPreview}
+                              alt="Preview"
+                              className="h-16 w-16 object-cover rounded-lg"
+                            />
+                            <div>
+                              <p className="font-medium text-green-800">Image uploaded</p>
+                              <p className="text-sm text-green-600">{newReport.media?.name}</p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      <button
+                        onClick={() => {
+                          if (newReport.mediaPreview) {
+                            URL.revokeObjectURL(newReport.mediaPreview);
+                          }
+                          setNewReport(prev => ({ ...prev, media: null, mediaPreview: null }));
+                        }}
+                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors"
+                      >
+                        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Submission Guidelines */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-start space-x-3">
+                    <Info className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-medium text-blue-900 mb-2">Submission Guidelines</h4>
+                      <ul className="text-sm text-blue-800 space-y-1">
+                        <li>• Only submit content you believe may be false or misleading</li>
+                        <li>• Provide clear reasons why you think the content is suspicious</li>
+                        <li>• Do not submit content that violates privacy or contains personal information</li>
+                        <li>• Your submission will be reviewed by community moderators</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex space-x-3 pt-4">
+                  <button
+                    onClick={closeSubmitForm}
+                    disabled={isSubmitting}
+                    className="flex-1 bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={submitReport}
+                    disabled={isSubmitting || !newReport.title.trim() || !newReport.description.trim() || !newReport.media}
+                    className="flex-1 btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <RefreshCw className="h-4 w-4 animate-spin" />
+                        <span>Submitting...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Flag className="h-4 w-4" />
+                        <span>Submit Report</span>
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
-            </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex space-x-3 pt-4">
-            <button
-              onClick={closeSubmitForm}
-              disabled={isSubmitting}
-              className="flex-1 bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={submitReport}
-              disabled={isSubmitting || !newReport.title.trim() || !newReport.description.trim() || !newReport.media}
-              className="flex-1 btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
-            >
-              {isSubmitting ? (
-                <>
-                  <RefreshCw className="h-4 w-4 animate-spin" />
-                  <span>Submitting...</span>
-                </>
-              ) : (
-                <>
-                  <Flag className="h-4 w-4" />
-                  <span>Submit Report</span>
-                </>
-              )}
-            </button>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
-  )}
+            </motion.div>
+          </motion.div>
+        )}
       </AnimatePresence>
 
-  {/* Media Preview Modal */}
-  <AnimatePresence>
-  { previewMedia && (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4"
-      onClick={closeMediaPreview}
-    >
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.8, opacity: 0 }}
-        className="max-w-4xl max-h-[90vh] w-full bg-white rounded-xl overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Modal Header */}
-        <div className="bg-gray-50 px-6 py-4 border-b flex items-center justify-between">
-          <div>
-            <h3 className="text-lg font-bold text-gray-900">{previewMedia.title}</h3>
-            <p className="text-sm text-gray-600">Click and examine this misinformation case</p>
-          </div>
-          <button
+      {/* Media Preview Modal */}
+      <AnimatePresence>
+        {previewMedia && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4"
             onClick={closeMediaPreview}
-            className="text-gray-400 hover:text-gray-600 transition-colors"
           >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Modal Content */}
-        <div className="p-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Media Display */}
-            <div className="space-y-4">
-              {previewMedia.type === 'video' && previewMedia.media.endsWith('.mp4') ? (
-                <video
-                  src={previewMedia.media}
-                  className="w-full max-h-96 object-contain bg-black rounded-lg"
-                  controls
-                  autoPlay
-                >
-                  <source src={previewMedia.media} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              ) : (
-                <img
-                  src={previewMedia.media}
-                  alt={previewMedia.title}
-                  className="w-full max-h-96 object-contain rounded-lg border"
-                />
-              )}
-
-              {/* Media Analysis Tools */}
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-medium text-blue-900 mb-2">🔍 Analysis Tips</h4>
-                <ul className="text-sm text-blue-800 space-y-1">
-                  <li>• Look for inconsistent lighting or shadows</li>
-                  <li>• Check for unnatural edges or blending</li>
-                  <li>• Examine facial features for distortions</li>
-                  <li>• Consider the source and context</li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Case Information */}
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-medium text-gray-900 mb-2">Case Description</h4>
-                <p className="text-gray-700">{previewMedia.description}</p>
-              </div>
-
-              {previewMedia.realContext && (
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="max-w-4xl max-h-[90vh] w-full bg-white rounded-xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div className="bg-gray-50 px-6 py-4 border-b flex items-center justify-between">
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-2">Real Context</h4>
-                  <p className="text-gray-700 bg-yellow-50 p-3 rounded-lg">{previewMedia.realContext}</p>
+                  <h3 className="text-lg font-bold text-gray-900">{previewMedia.title}</h3>
+                  <p className="text-sm text-gray-600">Click and examine this misinformation case</p>
                 </div>
-              )}
+                <button
+                  onClick={closeMediaPreview}
+                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
 
-              {previewMedia.verificationDetails && (
-                <div>
-                  <h4 className="font-medium text-gray-900 mb-2">How It Was Detected</h4>
-                  <div className="bg-gray-50 p-3 rounded-lg space-y-2">
-                    {previewMedia.verificationDetails.detectionMethods && (
+              {/* Modal Content */}
+              <div className="p-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Media Display */}
+                  <div className="space-y-4">
+                    {previewMedia.type === 'video' && previewMedia.media.endsWith('.mp4') ? (
+                      <video
+                        src={previewMedia.media}
+                        className="w-full max-h-96 object-contain bg-black rounded-lg"
+                        controls
+                        autoPlay
+                      >
+                        <source src={previewMedia.media} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    ) : (
+                      <img
+                        src={previewMedia.media}
+                        alt={previewMedia.title}
+                        className="w-full max-h-96 object-contain rounded-lg border"
+                      />
+                    )}
+
+                    {/* Media Analysis Tools */}
+                    <div className="bg-blue-50 p-4 rounded-lg">
+                      <h4 className="font-medium text-blue-900 mb-2">🔍 Analysis Tips</h4>
+                      <ul className="text-sm text-blue-800 space-y-1">
+                        <li>• Look for inconsistent lighting or shadows</li>
+                        <li>• Check for unnatural edges or blending</li>
+                        <li>• Examine facial features for distortions</li>
+                        <li>• Consider the source and context</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Case Information */}
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-medium text-gray-900 mb-2">Case Description</h4>
+                      <p className="text-gray-700">{previewMedia.description}</p>
+                    </div>
+
+                    {previewMedia.realContext && (
                       <div>
-                        <p className="text-xs text-gray-500 uppercase tracking-wide">Detection Methods:</p>
-                        <div className="flex flex-wrap gap-1 mt-1">
-                          {Array.isArray(previewMedia.verificationDetails.detectionMethods)
-                            ? previewMedia.verificationDetails.detectionMethods.map((method, index) => (
-                              <span key={index} className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
-                                {method.replace('_', ' ')}
-                              </span>
-                            ))
-                            : <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
-                              {String(previewMedia.verificationDetails.detectionMethods).replace('_', ' ')}
-                            </span>
-                          }
+                        <h4 className="font-medium text-gray-900 mb-2">Real Context</h4>
+                        <p className="text-gray-700 bg-yellow-50 p-3 rounded-lg">{previewMedia.realContext}</p>
+                      </div>
+                    )}
+
+                    {previewMedia.verificationDetails && (
+                      <div>
+                        <h4 className="font-medium text-gray-900 mb-2">How It Was Detected</h4>
+                        <div className="bg-gray-50 p-3 rounded-lg space-y-2">
+                          {previewMedia.verificationDetails.detectionMethods && (
+                            <div>
+                              <p className="text-xs text-gray-500 uppercase tracking-wide">Detection Methods:</p>
+                              <div className="flex flex-wrap gap-1 mt-1">
+                                {Array.isArray(previewMedia.verificationDetails.detectionMethods)
+                                  ? previewMedia.verificationDetails.detectionMethods.map((method, index) => (
+                                    <span key={index} className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
+                                      {method.replace('_', ' ')}
+                                    </span>
+                                  ))
+                                  : <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
+                                    {String(previewMedia.verificationDetails.detectionMethods).replace('_', ' ')}
+                                  </span>
+                                }
+                              </div>
+                            </div>
+                          )}
+                          {previewMedia.verificationDetails.educationalValue && (
+                            <div>
+                              <p className="text-xs text-gray-500 uppercase tracking-wide">Learning Point:</p>
+                              <p className="text-sm text-gray-700 mt-1">{previewMedia.verificationDetails.educationalValue}</p>
+                            </div>
+                          )}
                         </div>
                       </div>
                     )}
-                    {previewMedia.verificationDetails.educationalValue && (
-                      <div>
-                        <p className="text-xs text-gray-500 uppercase tracking-wide">Learning Point:</p>
-                        <p className="text-sm text-gray-700 mt-1">{previewMedia.verificationDetails.educationalValue}</p>
-                      </div>
-                    )}
+
+
+
+                    {/* Action Buttons */}
+                    <div className="flex space-x-3 pt-4 border-t">
+                      <button
+                        onClick={() => {
+                          handleVote(previewMedia.id, 'up');
+                        }}
+                        className="flex-1 bg-green-100 text-green-700 py-2 px-4 rounded-lg hover:bg-green-200 transition-colors flex items-center justify-center space-x-2"
+                      >
+                        <ThumbsUp className="h-4 w-4" />
+                        <span>Helpful Case</span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(window.location.href + '#case-' + previewMedia.id);
+                          setUserScore(prev => prev + 1);
+                        }}
+                        className="flex-1 bg-blue-100 text-blue-700 py-2 px-4 rounded-lg hover:bg-blue-200 transition-colors flex items-center justify-center space-x-2"
+                      >
+                        <Share className="h-4 w-4" />
+                        <span>Share Case</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              )}
-
-
-
-              {/* Action Buttons */}
-              <div className="flex space-x-3 pt-4 border-t">
-                <button
-                  onClick={() => {
-                    handleVote(previewMedia.id, 'up');
-                  }}
-                  className="flex-1 bg-green-100 text-green-700 py-2 px-4 rounded-lg hover:bg-green-200 transition-colors flex items-center justify-center space-x-2"
-                >
-                  <ThumbsUp className="h-4 w-4" />
-                  <span>Helpful Case</span>
-                </button>
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(window.location.href + '#case-' + previewMedia.id);
-                    setUserScore(prev => prev + 1);
-                  }}
-                  className="flex-1 bg-blue-100 text-blue-700 py-2 px-4 rounded-lg hover:bg-blue-200 transition-colors flex items-center justify-center space-x-2"
-                >
-                  <Share className="h-4 w-4" />
-                  <span>Share Case</span>
-                </button>
               </div>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
-  )}
+            </motion.div>
+          </motion.div>
+        )}
       </AnimatePresence>
     </motion.div>
+    </div >
   );
 };
 
