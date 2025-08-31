@@ -1115,7 +1115,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
           </div>
         )
         }
-      </div >
+      </div>
 
       {/* Submit Form Modal */}
       <AnimatePresence>
