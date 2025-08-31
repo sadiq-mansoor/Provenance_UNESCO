@@ -700,9 +700,9 @@ const CommunityReports = ({ userScore, setUserScore }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
             className="group relative bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2"
-          ></motion.article>
-            {/* Professional Media Display */ }
-          < div className = "relative overflow-hidden bg-gray-100" >
+          >
+            {/* Professional Media Display */}
+            <div className="relative overflow-hidden bg-gray-100">
           <button
             onClick={() => openMediaPreview(report)}
             className="relative w-full h-64 group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
@@ -1117,8 +1117,8 @@ const CommunityReports = ({ userScore, setUserScore }) => {
 }
       </div >
 
-  {/* Submit Form Modal */ }
-  < AnimatePresence >
+  {/* Submit Form Modal */}
+  <AnimatePresence>
   { showSubmitForm && (
     <motion.div
       initial={{ opacity: 0 }}
@@ -1331,10 +1331,10 @@ const CommunityReports = ({ userScore, setUserScore }) => {
       </motion.div>
     </motion.div>
   )}
-      </AnimatePresence >
+      </AnimatePresence>
 
-  {/* Media Preview Modal */ }
-  < AnimatePresence >
+  {/* Media Preview Modal */}
+  <AnimatePresence>
   { previewMedia && (
     <motion.div
       initial={{ opacity: 0 }}
@@ -1476,8 +1476,8 @@ const CommunityReports = ({ userScore, setUserScore }) => {
       </motion.div>
     </motion.div>
   )}
-      </AnimatePresence >
-    </motion.div >
+      </AnimatePresence>
+    </motion.div>
   );
 };
 
