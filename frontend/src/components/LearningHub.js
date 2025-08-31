@@ -38,12 +38,18 @@ import {
   Timer,
   Download,
   Sparkles,
-  Microscope
+  Microscope,
+  Pause,
+  Volume2,
+  VolumeX,
+  Maximize,
+  X
 } from 'lucide-react';
 
 const LearningHub = () => {
   const [activeTab, setActiveTab] = useState('training');
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [selectedStory, setSelectedStory] = useState(null);
 
   const tabs = [
     { 
@@ -224,6 +230,22 @@ const LearningHub = () => {
 
   const storiesContent = [
     {
+      id: 'maya-story',
+      title: 'Maya and the Truth Compass',
+      category: 'Interactive Story',
+      type: 'video',
+      duration: '5-8 min',
+      difficulty: 'Beginner',
+      featured: true,
+      description: 'Join Maya on her journey to discover the Truth Compass and learn how to navigate the digital world with confidence. An engaging story that introduces the fundamentals of media literacy.',
+      keyLessons: ['Digital literacy basics', 'Critical thinking', 'Source verification', 'Truth detection'],
+      author: 'Provenance Education Team',
+      publishDate: '2025-01-20',
+      tags: ['Interactive', 'Beginner Friendly', 'Story-based Learning', 'Youth Education'],
+      videoPath: '/images/maya-truth-compass.mp4',
+      thumbnail: '/images/maya-thumbnail.jpg' // You can add this later
+    },
+    {
       id: 1,
       title: 'The Great Twitter Hack of 2020',
       category: 'Case Study',
@@ -328,6 +350,102 @@ const LearningHub = () => {
       </motion.div>
     </AnimatePresence>
   );
+
+  const StoryVideoModal = ({ story, onClose }) => {
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [isMuted, setIsMuted] = useState(false);
+    const [videoRef, setVideoRef] = useState(null);
+
+    const togglePlay = () => {
+      if (videoRef) {
+        if (isPlaying) {
+          videoRef.pause();
+        } else {
+          videoRef.play();
+        }
+        setIsPlaying(!isPlaying);
+      }
+    };
+
+    const toggleMute = () => {
+      if (videoRef) {
+        videoRef.muted = !isMuted;
+        setIsMuted(!isMuted);
+      }
+    };
+
+    return (
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            className="relative w-full max-w-5xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/80 to-transparent p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-1">{story.title}</h3>
+                  <p className="text-white/80">{story.description}</p>
+                </div>
+                <button
+                  onClick={onClose}
+                  className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-xl transition-all duration-300"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+            </div>
+
+            {/* Video */}
+            <div className="relative aspect-video bg-black rounded-2xl overflow-hidden">
+              <video
+                ref={setVideoRef}
+                className="w-full h-full object-cover"
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+                muted={isMuted}
+                controls
+              >
+                <source src={story.videoPath} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+
+              {/* Play button overlay when paused */}
+              {!isPlaying && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={togglePlay}
+                    className="bg-white/90 hover:bg-white text-violet-600 p-8 rounded-full shadow-2xl backdrop-blur-sm transition-all duration-300"
+                  >
+                    <Play className="h-16 w-16 ml-2" />
+                  </motion.button>
+                </motion.div>
+              )}
+            </div>
+
+
+          </motion.div>
+        </motion.div>
+      </AnimatePresence>
+    );
+  };
 
   const renderContent = () => {
     switch (activeTab) {
@@ -611,71 +729,164 @@ const LearningHub = () => {
 
       case 'stories':
         return (
-          <div className="grid md:grid-cols-2 gap-6">
-            {storiesContent.map((story, index) => (
+          <div className="space-y-8">
+            {/* Featured Story Video */}
+            {storiesContent.find(s => s.featured) && (
               <motion.div
-                key={story.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white border border-gray-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-gradient-to-r from-violet-600 to-electric-600 rounded-2xl overflow-hidden shadow-2xl mb-8"
               >
-                <div className="flex items-center space-x-3 mb-4">
-                  <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
-                    {story.category}
-                  </span>
-                  <span className="text-sm text-gray-500">{story.readTime}</span>
-                  <span className={`px-2 py-1 rounded text-xs font-medium ${
-                    story.difficulty === 'Advanced' ? 'bg-red-100 text-red-800' :
-                    story.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-800' :
-                    'bg-green-100 text-green-800'
-                  }`}>
-                    {story.difficulty}
-                  </span>
-                </div>
-                
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{story.title}</h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">{story.description}</p>
-                
-                <div className="mb-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">Key Lessons</h4>
-                  <ul className="space-y-1">
-                    {story.keyLessons.map((lesson, idx) => (
-                      <li key={idx} className="flex items-start space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-gray-600">{lesson}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                  <div className="text-sm text-gray-500">
-                    <div>By {story.author}</div>
-                    <div>{story.publishDate}</div>
+                <div className="grid lg:grid-cols-2 gap-8 p-8">
+                  <div className="relative">
+                    <div className="aspect-video rounded-xl overflow-hidden bg-black relative group cursor-pointer">
+                      <div className="w-full h-full bg-gradient-to-br from-violet-900 to-electric-900 flex items-center justify-center relative">
+                        <div className="text-center text-white">
+                          <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <Play className="h-10 w-10 text-white ml-1" />
+                          </div>
+                          <h3 className="text-2xl font-bold mb-2">Maya and the Truth Compass</h3>
+                          <p className="text-white/80">Interactive Story Experience</p>
+                        </div>
+                        <video 
+                          className="absolute inset-0 w-full h-full object-cover opacity-0"
+                          muted
+                          preload="metadata"
+                        >
+                          <source src={storiesContent.find(s => s.featured).videoPath} type="video/mp4" />
+                        </video>
+                      </div>
+                      <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center group-hover:bg-opacity-30 transition-all duration-300">
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => setSelectedStory(storiesContent.find(s => s.featured))}
+                          className="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-6 transition-all duration-300"
+                        >
+                          <Play className="h-12 w-12 text-violet-600 ml-1" />
+                        </motion.button>
+                      </div>
+                      
+                      <div className="absolute top-4 left-4 bg-violet-600 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-2">
+                        <Video className="h-4 w-4" />
+                        <span>Featured Story</span>
+                      </div>
+                      
+                      <div className="absolute bottom-4 right-4 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-sm">
+                        {storiesContent.find(s => s.featured).duration}
+                      </div>
+                    </div>
                   </div>
-                  
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg font-semibold flex items-center space-x-2 transition-colors"
-                  >
-                    <BookOpen className="h-4 w-4" />
-                    <span>Read Story</span>
-                  </motion.button>
-                </div>
-                
-                <div className="mt-4 pt-4 border-t border-gray-100">
-                  <div className="flex flex-wrap gap-2">
-                    {story.tags.map((tag, idx) => (
-                      <span key={idx} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-                        #{tag}
-                      </span>
-                    ))}
+
+                  <div className="text-white">
+                    <div className="flex items-center space-x-2 mb-4">
+                      <Star className="h-5 w-5 text-yellow-400" />
+                      <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-medium">Interactive Story</span>
+                    </div>
+                    
+                    <h2 className="text-3xl font-bold mb-2">{storiesContent.find(s => s.featured).title}</h2>
+                    <p className="text-violet-100 text-lg mb-4">by {storiesContent.find(s => s.featured).author}</p>
+                    
+                    <p className="text-violet-50 leading-relaxed mb-6">
+                      {storiesContent.find(s => s.featured).description}
+                    </p>
+                    
+                    <div className="mb-6">
+                      <h4 className="font-semibold text-white mb-3">What You'll Learn</h4>
+                      <ul className="space-y-2">
+                        {storiesContent.find(s => s.featured).keyLessons.slice(0, 3).map((lesson, idx) => (
+                          <li key={idx} className="flex items-center space-x-2">
+                            <CheckCircle className="h-4 w-4 text-electric-300" />
+                            <span className="text-violet-100 text-sm">{lesson}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div className="flex space-x-4">
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setSelectedStory(storiesContent.find(s => s.featured))}
+                        className="bg-white text-violet-600 px-6 py-3 rounded-xl font-semibold flex items-center space-x-2 hover:bg-violet-50 transition-colors"
+                      >
+                        <Play className="h-5 w-5" />
+                        <span>Watch Story</span>
+                      </motion.button>
+                    </div>
                   </div>
                 </div>
               </motion.div>
-            ))}
+            )}
+
+            {/* Other Stories */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {storiesContent.filter(s => !s.featured).map((story, index) => (
+                <motion.div
+                  key={story.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white border border-gray-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="flex items-center space-x-3 mb-4">
+                    <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
+                      {story.category}
+                    </span>
+                    <span className="text-sm text-gray-500">{story.readTime || story.duration}</span>
+                    <span className={`px-2 py-1 rounded text-xs font-medium ${
+                      story.difficulty === 'Advanced' ? 'bg-red-100 text-red-800' :
+                      story.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-800' :
+                      'bg-green-100 text-green-800'
+                    }`}>
+                      {story.difficulty}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{story.title}</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">{story.description}</p>
+                  
+                  <div className="mb-4">
+                    <h4 className="font-semibold text-gray-900 mb-2">Key Lessons</h4>
+                    <ul className="space-y-1">
+                      {story.keyLessons.map((lesson, idx) => (
+                        <li key={idx} className="flex items-start space-x-2">
+                          <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm text-gray-600">{lesson}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div className="text-sm text-gray-500">
+                      <div>By {story.author}</div>
+                      <div>{story.publishDate}</div>
+                    </div>
+                    
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => story.type === 'video' ? setSelectedStory(story) : null}
+                      className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg font-semibold flex items-center space-x-2 transition-colors"
+                    >
+                      {story.type === 'video' ? <Play className="h-4 w-4" /> : <BookOpen className="h-4 w-4" />}
+                      <span>{story.type === 'video' ? 'Watch Story' : 'Read Story'}</span>
+                    </motion.button>
+                  </div>
+                  
+                  <div className="mt-4 pt-4 border-t border-gray-100">
+                    <div className="flex flex-wrap gap-2">
+                      {story.tags.map((tag, idx) => (
+                        <span key={idx} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         );
 
@@ -753,6 +964,14 @@ const LearningHub = () => {
         <VideoModal 
           video={selectedVideo} 
           onClose={() => setSelectedVideo(null)} 
+        />
+      )}
+
+      {/* Story Video Modal */}
+      {selectedStory && (
+        <StoryVideoModal 
+          story={selectedStory} 
+          onClose={() => setSelectedStory(null)} 
         />
       )}
     </div>
