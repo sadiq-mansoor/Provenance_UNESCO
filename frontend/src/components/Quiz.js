@@ -1118,86 +1118,86 @@ const AdvancedMediaLiteracyQuiz = ({ username = "Student" }) => {
   // Welcome Screen
   if (!quizStarted) {
     return (
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="card-glow text-center"
         >
           {/* Hero Section */}
-          <div className="hero-gradient text-white p-8 rounded-t-2xl">
+          <div className="hero-gradient text-white p-4 sm:p-6 lg:p-8 rounded-t-2xl">
             <motion.div
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring" }}
             >
-              <Shield className="h-16 w-16 mx-auto mb-4 text-electric-400" />
+              <Shield className="h-12 w-12 sm:h-16 sm:w-16 mx-auto mb-4 text-electric-400" />
             </motion.div>
-            <h1 className="text-4xl font-bold mb-4 editorial-heading text-white">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 editorial-heading text-white">
               Media Literacy Training
             </h1>
-            <p className="text-xl text-violet-100 mb-2">
+            <p className="text-lg sm:text-xl text-violet-100 mb-2">
               Advanced Misinformation Detection Quiz
             </p>
-            <p className="text-violet-200">
+            <p className="text-sm sm:text-base text-violet-200">
               Welcome, {username}! Test your skills against modern fake news.
             </p>
           </div>
 
           {/* Context Section */}
-          <div className="p-8 bg-white/95 backdrop-blur-sm">
-            <div className="grid md:grid-cols-2 gap-8 mb-8">
+          <div className="p-4 sm:p-6 lg:p-8 bg-white/95 backdrop-blur-sm">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
               <div className="text-left">
-                <h3 className="text-xl font-bold text-deepblue-800 mb-4 flex items-center">
-                  <Target className="h-5 w-5 mr-2 text-violet-600" />
+                <h3 className="text-lg sm:text-xl font-bold text-deepblue-800 mb-3 sm:mb-4 flex items-center">
+                  <Target className="h-4 w-4 sm:h-5 sm:w-5 mr-2 text-violet-600" />
                   What You'll Learn
                 </h3>
-                <ul className="space-y-3 text-softgray-700">
+                <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base text-softgray-700">
                   <li className="flex items-start">
                     <Zap className="h-4 w-4 mr-2 mt-0.5 text-electric-500 flex-shrink-0" />
-                    Detect AI-generated content and deepfakes
+                    <span>Detect AI-generated content and deepfakes</span>
                   </li>
                   <li className="flex items-start">
                     <Brain className="h-4 w-4 mr-2 mt-0.5 text-violet-500 flex-shrink-0" />
-                    Recognize psychological manipulation tactics
+                    <span>Recognize psychological manipulation tactics</span>
                   </li>
                   <li className="flex items-start">
                     <Users className="h-4 w-4 mr-2 mt-0.5 text-deepblue-500 flex-shrink-0" />
-                    Identify bot networks and astroturfing
+                    <span>Identify bot networks and astroturfing</span>
                   </li>
                   <li className="flex items-start">
                     <Search className="h-4 w-4 mr-2 mt-0.5 text-neon-500 flex-shrink-0" />
-                    Master lateral reading and fact-checking
+                    <span>Master lateral reading and fact-checking</span>
                   </li>
                   <li className="flex items-start">
                     <Monitor className="h-4 w-4 mr-2 mt-0.5 text-electric-500 flex-shrink-0" />
-                    Analyze digital media and deepfakes
+                    <span>Analyze digital media and deepfakes</span>
                   </li>
                   <li className="flex items-start">
                     <Smartphone className="h-4 w-4 mr-2 mt-0.5 text-violet-500 flex-shrink-0" />
-                    Mobile misinformation detection
+                    <span>Mobile misinformation detection</span>
                   </li>
                   <li className="flex items-start">
                     <Wifi className="h-4 w-4 mr-2 mt-0.5 text-deepblue-500 flex-shrink-0" />
-                    Network and connectivity analysis
+                    <span>Network and connectivity analysis</span>
                   </li>
                   <li className="flex items-start">
                     <Headphones className="h-4 w-4 mr-2 mt-0.5 text-neon-500 flex-shrink-0" />
-                    Audio and voice deepfake detection
+                    <span>Audio and voice deepfake detection</span>
                   </li>
                   <li className="flex items-start">
                     <Fingerprint className="h-4 w-4 mr-2 mt-0.5 text-violet-500 flex-shrink-0" />
-                    Digital identity verification
+                    <span>Digital identity verification</span>
                   </li>
                 </ul>
               </div>
               
               <div className="text-left">
-                <h3 className="text-xl font-bold text-deepblue-800 mb-4 flex items-center">
-                  <Activity className="h-5 w-5 mr-2 text-violet-600" />
+                <h3 className="text-lg sm:text-xl font-bold text-deepblue-800 mb-3 sm:mb-4 flex items-center">
+                  <Activity className="h-4 w-4 sm:h-5 sm:w-5 mr-2 text-violet-600" />
                   Quiz Features
                 </h3>
-                <div className="space-y-3 text-softgray-700">
+                <div className="space-y-2 sm:space-y-3 text-sm sm:text-base text-softgray-700">
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-violet-500 rounded-full mr-3"></div>
                     <span><strong className="text-deepblue-800">{questions.length} Questions</strong> - Expert-level scenarios</span>
@@ -1223,12 +1223,12 @@ const AdvancedMediaLiteracyQuiz = ({ username = "Student" }) => {
             </div>
 
             {/* Warning Section */}
-            <div className="mb-8 p-4 bg-gradient-to-r from-electric-50 to-violet-50 border border-violet-200 rounded-xl">
-              <div className="flex items-start space-x-3">
-                <AlertTriangle className="h-5 w-5 text-violet-600 flex-shrink-0 mt-0.5" />
+            <div className="mb-6 sm:mb-8 p-3 sm:p-4 bg-gradient-to-r from-electric-50 to-violet-50 border border-violet-200 rounded-xl">
+              <div className="flex items-start space-x-2 sm:space-x-3">
+                <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 text-violet-600 flex-shrink-0 mt-0.5" />
                 <div className="text-left">
-                  <h4 className="font-semibold text-deepblue-800 mb-2">Important Context</h4>
-                  <p className="text-softgray-700 text-sm leading-relaxed">
+                  <h4 className="font-semibold text-deepblue-800 mb-1 sm:mb-2 text-sm sm:text-base">Important Context</h4>
+                  <p className="text-softgray-700 text-xs sm:text-sm leading-relaxed">
                     This quiz contains realistic examples of misinformation techniques for educational purposes only. 
                     The scenarios are designed to teach detection skills and should not be shared as actual news. 
                     Take your time to analyze each question carefully.
@@ -1240,15 +1240,15 @@ const AdvancedMediaLiteracyQuiz = ({ username = "Student" }) => {
             {/* Start Button */}
             <motion.button
               onClick={() => setQuizStarted(true)}
-              className="btn-primary text-lg px-10 py-4"
+              className="btn-primary text-base sm:text-lg px-6 sm:px-10 py-3 sm:py-4 w-full sm:w-auto"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Shield className="h-5 w-5 mr-2" />
+              <Shield className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
               Start Quiz
             </motion.button>
             
-            <p className="text-softgray-500 text-sm mt-4">
+            <p className="text-softgray-500 text-xs sm:text-sm mt-3 sm:mt-4">
               Estimated time: 15-20 minutes
             </p>
           </div>
@@ -1262,61 +1262,61 @@ const AdvancedMediaLiteracyQuiz = ({ username = "Student" }) => {
     const maxScore = getTotalMaxScore();
     
     return (
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-white rounded-xl shadow-lg p-8"
+          className="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:p-8"
         >
-          <div className="text-center mb-8">
+          <div className="text-center mb-6 sm:mb-8">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring" }}
             >
-              <Trophy className="h-20 w-20 text-yellow-500 mx-auto mb-4" />
+              <Trophy className="h-16 w-16 sm:h-20 sm:w-20 text-yellow-500 mx-auto mb-3 sm:mb-4" />
             </motion.div>
             
-            <h2 className="text-4xl font-bold text-gray-900 mb-2">Quiz Complete!</h2>
-            <p className="text-xl text-gray-600 mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Quiz Complete!</h2>
+            <p className="text-lg sm:text-xl text-gray-600 mb-3 sm:mb-4">
               Final Score: {score} / {maxScore} points
             </p>
-            <div className={`text-2xl font-bold ${performance.color} mb-2`}>
+            <div className={`text-xl sm:text-2xl font-bold ${performance.color} mb-2`}>
               {performance.level} Level
             </div>
-            <p className="text-gray-600">{performance.desc}</p>
+            <p className="text-sm sm:text-base text-gray-600">{performance.desc}</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div className="bg-blue-50 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-blue-900 mb-4 flex items-center">
-                <Target className="h-5 w-5 mr-2" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
+            <div className="bg-blue-50 rounded-lg p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-semibold text-blue-900 mb-3 sm:mb-4 flex items-center">
+                <Target className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                 Skill Breakdown
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 {Object.entries(skillBreakdown).map(([skill, points]) => (
                   <div key={skill} className="flex justify-between items-center">
-                    <span className="text-sm capitalize">{skill.replace(/([A-Z])/g, ' $1')}</span>
+                    <span className="text-xs sm:text-sm capitalize">{skill.replace(/([A-Z])/g, ' $1')}</span>
                     <div className="flex items-center space-x-2">
-                      <div className="w-20 bg-blue-200 rounded-full h-2">
+                      <div className="w-16 sm:w-20 bg-blue-200 rounded-full h-2">
                         <div 
                           className="h-2 bg-blue-600 rounded-full"
                           style={{ width: `${Math.min((points / 100) * 100, 100)}%` }}
                         />
                       </div>
-                      <span className="text-sm font-medium">{points}/100</span>
+                      <span className="text-xs sm:text-sm font-medium">{points}/100</span>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-green-50 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-green-900 mb-4 flex items-center">
-                <Lightbulb className="h-5 w-5 mr-2" />
+            <div className="bg-green-50 rounded-lg p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-semibold text-green-900 mb-3 sm:mb-4 flex items-center">
+                <Lightbulb className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                 Key Takeaways
               </h3>
-              <ul className="space-y-2 text-sm text-green-800">
+              <ul className="space-y-2 text-xs sm:text-sm text-green-800">
                 <li className="flex items-start">
                   <Shield className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
                   Always verify sources before sharing
@@ -1338,13 +1338,13 @@ const AdvancedMediaLiteracyQuiz = ({ username = "Student" }) => {
           </div>
 
           <div className="text-center">
-            <div className="mb-4 text-gray-600">
-              <Clock className="h-4 w-4 inline mr-1" />
+            <div className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-600">
+              <Clock className="h-3 w-3 sm:h-4 sm:w-4 inline mr-1" />
               Time spent: {Math.floor(timeSpent / 60)}m {timeSpent % 60}s
             </div>
             <button
               onClick={resetQuiz}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center space-x-2 mx-auto"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold transition-colors flex items-center space-x-2 mx-auto text-sm sm:text-base"
             >
               <RotateCcw className="h-4 w-4" />
               <span>Practice Again</span>
@@ -1366,43 +1366,43 @@ const AdvancedMediaLiteracyQuiz = ({ username = "Student" }) => {
                        question.type === 'lateral_reading' || question.type === 'cognitive_bias_awareness';
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto px-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-8"
+        className="text-center mb-6 sm:mb-8"
       >
-        <h1 className="text-4xl font-bold text-gray-900 mb-4 flex items-center justify-center">
-          <Shield className="h-10 w-10 mr-3 text-blue-600" />
-          Media Literacy Training
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
+          <Shield className="h-8 w-8 sm:h-10 sm:w-10 text-blue-600" />
+          <span>Media Literacy Training</span>
         </h1>
-        <div className="flex items-center justify-center space-x-6 text-gray-600">
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 lg:gap-6 text-sm sm:text-base text-gray-600">
           <span className="flex items-center">
-            <Brain className="h-4 w-4 mr-1" />
+            <Brain className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
             Question {currentQuestion + 1} of {questions.length}
           </span>
           <span className="flex items-center">
-            <Star className="h-4 w-4 mr-1" />
+            <Star className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
             Score: {score} points
           </span>
           <span className="flex items-center">
-            <Clock className="h-4 w-4 mr-1" />
+            <Clock className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
             {Math.floor(timeSpent / 60)}:{(timeSpent % 60).toString().padStart(2, '0')}
           </span>
         </div>
       </motion.div>
 
       {/* Progress Bar */}
-      <div className="mb-8">
-        <div className="w-full bg-gray-200 rounded-full h-3">
+      <div className="mb-6 sm:mb-8">
+        <div className="w-full bg-gray-200 rounded-full h-2 sm:h-3">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
-            className="h-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600"
+            className="h-2 sm:h-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600"
           />
         </div>
-        <div className="flex justify-between mt-2 text-sm text-gray-600">
+        <div className="flex justify-between mt-2 text-xs sm:text-sm text-gray-600">
           <span>Progress</span>
           <span>{Math.round(((currentQuestion + 1) / questions.length) * 100)}%</span>
         </div>
@@ -1417,61 +1417,61 @@ const AdvancedMediaLiteracyQuiz = ({ username = "Student" }) => {
           className="bg-white rounded-xl shadow-lg overflow-hidden"
         >
           {/* Question Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center space-x-3">
-                <div className="bg-white bg-opacity-20 p-2 rounded-lg">
-                  {question.type === 'ai_generated_content' && <Zap className="h-6 w-6" />}
-                  {question.type === 'deepfake_detection' && <Eye className="h-6 w-6" />}
-                  {question.type === 'psychological_manipulation' && <Brain className="h-6 w-6" />}
-                  {question.type === 'algorithm_literacy' && <Globe className="h-6 w-6" />}
-                  {question.type === 'microtargeting_awareness' && <Target className="h-6 w-6" />}
-                  {question.type === 'network_analysis' && <Users className="h-6 w-6" />}
-                  {question.type === 'emotional_regulation' && <Shield className="h-6 w-6" />}
-                  {question.type === 'prebunking_training' && <Lightbulb className="h-6 w-6" />}
-                  {question.type === 'lateral_reading' && <Search className="h-6 w-6" />}
-                  {question.type === 'cognitive_bias_awareness' && <AlertTriangle className="h-6 w-6" />}
-                  {question.type === 'source_evaluation' && <Search className="h-6 w-6" />}
-                  {question.type === 'image_analysis' && <Eye className="h-6 w-6" />}
-                  {question.type === 'bias_detection' && <AlertTriangle className="h-6 w-6" />}
-                  {question.type === 'fact_checking' && <Shield className="h-6 w-6" />}
-                  {question.type === 'platform_analysis' && <Globe className="h-6 w-6" />}
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 sm:p-5 lg:p-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 mb-3 sm:mb-4">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div className="bg-white bg-opacity-20 p-1.5 sm:p-2 rounded-lg">
+                  {question.type === 'ai_generated_content' && <Zap className="h-5 w-5 sm:h-6 sm:w-6" />}
+                  {question.type === 'deepfake_detection' && <Eye className="h-5 w-5 sm:h-6 sm:w-6" />}
+                  {question.type === 'psychological_manipulation' && <Brain className="h-5 w-5 sm:h-6 sm:w-6" />}
+                  {question.type === 'algorithm_literacy' && <Globe className="h-5 w-5 sm:h-6 sm:w-6" />}
+                  {question.type === 'microtargeting_awareness' && <Target className="h-5 w-5 sm:h-6 sm:w-6" />}
+                  {question.type === 'network_analysis' && <Users className="h-5 w-5 sm:h-6 sm:w-6" />}
+                  {question.type === 'emotional_regulation' && <Shield className="h-5 w-5 sm:h-6 sm:w-6" />}
+                  {question.type === 'prebunking_training' && <Lightbulb className="h-5 w-5 sm:h-6 sm:w-6" />}
+                  {question.type === 'lateral_reading' && <Search className="h-5 w-5 sm:h-6 sm:w-6" />}
+                  {question.type === 'cognitive_bias_awareness' && <AlertTriangle className="h-5 w-5 sm:h-6 sm:w-6" />}
+                  {question.type === 'source_evaluation' && <Search className="h-5 w-5 sm:h-6 sm:w-6" />}
+                  {question.type === 'image_analysis' && <Eye className="h-5 w-5 sm:h-6 sm:w-6" />}
+                  {question.type === 'bias_detection' && <AlertTriangle className="h-5 w-5 sm:h-6 sm:w-6" />}
+                  {question.type === 'fact_checking' && <Shield className="h-5 w-5 sm:h-6 sm:w-6" />}
+                  {question.type === 'platform_analysis' && <Globe className="h-5 w-5 sm:h-6 sm:w-6" />}
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold">{question.category}</h3>
-                  <span className="text-blue-100 text-sm capitalize">{question.difficulty} Level</span>
+                  <h3 className="text-base sm:text-lg font-semibold">{question.category}</h3>
+                  <span className="text-blue-100 text-xs sm:text-sm capitalize">{question.difficulty} Level</span>
                 </div>
               </div>
               {isMultiSelect && (
-                <div className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">
+                <div className="bg-white bg-opacity-20 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">
                   Multiple Selection
                 </div>
               )}
             </div>
-            <h2 className="text-xl font-bold">{question.question}</h2>
+            <h2 className="text-lg sm:text-xl font-bold">{question.question}</h2>
           </div>
 
           {/* Scenario Display */}
           {question.scenario && (
-            <div className="p-6 bg-gray-50 border-b">
-              <h4 className="font-semibold text-gray-900 mb-3">Scenario Analysis:</h4>
+            <div className="p-4 sm:p-5 lg:p-6 bg-gray-50 border-b">
+              <h4 className="font-semibold text-gray-900 mb-2 sm:mb-3 text-sm sm:text-base">Scenario Analysis:</h4>
               
               {question.scenario.headline && (
-                <div className="mb-4 p-4 bg-red-50 border-l-4 border-red-400 rounded-r">
-                  <h5 className="font-semibold text-red-900">Headline:</h5>
-                  <p className="text-red-800">"{question.scenario.headline}"</p>
+                <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-red-50 border-l-4 border-red-400 rounded-r">
+                  <h5 className="font-semibold text-red-900 text-sm sm:text-base">Headline:</h5>
+                  <p className="text-red-800 text-sm sm:text-base">"{question.scenario.headline}"</p>
                 </div>
               )}
               
               {question.scenario.image && (
-                <div className="mb-4">
+                <div className="mb-3 sm:mb-4">
                   <img
                     src={question.scenario.image}
                     alt="Scenario"
                     className="w-full max-w-md mx-auto rounded-lg shadow-sm"
                   />
                   {question.scenario.claim && (
-                    <p className="text-center mt-2 text-gray-600 italic">
+                    <p className="text-center mt-2 text-gray-600 italic text-sm sm:text-base">
                       Claim: "{question.scenario.claim}"
                     </p>
                   )}
@@ -1479,38 +1479,38 @@ const AdvancedMediaLiteracyQuiz = ({ username = "Student" }) => {
               )}
               
               {question.scenario.content && (
-                <div className="mb-4 p-4 bg-blue-50 border-l-4 border-blue-400 rounded-r">
-                  <h5 className="font-semibold text-blue-900">Content Analysis:</h5>
-                  <p className="text-blue-800">{question.scenario.content}</p>
+                <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-blue-50 border-l-4 border-blue-400 rounded-r">
+                  <h5 className="font-semibold text-blue-900 text-sm sm:text-base">Content Analysis:</h5>
+                  <p className="text-blue-800 text-sm sm:text-base">{question.scenario.content}</p>
                 </div>
               )}
               
               {question.scenario.excerpt && (
-                <div className="mb-4 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-r">
-                  <h5 className="font-semibold text-yellow-900">News Excerpt:</h5>
-                  <p className="text-yellow-800 italic">"{question.scenario.excerpt}"</p>
+                <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-r">
+                  <h5 className="font-semibold text-yellow-900 text-sm sm:text-base">News Excerpt:</h5>
+                  <p className="text-yellow-800 italic text-sm sm:text-base">"{question.scenario.excerpt}"</p>
                 </div>
               )}
               
               {question.scenario.metadata && (
-                <div className="mb-4 p-4 bg-orange-50 border-l-4 border-orange-400 rounded-r">
-                  <h5 className="font-semibold text-orange-900">Metadata:</h5>
-                  <p className="text-orange-800">{question.scenario.metadata}</p>
+                <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-orange-50 border-l-4 border-orange-400 rounded-r">
+                  <h5 className="font-semibold text-orange-900 text-sm sm:text-base">Metadata:</h5>
+                  <p className="text-orange-800 text-sm sm:text-base">{question.scenario.metadata}</p>
                 </div>
               )}
               
               {question.scenario.technicalClues && (
-                <div className="mb-4 p-4 bg-purple-50 border-l-4 border-purple-400 rounded-r">
-                  <h5 className="font-semibold text-purple-900">Technical Clues:</h5>
+                <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-purple-50 border-l-4 border-purple-400 rounded-r">
+                  <h5 className="font-semibold text-purple-900 text-sm sm:text-base">Technical Clues:</h5>
                   <ul className="list-disc list-inside text-purple-800">
                     {question.scenario.technicalClues.map((clue, index) => (
-                      <li key={index} className="text-sm">{clue}</li>
+                      <li key={index} className="text-xs sm:text-sm">{clue}</li>
                     ))}
                   </ul>
                 </div>
               )}
               
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-xs sm:text-sm">
                 {question.scenario.source && (
                   <div>
                     <span className="font-medium text-gray-700">Source:</span>

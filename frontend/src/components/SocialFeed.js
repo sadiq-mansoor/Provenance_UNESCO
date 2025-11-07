@@ -96,6 +96,18 @@ const CommunityReports = ({ userScore, setUserScore }) => {
     const loadRealCases = async () => {
       try {
         const response = await fetch('/api/feed');
+        
+        // Check if response is OK and content-type is JSON
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          console.warn('API endpoint not available, using fallback data');
+          throw new Error('Invalid content type');
+        }
+        
         const data = await response.json();
 
         if (data.cases) {
@@ -126,7 +138,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
           setReports(transformedCases);
         }
       } catch (error) {
-        console.error('Failed to load real cases:', error);
+        console.warn('API not available, using demo data:', error.message);
         // Fallback to hardcoded data if API fails
         setReports([
           {
@@ -542,41 +554,49 @@ const CommunityReports = ({ userScore, setUserScore }) => {
         </p>
       </div>
 
-      {/* Learning Hub Style Filter Cards */}
-      <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 px-2">
-        {filterOptions.map((option) => {
-          const IconComponent = option.icon;
-          const isActive = filter === option.value;
-          const count = filteredReports.filter(r =>
-            option.value === 'all' ? true :
-              option.value === 'verified-fake' ? r.verificationStatus === 'verified-fake' :
-                option.value === 'under-review' ? r.verificationStatus === 'under-review' :
-                  option.value === 'health-misinformation' ? r.category === 'health-misinformation' :
-                    option.value === 'celebrity-hoax' ? r.category === 'celebrity-hoax' : false
-          ).length;
-
+      {/* Compact Filter Chips - Two Per Row Layout */}
+      <div className="mb-6 sm:mb-8 px-4 max-w-2xl mx-auto space-y-2">
+        {/* Map through all filters, 2 per row */}
+        {[0, 2, 4].map((startIndex) => {
+          const rowFilters = filterOptions.slice(startIndex, startIndex + 2);
+          if (rowFilters.length === 0) return null;
+          
           return (
-            <button
-              key={option.value}
-              onClick={() => setFilter(option.value)}
-              className={`flex items-center space-x-2 sm:space-x-3 px-3 py-2 sm:px-6 sm:py-4 rounded-xl sm:rounded-2xl border transition-all duration-300 min-w-[140px] sm:min-w-[200px] ${isActive
-                ? 'bg-gradient-to-r from-deepblue-900 via-violet-900 to-deepblue-800 border-white/20 text-white shadow-2xl'
-                : 'bg-white border-gray-200 text-gray-700 hover:border-violet-300 hover:shadow-lg hover:shadow-violet-500/10'
-                }`}
-            >
-              <div className={`p-1.5 sm:p-2 rounded-lg ${isActive ? 'bg-white/20 backdrop-blur-sm' : 'bg-gray-100'
-                }`}>
-                <IconComponent className={`h-4 w-4 sm:h-5 sm:w-5 ${isActive ? 'text-white' : 'text-gray-600'}`} />
-              </div>
-              <div className="text-left">
-                <div className={`font-semibold text-xs sm:text-base ${isActive ? 'text-white' : 'text-gray-900'}`}>
-                  {option.label}
-                </div>
-                <div className={`text-xs sm:text-sm ${isActive ? 'text-white/80' : 'text-gray-500'}`}>
-                  {count} {count === 1 ? 'case' : 'cases'}
-                </div>
-              </div>
-            </button>
+            <div key={startIndex} className="grid grid-cols-2 gap-2">
+              {rowFilters.map((option) => {
+                const IconComponent = option.icon;
+                const isActive = filter === option.value;
+                const count = filteredReports.filter(r =>
+                  option.value === 'all' ? true :
+                    option.value === 'verified-fake' ? r.verificationStatus === 'verified-fake' :
+                      option.value === 'under-review' ? r.verificationStatus === 'under-review' :
+                        option.value === 'health-misinformation' ? r.category === 'health-misinformation' :
+                          option.value === 'celebrity-hoax' ? r.category === 'celebrity-hoax' : false
+                ).length;
+
+                return (
+                  <button
+                    key={option.value}
+                    onClick={() => setFilter(option.value)}
+                    className={`flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+                      isActive
+                        ? 'bg-gradient-to-r from-violet-600 to-electric-500 text-white shadow-lg'
+                        : 'bg-white text-gray-700 border border-gray-300 hover:border-violet-400 hover:shadow-md'
+                    }`}
+                  >
+                    <IconComponent className={`h-4 w-4 ${isActive ? 'text-white' : 'text-gray-500'}`} />
+                    <span className="truncate">{option.label}</span>
+                    <span className={`px-1.5 py-0.5 rounded-full text-xs font-semibold ${
+                      isActive 
+                        ? 'bg-white/20 text-white' 
+                        : 'bg-gray-100 text-gray-600'
+                    }`}>
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           );
         })}
       </div>
@@ -600,7 +620,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="group relative bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 rounded-xl shadow-2xl border border-white/10 overflow-hidden hover:shadow-violet-500/10 transition-all duration-500"
+            className="group relative bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-500"
           >
             {/* Professional Media Display */}
             <div className="relative overflow-hidden bg-gray-100">
@@ -687,7 +707,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
             </div>
 
             {/* Professional Content Section */}
-            <div className="p-4 sm:p-6">
+            <div className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 p-4 sm:p-6">
               {/* Title and Description */}
               <div className="mb-3 sm:mb-4">
                 <h3
@@ -700,29 +720,32 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                   {report.description}
                 </p>
               </div>
+            </div>
 
+            {/* Metadata and Actions - White background */}
+            <div className="p-4 sm:p-6">
               {/* Simplified Metadata */}
-              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4 text-xs sm:text-sm text-white/80">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4 text-xs sm:text-sm text-gray-600">
                 <div className="flex items-center space-x-1">
-                  <User className="h-3 w-3 sm:h-4 sm:w-4 text-violet-400" />
+                  <User className="h-3 w-3 sm:h-4 sm:w-4 text-violet-600" />
                   <span className="truncate max-w-[80px] sm:max-w-none">{report.submittedBy}</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <Globe className="h-3 w-3 sm:h-4 sm:w-4 text-violet-400" />
+                  <Globe className="h-3 w-3 sm:h-4 sm:w-4 text-violet-600" />
                   <span className="truncate max-w-[80px] sm:max-w-none">{report.location}</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <Clock className="h-3 w-3 sm:h-4 sm:w-4 text-violet-400" />
+                  <Clock className="h-3 w-3 sm:h-4 sm:w-4 text-violet-600" />
                   <span>{report.timestamp}</span>
                 </div>
               </div>
 
               {/* Simplified Action Bar */}
-              <div className="flex items-center space-x-3 sm:space-x-4 pt-3 sm:pt-4">
+              <div className="flex items-center space-x-3 sm:space-x-4">
                 {/* Voting Buttons */}
                 <button
                   onClick={() => handleVote(report.id, 'up')}
-                  className={`flex items-center space-x-1 text-xs sm:text-sm ${userVotes[report.id] === 'up' ? 'text-green-400' : 'text-white/60 hover:text-green-400'}`}
+                  className={`flex items-center space-x-1 text-xs sm:text-sm ${userVotes[report.id] === 'up' ? 'text-green-600' : 'text-gray-500 hover:text-green-600'}`}
                 >
                   <ThumbsUp className="h-3 w-3 sm:h-4 sm:w-4" />
                   <span>{report.upvotes}</span>
@@ -730,7 +753,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
 
                 <button
                   onClick={() => handleVote(report.id, 'down')}
-                  className={`flex items-center space-x-1 text-xs sm:text-sm ${userVotes[report.id] === 'down' ? 'text-red-400' : 'text-white/60 hover:text-red-400'}`}
+                  className={`flex items-center space-x-1 text-xs sm:text-sm ${userVotes[report.id] === 'down' ? 'text-red-600' : 'text-gray-500 hover:text-red-600'}`}
                 >
                   <ThumbsDown className="h-3 w-3 sm:h-4 sm:w-4" />
                   <span>{report.downvotes}</span>
@@ -745,27 +768,27 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="mt-6 pt-6 border-t border-white/20"
+                  className="mt-6 pt-6 border-t border-gray-200"
                 >
                   {/* Verification Process for Under Review Items */}
                   {report.verificationStatus === 'under-review' && report.verificationDetails?.reviewProcess && (
-                    <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-3 sm:p-4">
+                    <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 sm:p-4">
                       <div className="flex items-center space-x-2 mb-3">
-                        <RefreshCw className="h-4 w-4 text-violet-400 animate-spin" />
-                        <h4 className="font-medium text-white">Verification in Progress</h4>
+                        <RefreshCw className="h-4 w-4 text-violet-600 animate-spin" />
+                        <h4 className="font-medium text-gray-900">Verification in Progress</h4>
                       </div>
 
                       <div className="space-y-2 sm:space-y-3">
                         <div className="flex justify-between text-xs sm:text-sm">
-                          <span className="text-white/80">Current Stage:</span>
-                          <span className="font-medium text-white capitalize text-right">
+                          <span className="text-gray-600">Current Stage:</span>
+                          <span className="font-medium text-gray-900 capitalize text-right">
                             {report.verificationDetails.reviewProcess.stage.replace('_', ' ')}
                           </span>
                         </div>
 
                         <div className="flex justify-between text-xs sm:text-sm">
-                          <span className="text-white/80">Estimated Time:</span>
-                          <span className="font-medium text-white">
+                          <span className="text-gray-600">Estimated Time:</span>
+                          <span className="font-medium text-gray-900">
                             {report.verificationDetails.reviewProcess.estimatedTime}
                           </span>
                         </div>
@@ -773,10 +796,10 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                         {/* Progress Bar */}
                         <div className="space-y-2">
                           <div className="flex justify-between text-xs">
-                            <span className="text-violet-400">Progress</span>
-                            <span className="text-violet-400">{report.verificationDetails.reviewProcess.progress}%</span>
+                            <span className="text-violet-600">Progress</span>
+                            <span className="text-violet-600">{report.verificationDetails.reviewProcess.progress}%</span>
                           </div>
-                          <div className="w-full bg-white/20 rounded-full h-2">
+                          <div className="w-full bg-gray-200 rounded-full h-2">
                             <div
                               className="bg-gradient-to-r from-violet-500 to-electric-500 h-2 rounded-full transition-all duration-300"
                               style={{ width: `${report.verificationDetails.reviewProcess.progress}%` }}
@@ -786,15 +809,15 @@ const CommunityReports = ({ userScore, setUserScore }) => {
 
                         {/* Next Steps */}
                         <div>
-                          <p className="text-[10px] sm:text-xs text-blue-700 font-medium mb-1.5 sm:mb-2">Verification Process:</p>
+                          <p className="text-[10px] sm:text-xs text-violet-700 font-medium mb-1.5 sm:mb-2">Verification Process:</p>
                           <div className="space-y-0.5 sm:space-y-1">
                             {report.verificationDetails.reviewProcess.nextSteps.map((step, index) => (
                               <div key={index} className="flex items-start space-x-1.5 sm:space-x-2 text-[10px] sm:text-xs">
-                                <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full mt-1 flex-shrink-0 ${index === 0 ? 'bg-violet-400 animate-pulse' :
-                                  index < 1 ? 'bg-green-400' : 'bg-white/40'
+                                <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full mt-1 flex-shrink-0 ${index === 0 ? 'bg-violet-600 animate-pulse' :
+                                  index < 1 ? 'bg-green-600' : 'bg-gray-300'
                                   }`}></div>
-                                <span className={`${index === 0 ? 'text-violet-300 font-medium' :
-                                  index < 1 ? 'text-green-300' : 'text-white/60'
+                                <span className={`${index === 0 ? 'text-violet-700 font-medium' :
+                                  index < 1 ? 'text-green-700' : 'text-gray-500'
                                   }`}>
                                   {step}
                                 </span>
@@ -803,7 +826,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                           </div>
                         </div>
 
-                        <div className="bg-white/10 backdrop-blur-sm rounded p-2 text-[10px] sm:text-xs text-white/90 border border-white/20 leading-relaxed">
+                        <div className="bg-blue-50 rounded p-2 text-[10px] sm:text-xs text-blue-900 border border-blue-200 leading-relaxed">
                           <strong>What happens next:</strong> Our AI systems will analyze your submission for technical indicators,
                           then expert moderators will review the findings and cross-reference with trusted fact-checking sources.
                           You'll be notified when verification is complete.
@@ -912,8 +935,6 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                   </div>
                 </motion.div>
               )}
-
-
             </div>
           </motion.div>
         )) : (
@@ -1185,11 +1206,11 @@ const CommunityReports = ({ userScore, setUserScore }) => {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="max-w-4xl max-h-[90vh] w-full bg-white rounded-xl overflow-hidden"
+              className="max-w-4xl max-h-[90vh] w-full bg-white rounded-xl overflow-hidden flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
-              <div className="bg-gray-50 px-6 py-4 border-b flex items-center justify-between">
+              <div className="bg-gray-50 px-6 py-4 border-b flex items-center justify-between flex-shrink-0">
                 <div>
                   <h3 className="text-lg font-bold text-gray-900">{previewMedia.title}</h3>
                   <p className="text-sm text-gray-600">Click and examine this misinformation case</p>
@@ -1204,8 +1225,8 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                 </button>
               </div>
 
-              {/* Modal Content */}
-              <div className="p-6">
+              {/* Modal Content - Scrollable */}
+              <div className="p-6 overflow-y-auto flex-1">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {/* Media Display */}
                   <div className="space-y-4">

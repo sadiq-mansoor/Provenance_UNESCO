@@ -1575,8 +1575,8 @@ const AIProvenanceLab = ({ isLoadingModels, modelLoadProgress }) => {
       {/* Header */}
       <div className="text-center mb-12">
 
-        {/* Model Status Dashboard */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
+        {/* Model Status Dashboard - Hidden on Mobile */}
+        <div className="hidden md:grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
           {Object.entries(models).map(([modelName, model]) => (
             <div key={modelName} className={`p-3 rounded-lg border ${
               model.loaded ? 'bg-green-50 border-green-200' : 'bg-gray-50 border-gray-200'
@@ -1858,8 +1858,8 @@ const AIProvenanceLab = ({ isLoadingModels, modelLoadProgress }) => {
                       </div>
                     </div>
 
-                    {/* Models Used */}
-                    <div className="bg-gray-50 rounded-lg p-4">
+                    {/* Models Used - Hidden on Mobile */}
+                    <div className="hidden md:block bg-gray-50 rounded-lg p-4">
                       <h4 className="font-bold text-gray-900 mb-3 flex items-center">
                         <Database className="h-5 w-5 mr-2" />
                         AI Models Ensemble

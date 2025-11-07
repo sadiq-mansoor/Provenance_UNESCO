@@ -53,6 +53,9 @@ const LearningHub = () => {
   const [currentAudio, setCurrentAudio] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentPodcastId, setCurrentPodcastId] = useState(null);
+  const [audioProgress, setAudioProgress] = useState(0);
+  const [audioDuration, setAudioDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
 
   const handlePodcastPlay = (podcast) => {
     if (!podcast.audioFile) return;
@@ -84,11 +87,47 @@ const LearningHub = () => {
       setIsPlaying(false);
       setCurrentPodcastId(null);
       setCurrentAudio(null);
+      setAudioProgress(0);
+      setCurrentTime(0);
+    });
+    
+    // Track audio progress
+    audio.addEventListener('timeupdate', () => {
+      setCurrentTime(audio.currentTime);
+      setAudioProgress((audio.currentTime / audio.duration) * 100);
+    });
+    
+    // Get duration when loaded
+    audio.addEventListener('loadedmetadata', () => {
+      setAudioDuration(audio.duration);
     });
 
     setCurrentAudio(audio);
     setCurrentPodcastId(podcast.id);
+    setAudioProgress(0);
+    setCurrentTime(0);
     audio.play();
+  };
+
+  const handleSeek = (e) => {
+    if (!currentAudio) return;
+    
+    const progressBar = e.currentTarget;
+    const clickX = e.nativeEvent.offsetX;
+    const width = progressBar.offsetWidth;
+    const percentage = clickX / width;
+    const newTime = percentage * currentAudio.duration;
+    
+    currentAudio.currentTime = newTime;
+    setCurrentTime(newTime);
+    setAudioProgress(percentage * 100);
+  };
+
+  const formatTime = (seconds) => {
+    if (isNaN(seconds)) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
   const tabs = [
@@ -937,10 +976,11 @@ const LearningHub = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                                     className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl hover:shadow-violet-500/10 transition-all duration-500"
+                  className="bg-white border border-gray-200 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500"
                 >
-                  <div className="p-4 sm:p-6 lg:p-8">
-                    <div className="flex flex-col sm:flex-row items-start justify-between mb-4 sm:mb-6 gap-4">
+                  {/* Dark Header Section */}
+                  <div className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 p-4 sm:p-6 lg:p-8">
+                    <div className="flex flex-col sm:flex-row items-start justify-between mb-4 gap-4">
                       <div className="flex items-center space-x-3 sm:space-x-4 w-full sm:w-auto">
                         <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-r ${item.color} flex items-center justify-center shadow-lg flex-shrink-0`}>
                           <item.icon className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-white" />
@@ -956,7 +996,7 @@ const LearningHub = () => {
                               <Target className="h-3 w-3 sm:h-4 sm:w-4 mr-1 flex-shrink-0" />
                               {item.difficulty}
                             </span>
-                                                         <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium border border-white/20 whitespace-nowrap ${
+                            <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium border border-white/20 whitespace-nowrap ${
                               item.status === 'Coming Soon' 
                                  ? 'bg-orange-500/20 text-orange-300' 
                                  : 'bg-green-500/20 text-green-300'
@@ -981,31 +1021,34 @@ const LearningHub = () => {
                       )}
                     </div>
                     
-                                         <p className="text-sm sm:text-base text-white/90 leading-relaxed mb-4 sm:mb-6">{item.description}</p>
-                    
+                    <p className="text-sm sm:text-base text-white/90 leading-relaxed">{item.description}</p>
+                  </div>
+
+                  {/* White Content Section */}
+                  <div className="p-4 sm:p-6 lg:p-8">
                     <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                       <div>
-                         <h4 className="font-semibold text-white mb-2 sm:mb-3 text-sm sm:text-base">Features</h4>
+                         <h4 className="font-semibold text-gray-900 mb-2 sm:mb-3 text-sm sm:text-base">Features</h4>
                         <ul className="space-y-2">
                           {item.features.map((feature, idx) => (
                             <li key={idx} className="flex items-center space-x-2">
-                               <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-electric-400 flex-shrink-0" />
-                               <span className="text-xs sm:text-sm text-white/90">{feature}</span>
+                               <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-electric-500 flex-shrink-0" />
+                               <span className="text-xs sm:text-sm text-gray-700">{feature}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                       
                       <div>
-                         <h4 className="font-semibold text-white mb-2 sm:mb-3 text-sm sm:text-base">Stats</h4>
+                         <h4 className="font-semibold text-gray-900 mb-2 sm:mb-3 text-sm sm:text-base">Stats</h4>
                         <div className="space-y-2">
                           {item.stats && Object.entries(item.stats).map(([key, value], idx) => (
                             <div key={idx} className="flex justify-between text-xs sm:text-sm">
-                               <span className="text-white/80">{key}</span>
+                               <span className="text-gray-600">{key}</span>
                               <span className={`font-medium ${
-                                 key.includes('Points') ? 'text-electric-400' : 
-                                 key.includes('Rate') || key.includes('Success') ? 'text-green-400' : 
-                                 key.includes('Status') ? 'text-orange-400' : 'text-violet-400'
+                                 key.includes('Points') ? 'text-electric-500' : 
+                                 key.includes('Rate') || key.includes('Success') ? 'text-green-600' : 
+                                 key.includes('Status') ? 'text-orange-600' : 'text-violet-600'
                               }`}>
                                 {value}
                               </span>
@@ -1099,7 +1142,7 @@ const LearningHub = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ y: -5 }}
-                                     className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 border border-white/10 rounded-lg sm:rounded-xl overflow-hidden shadow-2xl hover:shadow-violet-500/10 transition-all duration-500"
+                  className="bg-white border border-gray-200 rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500"
                 >
                   <div className="aspect-video bg-gray-200 relative">
                     <img 
@@ -1114,14 +1157,14 @@ const LearningHub = () => {
                   
                   <div className="p-4 sm:p-6">
                     <div className="flex items-center space-x-2 mb-2 text-xs sm:text-sm">
-                       <Video className="h-3 w-3 sm:h-4 sm:w-4 text-violet-400 flex-shrink-0" />
-                       <span className="font-medium text-white/80 truncate">{video.platform}</span>
-                       <span className="text-white/60">•</span>
-                       <span className="text-white/80 whitespace-nowrap">{video.views}</span>
+                       <Video className="h-3 w-3 sm:h-4 sm:w-4 text-violet-600 flex-shrink-0" />
+                       <span className="font-medium text-gray-700 truncate">{video.platform}</span>
+                       <span className="text-gray-400">•</span>
+                       <span className="text-gray-600 whitespace-nowrap">{video.views}</span>
                     </div>
                     
-                     <h4 className="font-semibold text-white mb-2 text-sm sm:text-base leading-tight">{video.title}</h4>
-                     <p className="text-white/90 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">{video.description}</p>
+                     <h4 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base leading-tight">{video.title}</h4>
+                     <p className="text-gray-700 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">{video.description}</p>
                     
                     <motion.a
                       whileHover={{ scale: 1.02 }}
@@ -1129,7 +1172,7 @@ const LearningHub = () => {
                       href={video.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                                             className="inline-flex items-center space-x-2 text-violet-400 hover:text-violet-300 font-medium text-xs sm:text-sm"
+                      className="inline-flex items-center space-x-2 text-violet-600 hover:text-violet-700 font-medium text-xs sm:text-sm"
                     >
                       <span>Watch on YouTube</span>
                       <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
@@ -1150,27 +1193,27 @@ const LearningHub = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                                 className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 border border-white/10 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-2xl hover:shadow-violet-500/10 transition-all duration-500"
+                className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-500"
               >
                 <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4 lg:space-x-6">
-                                     <div className="w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 bg-gradient-to-r from-violet-500 to-electric-500 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 bg-gradient-to-r from-violet-500 to-electric-500 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
                     <Headphones className="h-8 w-8 sm:h-9 sm:w-9 lg:h-10 lg:w-10 text-white" />
                   </div>
                   
                   <div className="flex-grow w-full min-w-0">
                     <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2 text-xs sm:text-sm">
-                                             <span className="bg-violet-100 text-violet-800 px-2 py-1 rounded text-xs font-medium whitespace-nowrap">
+                      <span className="bg-violet-100 text-violet-800 px-2 py-1 rounded text-xs font-medium whitespace-nowrap">
                         {podcast.platform}
                       </span>
-                                           <span className="text-white/80 whitespace-nowrap">{podcast.episode}</span>
-                     <span className="text-white/80 whitespace-nowrap">{podcast.duration}</span>
+                      <span className="text-gray-600 whitespace-nowrap">{podcast.episode}</span>
+                      <span className="text-gray-600 whitespace-nowrap">{podcast.duration}</span>
                     </div>
                     
-                   <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-tight">{podcast.title}</h3>
-                   <p className="text-sm sm:text-base text-white/90 mb-3 sm:mb-4 leading-relaxed">{podcast.description}</p>
+                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 leading-tight">{podcast.title}</h3>
+                   <p className="text-sm sm:text-base text-gray-700 mb-3 sm:mb-4 leading-relaxed">{podcast.description}</p>
                     
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
-                                           <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-white/80">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600">
                         <span className="whitespace-nowrap">By {podcast.host}</span>
                         <span className="whitespace-nowrap">{podcast.downloads} downloads</span>
                         <div className="flex items-center space-x-1">
@@ -1200,7 +1243,7 @@ const LearningHub = () => {
                             whileTap={{ scale: 0.95 }}
                             href={podcast.audioFile}
                             download
-                           className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-4 py-2 rounded-lg font-semibold flex items-center space-x-2 transition-all duration-300 border border-white/20 text-sm"
+                           className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-semibold flex items-center space-x-2 transition-all duration-300 border border-gray-300 text-sm"
                           >
                             <Download className="h-4 w-4" />
                             <span className="hidden sm:inline">Download</span>
@@ -1208,11 +1251,46 @@ const LearningHub = () => {
                         )}
                       </div>
                     </div>
+
+                    {/* Audio Progress Bar - Show when this podcast is playing */}
+                    {currentPodcastId === podcast.id && currentAudio && (
+                      <div className="mt-4 pt-4 border-t border-gray-200">
+                        <div className="flex items-center space-x-3">
+                          <span className="text-xs text-gray-600 font-medium min-w-[40px]">
+                            {formatTime(currentTime)}
+                          </span>
+                          
+                          <div className="flex-1 relative group">
+                            {/* Progress bar container */}
+                            <div 
+                              onClick={handleSeek}
+                              className="w-full h-2 bg-gray-200 rounded-full cursor-pointer overflow-hidden hover:h-3 transition-all duration-200"
+                            >
+                              {/* Progress fill */}
+                              <div 
+                                className="h-full bg-gradient-to-r from-violet-500 to-electric-500 rounded-full transition-all duration-100"
+                                style={{ width: `${audioProgress}%` }}
+                              />
+                            </div>
+                            
+                            {/* Hover thumb */}
+                            <div 
+                              className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg border-2 border-violet-500 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+                              style={{ left: `${audioProgress}%`, transform: 'translate(-50%, -50%)' }}
+                            />
+                          </div>
+                          
+                          <span className="text-xs text-gray-600 font-medium min-w-[40px]">
+                            {formatTime(audioDuration)}
+                          </span>
+                        </div>
+                      </div>
+                    )}
                     
-                                       <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-white/20">
+                    <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-200">
                       <div className="flex flex-wrap gap-2">
                         {podcast.topics.map((topic, idx) => (
-                         <span key={idx} className="bg-white/10 backdrop-blur-sm text-white/90 px-2 py-1 rounded text-xs border border-white/20">
+                         <span key={idx} className="bg-violet-100 text-violet-700 px-2 py-1 rounded text-xs border border-violet-200">
                             {topic}
                           </span>
                         ))}
@@ -1382,32 +1460,32 @@ const LearningHub = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 border border-white/10 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-violet-500/10 transition-all duration-500 group"
+                  className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-500 group"
                 >
                   <div className="flex flex-wrap items-center gap-2 mb-3 sm:mb-4">
                     <span className="bg-gradient-to-r from-violet-500 to-electric-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs font-semibold shadow-lg border border-white/20">
                       {story.category}
                     </span>
-                    <span className="text-white/70 text-xs font-medium whitespace-nowrap">{story.readTime || story.duration}</span>
-                    <span className={`px-2 py-1 rounded-full text-xs font-semibold border border-white/20 whitespace-nowrap ${
-                      story.difficulty === 'Advanced' ? 'bg-red-500/20 text-red-300' :
-                      story.difficulty === 'Intermediate' ? 'bg-yellow-500/20 text-yellow-300' :
-                      'bg-green-500/20 text-green-300'
+                    <span className="text-gray-600 text-xs font-medium whitespace-nowrap">{story.readTime || story.duration}</span>
+                    <span className={`px-2 py-1 rounded-full text-xs font-semibold border whitespace-nowrap ${
+                      story.difficulty === 'Advanced' ? 'bg-red-100 text-red-700 border-red-200' :
+                      story.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-700 border-yellow-200' :
+                      'bg-green-100 text-green-700 border-green-200'
                     }`}>
                       {story.difficulty}
                     </span>
                   </div>
                   
-                  <h3 className="text-base sm:text-lg font-bold text-white mb-2 sm:mb-3 leading-tight group-hover:text-violet-200 transition-colors">
+                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3 leading-tight group-hover:text-violet-700 transition-colors">
                     {story.title}
                   </h3>
-                  <p className="text-sm text-white/80 mb-3 sm:mb-4 leading-relaxed line-clamp-2">
+                  <p className="text-sm text-gray-700 mb-3 sm:mb-4 leading-relaxed line-clamp-2">
                     {story.description}
                   </p>
                   
                   <div className="mb-3 sm:mb-4">
-                    <h4 className="font-bold text-white mb-2 text-xs sm:text-sm flex items-center space-x-2">
-                      <Target className="h-3 w-3 text-electric-400" />
+                    <h4 className="font-bold text-gray-900 mb-2 text-xs sm:text-sm flex items-center space-x-2">
+                      <Target className="h-3 w-3 text-electric-500" />
                       <span>Key Lessons</span>
                     </h4>
                     <ul className="space-y-1">
@@ -1416,14 +1494,14 @@ const LearningHub = () => {
                           <div className="w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-br from-electric-500 to-violet-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                             <CheckCircle className="h-1.5 w-1.5 sm:h-2 sm:w-2 text-white" />
                           </div>
-                          <span className="text-white/90 text-xs font-medium">{lesson}</span>
+                          <span className="text-gray-700 text-xs font-medium">{lesson}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-3 sm:pt-4 border-t border-white/20 gap-3">
-                    <div className="text-xs text-white/70">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-3 sm:pt-4 border-t border-gray-200 gap-3">
+                    <div className="text-xs text-gray-600">
                       <div className="font-medium">By {story.author}</div>
                       <div>{story.publishDate}</div>
                     </div>
@@ -1439,10 +1517,10 @@ const LearningHub = () => {
                     </motion.button>
                   </div>
                   
-                  <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-white/20">
+                  <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-200">
                     <div className="flex flex-wrap gap-1">
                       {story.tags.map((tag, idx) => (
-                        <span key={idx} className="bg-white/10 backdrop-blur-sm text-white/80 px-2 py-1 rounded-full text-xs font-medium border border-white/20">
+                        <span key={idx} className="bg-violet-100 text-violet-700 px-2 py-1 rounded-full text-xs font-medium border border-violet-200">
                           #{tag}
                         </span>
                       ))}
