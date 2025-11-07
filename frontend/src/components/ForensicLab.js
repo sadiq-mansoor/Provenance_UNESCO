@@ -225,48 +225,48 @@ const ForensicLab = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="max-w-6xl mx-auto p-3 sm:p-4 lg:p-6">
       {/* Header */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-4 sm:mb-6 lg:mb-8">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl font-bold text-gray-900 mb-4 flex items-center justify-center space-x-3"
+          className="text-xl sm:text-2xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-4 flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-3"
         >
-          <Microscope className="h-10 w-10 text-purple-600" />
+          <Microscope className="h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10 text-purple-600" />
           <span>Forensic Detection Lab</span>
         </motion.h1>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-lg text-gray-600 max-w-2xl mx-auto"
+          className="text-xs sm:text-sm lg:text-lg text-gray-600 max-w-2xl mx-auto px-4"
         >
           Professional-grade forensic analysis tools for detecting manipulated media
         </motion.p>
       </div>
 
       {/* Score and Progress */}
-      <div className="grid md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl p-6 text-white">
-          <div className="text-3xl font-bold">{score}</div>
-          <div className="text-purple-100">Total Points</div>
+      <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 mb-4 sm:mb-6 lg:mb-8">
+        <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 text-white">
+          <div className="text-xl sm:text-2xl lg:text-3xl font-bold">{score}</div>
+          <div className="text-[10px] sm:text-xs lg:text-sm text-purple-100">Total Points</div>
         </div>
-        <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-6 text-white">
-          <div className="text-3xl font-bold">{completedTools.length}/6</div>
-          <div className="text-green-100">Tools Completed</div>
+        <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 text-white">
+          <div className="text-xl sm:text-2xl lg:text-3xl font-bold">{completedTools.length}/6</div>
+          <div className="text-[10px] sm:text-xs lg:text-sm text-green-100">Tools Done</div>
         </div>
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-6 text-white">
-          <div className="text-3xl font-bold">{Math.round((completedTools.length / 6) * 100)}%</div>
-          <div className="text-blue-100">Lab Progress</div>
+        <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 text-white">
+          <div className="text-xl sm:text-2xl lg:text-3xl font-bold">{Math.round((completedTools.length / 6) * 100)}%</div>
+          <div className="text-[10px] sm:text-xs lg:text-sm text-blue-100">Progress</div>
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
         {/* Tool Selection Sidebar */}
         <div className="lg:col-span-1">
-          <h3 className="text-xl font-bold text-gray-900 mb-4">Detection Tools</h3>
-          <div className="space-y-3">
+          <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-3 sm:mb-4">Detection Tools</h3>
+          <div className="space-y-2 sm:space-y-3">
             {forensicTools.map((tool, index) => (
               <motion.button
                 key={tool.id}
@@ -274,7 +274,7 @@ const ForensicLab = () => {
                   setActiveToolIndex(index);
                   resetTool();
                 }}
-                className={`w-full p-4 rounded-xl text-left transition-all duration-200 ${
+                className={`w-full p-3 sm:p-4 rounded-lg sm:rounded-xl text-left transition-all duration-200 ${
                   activeToolIndex === index
                     ? 'bg-gradient-to-r ' + tool.color + ' text-white shadow-lg'
                     : 'bg-white border border-gray-200 hover:border-gray-300 text-gray-900'
@@ -282,13 +282,13 @@ const ForensicLab = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <div className="flex items-center space-x-3">
-                  <tool.icon className={`h-6 w-6 ${
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <tool.icon className={`h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0 ${
                     activeToolIndex === index ? 'text-white' : 'text-gray-600'
                   }`} />
-                  <div>
-                    <div className="font-semibold">{tool.name}</div>
-                    <div className={`text-sm ${
+                  <div className="flex-1 min-w-0">
+                    <div className="font-semibold text-xs sm:text-sm lg:text-base truncate">{tool.name}</div>
+                    <div className={`text-[10px] sm:text-xs ${
                       activeToolIndex === index ? 'text-white/80' : 'text-gray-500'
                     }`}>
                       {completedTools.includes(tool.id) ? '✓ Completed' : 'Available'}
@@ -306,62 +306,62 @@ const ForensicLab = () => {
             key={activeToolIndex}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden"
+            className="bg-white rounded-xl sm:rounded-2xl border border-gray-200 shadow-lg overflow-hidden"
           >
             {/* Tool Header */}
-            <div className={`bg-gradient-to-r ${currentTool.color} p-6 text-white`}>
-              <div className="flex items-center space-x-4">
-                <currentTool.icon className="h-8 w-8" />
-                <div>
-                  <h2 className="text-2xl font-bold">{currentTool.name}</h2>
-                  <p className="text-white/90">{currentTool.description}</p>
+            <div className={`bg-gradient-to-r ${currentTool.color} p-4 sm:p-6 text-white`}>
+              <div className="flex items-center space-x-3 sm:space-x-4">
+                <currentTool.icon className="h-6 w-6 sm:h-8 sm:w-8 flex-shrink-0" />
+                <div className="min-w-0">
+                  <h2 className="text-lg sm:text-xl lg:text-2xl font-bold truncate">{currentTool.name}</h2>
+                  <p className="text-white/90 text-xs sm:text-sm lg:text-base line-clamp-2">{currentTool.description}</p>
                 </div>
               </div>
             </div>
 
             {/* Analysis Interface */}
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               {currentFileIndex < currentTool.testFiles.length ? (
                 <div>
-                  <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-xl font-semibold text-gray-900">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4 sm:mb-6">
+                    <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-gray-900 break-words">
                       Analyzing: {currentFile.name}
                     </h3>
-                    <div className="text-sm text-gray-500">
+                    <div className="text-xs sm:text-sm text-gray-500 whitespace-nowrap">
                       File {currentFileIndex + 1} of {currentTool.testFiles.length}
                     </div>
                   </div>
 
                   {/* Analysis Results */}
-                  <div className="bg-gray-50 rounded-xl p-6 mb-6">
-                    <h4 className="font-semibold text-gray-900 mb-4">Analysis Results</h4>
+                  <div className="bg-gray-50 rounded-lg sm:rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
+                    <h4 className="font-semibold text-gray-900 mb-3 sm:mb-4 text-sm sm:text-base">Analysis Results</h4>
                     
                     {/* Tool-specific results */}
                     {currentTool.id === 1 && (
-                      <div className="space-y-2">
+                      <div className="space-y-1.5 sm:space-y-2">
                         {Object.entries(currentFile.metadata).map(([key, value]) => (
-                          <div key={key} className="flex justify-between text-sm">
+                          <div key={key} className="flex justify-between text-xs sm:text-sm gap-2">
                             <span className="text-gray-600">{key}:</span>
-                            <span className="font-medium">{value}</span>
+                            <span className="font-medium text-right">{value}</span>
                           </div>
                         ))}
                       </div>
                     )}
                     
                     {currentTool.id === 2 && (
-                      <div className="text-sm text-gray-700">
+                      <div className="text-xs sm:text-sm text-gray-700">
                         <p><strong>ELA Result:</strong> {currentFile.elaResult}</p>
                       </div>
                     )}
                     
                     {currentTool.id === 3 && (
-                      <div className="text-sm text-gray-700">
+                      <div className="text-xs sm:text-sm text-gray-700">
                         <p><strong>Spectrogram:</strong> {currentFile.spectrogram}</p>
                       </div>
                     )}
                     
                     {currentTool.id === 4 && (
-                      <div className="space-y-2 text-sm">
+                      <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
                         <div className="flex justify-between">
                           <span className="text-gray-600">AI Score:</span>
                           <span className="font-medium">{currentFile.aiScore}</span>
@@ -374,13 +374,13 @@ const ForensicLab = () => {
                     )}
                     
                     {currentTool.id === 5 && (
-                      <div className="text-sm text-gray-700">
+                      <div className="text-xs sm:text-sm text-gray-700">
                         <p><strong>Compression:</strong> {currentFile.compression}</p>
                       </div>
                     )}
                     
                     {currentTool.id === 6 && (
-                      <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 text-xs sm:text-sm">
                         {Object.entries(currentFile.multiAnalysis).map(([key, value]) => (
                           <div key={key} className="flex justify-between">
                             <span className="text-gray-600 capitalize">{key}:</span>
@@ -392,12 +392,12 @@ const ForensicLab = () => {
                   </div>
 
                   {/* Expert Analysis */}
-                  <div className="bg-blue-50 rounded-xl p-4 mb-6">
-                    <div className="flex items-start space-x-3">
-                      <AlertTriangle className="h-5 w-5 text-blue-600 mt-0.5" />
+                  <div className="bg-blue-50 rounded-lg sm:rounded-xl p-3 sm:p-4 mb-4 sm:mb-6">
+                    <div className="flex items-start space-x-2 sm:space-x-3">
+                      <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                       <div>
-                        <h5 className="font-semibold text-blue-900 mb-1">Expert Analysis</h5>
-                        <p className="text-blue-700 text-sm">{currentFile.analysis}</p>
+                        <h5 className="font-semibold text-blue-900 mb-1 text-xs sm:text-sm">Expert Analysis</h5>
+                        <p className="text-blue-700 text-xs sm:text-sm leading-relaxed">{currentFile.analysis}</p>
                       </div>
                     </div>
                   </div>
@@ -405,50 +405,50 @@ const ForensicLab = () => {
                   {/* Classification Question */}
                   {!showResult ? (
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                      <h4 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">
                         Based on this analysis, is this file authentic?
                       </h4>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-2 gap-3 sm:gap-4">
                         <motion.button
                           onClick={() => handleAnswer('real')}
-                          className="p-4 border-2 border-green-200 rounded-xl hover:border-green-400 hover:bg-green-50 transition-colors"
+                          className="p-3 sm:p-4 border-2 border-green-200 rounded-lg sm:rounded-xl hover:border-green-400 hover:bg-green-50 transition-colors"
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                         >
-                          <CheckCircle className="h-6 w-6 text-green-600 mx-auto mb-2" />
-                          <div className="font-semibold text-green-700">Authentic</div>
-                          <div className="text-sm text-green-600">Real content</div>
+                          <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-green-600 mx-auto mb-1 sm:mb-2" />
+                          <div className="font-semibold text-green-700 text-xs sm:text-sm">Authentic</div>
+                          <div className="text-[10px] sm:text-xs text-green-600">Real content</div>
                         </motion.button>
                         
                         <motion.button
                           onClick={() => handleAnswer('fake')}
-                          className="p-4 border-2 border-red-200 rounded-xl hover:border-red-400 hover:bg-red-50 transition-colors"
+                          className="p-3 sm:p-4 border-2 border-red-200 rounded-lg sm:rounded-xl hover:border-red-400 hover:bg-red-50 transition-colors"
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                         >
-                          <X className="h-6 w-6 text-red-600 mx-auto mb-2" />
-                          <div className="font-semibold text-red-700">Manipulated</div>
-                          <div className="text-sm text-red-600">Fake/AI content</div>
+                          <X className="h-5 w-5 sm:h-6 sm:w-6 text-red-600 mx-auto mb-1 sm:mb-2" />
+                          <div className="font-semibold text-red-700 text-xs sm:text-sm">Manipulated</div>
+                          <div className="text-[10px] sm:text-xs text-red-600">Fake/AI content</div>
                         </motion.button>
                       </div>
                     </div>
                   ) : (
-                    <div className={`p-4 rounded-xl ${
+                    <div className={`p-3 sm:p-4 rounded-lg sm:rounded-xl ${
                       userAnswer === currentFile.type ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'
                     }`}>
-                      <div className="flex items-center space-x-3 mb-2">
+                      <div className="flex items-center space-x-2 sm:space-x-3 mb-1 sm:mb-2">
                         {userAnswer === currentFile.type ? (
-                          <Check className="h-6 w-6 text-green-600" />
+                          <Check className="h-5 w-5 sm:h-6 sm:w-6 text-green-600" />
                         ) : (
-                          <X className="h-6 w-6 text-red-600" />
+                          <X className="h-5 w-5 sm:h-6 sm:w-6 text-red-600" />
                         )}
-                        <span className={`font-semibold ${
+                        <span className={`font-semibold text-sm sm:text-base ${
                           userAnswer === currentFile.type ? 'text-green-700' : 'text-red-700'
                         }`}>
                           {userAnswer === currentFile.type ? 'Correct!' : 'Incorrect'}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-700">
+                      <p className="text-xs sm:text-sm text-gray-700">
                         This file is {currentFile.type === 'real' ? 'authentic' : 'manipulated'}.
                         {userAnswer === currentFile.type ? ' +' + (isCompleted ? '5' : '20') + ' points' : ' No points awarded.'}
                       </p>
@@ -456,27 +456,27 @@ const ForensicLab = () => {
                   )}
                 </div>
               ) : (
-                <div className="text-center py-8">
-                  <CheckCircle className="h-16 w-16 text-green-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Tool Completed!</h3>
-                  <p className="text-gray-600 mb-6">Great work analyzing files with {currentTool.name}</p>
-                  <div className="flex justify-center space-x-4">
+                <div className="text-center py-6 sm:py-8">
+                  <CheckCircle className="h-12 w-12 sm:h-16 sm:w-16 text-green-600 mx-auto mb-3 sm:mb-4" />
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Tool Completed!</h3>
+                  <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 px-4">Great work analyzing files with {currentTool.name}</p>
+                  <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 px-4">
                     <motion.button
                       onClick={resetTool}
-                      className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
+                      className="px-4 py-2 border border-gray-300 rounded-lg text-sm sm:text-base text-gray-700 hover:bg-gray-50"
                       whileHover={{ scale: 1.02 }}
                     >
-                      <RefreshCw className="h-4 w-4 mr-2 inline" />
+                      <RefreshCw className="h-3 w-3 sm:h-4 sm:w-4 mr-2 inline" />
                       Try Again
                     </motion.button>
                     {activeToolIndex < forensicTools.length - 1 && (
                       <motion.button
                         onClick={nextTool}
-                        className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+                        className="px-4 sm:px-6 py-2 bg-purple-600 text-white text-sm sm:text-base rounded-lg hover:bg-purple-700"
                         whileHover={{ scale: 1.02 }}
                       >
                         Next Tool
-                        <ArrowRight className="h-4 w-4 ml-2 inline" />
+                        <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 ml-2 inline" />
                       </motion.button>
                     )}
                   </div>
@@ -492,11 +492,11 @@ const ForensicLab = () => {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-8 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl p-8 text-white text-center"
+          className="mt-6 sm:mt-8 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl sm:rounded-2xl p-6 sm:p-8 text-white text-center"
         >
-          <div className="text-4xl font-bold mb-2">🎉 Lab Complete! 🎉</div>
-          <div className="text-xl mb-4">Final Score: {score} points</div>
-          <div className="text-purple-100">
+          <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">🎉 Lab Complete! 🎉</div>
+          <div className="text-lg sm:text-xl mb-3 sm:mb-4">Final Score: {score} points</div>
+          <div className="text-sm sm:text-base text-purple-100 px-4">
             You've mastered all 6 forensic detection tools. You're now ready to identify manipulated media with professional-grade accuracy!
           </div>
         </motion.div>

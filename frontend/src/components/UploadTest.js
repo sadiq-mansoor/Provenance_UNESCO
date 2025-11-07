@@ -757,25 +757,25 @@ const FactCheckLab = () => {
       className="space-y-6"
     >
       {/* Header */}
-      <div className="bg-white rounded-xl p-6 shadow-sm border">
-        <div className="flex items-center justify-between">
+      <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Fact-Check Lab</h2>
-        <p className="text-gray-600">Tools and resources for verifying information</p>
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-2">Fact-Check Lab</h2>
+        <p className="text-sm sm:text-base text-gray-600">Tools and resources for verifying information</p>
           </div>
           {isLoadingModels && (
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2 sm:space-x-3 w-full sm:w-auto">
               <div className="flex items-center space-x-2">
                 <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-                <span className="text-sm text-gray-600">Loading AI Models...</span>
+                <span className="text-xs sm:text-sm text-gray-600">Loading AI Models...</span>
               </div>
-              <div className="w-24 bg-gray-200 rounded-full h-2">
+              <div className="w-16 sm:w-24 bg-gray-200 rounded-full h-2">
                 <div 
                   className="bg-blue-500 h-2 rounded-full transition-all duration-300"
                   style={{ width: `${modelLoadProgress}%` }}
                 ></div>
               </div>
-              <span className="text-sm text-gray-600">{modelLoadProgress}%</span>
+              <span className="text-xs sm:text-sm text-gray-600">{modelLoadProgress}%</span>
             </div>
           )}
         </div>
@@ -784,19 +784,19 @@ const FactCheckLab = () => {
       {/* Tabs */}
       <div className="bg-white rounded-xl shadow-sm border">
         <div className="border-b border-gray-200">
-          <div className="flex space-x-1 p-1">
+          <div className="flex flex-wrap gap-2 p-2 sm:space-x-1 sm:flex-nowrap sm:gap-0">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-lg transition-colors ${
+                className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-2 px-2 sm:py-3 sm:px-4 rounded-lg transition-colors min-w-[120px] sm:min-w-0 ${
                   activeTab === tab.id
                     ? 'bg-deepblue-100 text-deepblue-700 border border-deepblue-200'
                     : 'text-gray-600 hover:bg-deepblue-50 hover:text-deepblue-600'
                 }`}
               >
-                <tab.icon className="h-4 w-4" />
-                <span className="font-medium">{tab.name}</span>
+                <tab.icon className="h-4 w-4 flex-shrink-0" />
+                <span className="font-medium text-xs sm:text-sm">{tab.name}</span>
               </button>
             ))}
           </div>
@@ -804,21 +804,21 @@ const FactCheckLab = () => {
         
         {/* Search Results Display */}
         {activeTab === 'search' && searchResults.length > 0 && (
-          <div className="p-6 border-b border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Search Results</h3>
+          <div className="p-4 sm:p-6 border-b border-gray-200">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">Search Results</h3>
             <div className="space-y-4">
               {searchResults.map((result) => (
-                <div key={result.id} className="bg-gray-50 rounded-lg p-4">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <h4 className="font-medium text-gray-900">{result.title}</h4>
-                      <p className="text-sm text-gray-600 mt-1">{result.summary}</p>
-                      <div className="flex items-center space-x-4 mt-2">
+                <div key={result.id} className="bg-gray-50 rounded-lg p-3 sm:p-4">
+                  <div className="flex flex-col sm:flex-row items-start justify-between gap-3">
+                    <div className="flex-1 w-full">
+                      <h4 className="font-medium text-sm sm:text-base text-gray-900">{result.title}</h4>
+                      <p className="text-xs sm:text-sm text-gray-600 mt-1">{result.summary}</p>
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-4 mt-2">
                         <span className="text-xs text-gray-500">Source: {result.source}</span>
                         <span className="text-xs text-gray-500">Confidence: {(result.confidence * 100).toFixed(1)}%</span>
                       </div>
                     </div>
-                    <button className="ml-4 px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">
+                    <button className="w-full sm:w-auto px-3 py-1.5 sm:py-1 bg-blue-500 text-white text-xs sm:text-sm rounded hover:bg-blue-600">
                       View Details
                     </button>
                   </div>
@@ -828,76 +828,77 @@ const FactCheckLab = () => {
           </div>
         )}
 
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           {activeTab === 'search' && (
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   Search for fact-checks and verified information
                 </label>
-                <div className="flex space-x-3">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Enter claim, topic, or keywords..."
-                    className="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-deepblue-500 focus:border-deepblue-500"
+                    className="flex-1 p-2 sm:p-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-deepblue-500 focus:border-deepblue-500"
                   />
-                  <button className="btn-primary">
+                  <button className="btn-primary w-full sm:w-auto">
                     <Search className="h-4 w-4" />
+                    <span className="sm:hidden ml-2">Search</span>
                   </button>
                 </div>
               </div>
               
-              <div className="text-center text-gray-500 py-8">
-                <Search className="h-12 w-12 text-gray-300 mx-auto mb-3" />
-                <p>Enter a search query to find fact-checks and verified information</p>
+              <div className="text-center text-gray-500 py-6 sm:py-8">
+                <Search className="h-10 w-10 sm:h-12 sm:w-12 text-gray-300 mx-auto mb-3" />
+                <p className="text-sm sm:text-base">Enter a search query to find fact-checks and verified information</p>
               </div>
               
               {/* Enhanced Search Features */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="flex items-center space-x-2 p-3 bg-gray-50 rounded-lg">
-                  <Zap className="h-4 w-4 text-yellow-500" />
-                  <span className="text-sm">AI Detection</span>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+                <div className="flex items-center space-x-2 p-2 sm:p-3 bg-gray-50 rounded-lg">
+                  <Zap className="h-4 w-4 text-yellow-500 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm">AI Detection</span>
                 </div>
-                <div className="flex items-center space-x-2 p-3 bg-gray-50 rounded-lg">
-                  <Link2 className="h-4 w-4 text-blue-500" />
-                  <span className="text-sm">Deep Analysis</span>
+                <div className="flex items-center space-x-2 p-2 sm:p-3 bg-gray-50 rounded-lg">
+                  <Link2 className="h-4 w-4 text-blue-500 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm">Deep Analysis</span>
                 </div>
-                <div className="flex items-center space-x-2 p-3 bg-gray-50 rounded-lg">
-                  <Award className="h-4 w-4 text-green-500" />
-                  <span className="text-sm">Verified Sources</span>
+                <div className="flex items-center space-x-2 p-2 sm:p-3 bg-gray-50 rounded-lg">
+                  <Award className="h-4 w-4 text-green-500 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm">Verified Sources</span>
                 </div>
-                <div className="flex items-center space-x-2 p-3 bg-gray-50 rounded-lg">
-                  <Calendar className="h-4 w-4 text-purple-500" />
-                  <span className="text-sm">Timeline Analysis</span>
+                <div className="flex items-center space-x-2 p-2 sm:p-3 bg-gray-50 rounded-lg">
+                  <Calendar className="h-4 w-4 text-purple-500 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm">Timeline Analysis</span>
                 </div>
               </div>
             </div>
           )}
 
           {activeTab === 'tools' && (
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {/* Tool Results Display */}
               {activeTool && toolResults[activeTool] && (
-                <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Analysis Results</h3>
+                <div className="bg-gray-50 rounded-lg p-4 sm:p-6 border border-gray-200">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">Analysis Results</h3>
                   {activeTool === 'reverse-image-search' && (
                     <div className="space-y-4">
                       {uploadedImage && (
-                        <div className="flex items-center space-x-4">
-                          <img src={uploadedImage} alt="Uploaded" className="w-24 h-24 object-cover rounded" />
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+                          <img src={uploadedImage} alt="Uploaded" className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded" />
                           <div>
-                            <p className="text-sm text-gray-600">{toolResults[activeTool].analysis}</p>
-                            <p className="text-sm text-gray-500">Found {toolResults[activeTool].matches.length} similar images</p>
+                            <p className="text-xs sm:text-sm text-gray-600">{toolResults[activeTool].analysis}</p>
+                            <p className="text-xs sm:text-sm text-gray-500">Found {toolResults[activeTool].matches.length} similar images</p>
                           </div>
                         </div>
                       )}
                       <div className="space-y-2">
                         {toolResults[activeTool].matches.map((match, index) => (
-                          <div key={index} className="flex items-center justify-between p-3 bg-white rounded border">
-                            <span className="text-sm text-blue-600">{match.url}</span>
-                            <span className="text-sm text-gray-500">{(match.similarity * 100).toFixed(1)}% match</span>
+                          <div key={index} className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 p-3 bg-white rounded border">
+                            <span className="text-xs sm:text-sm text-blue-600 break-all">{match.url}</span>
+                            <span className="text-xs sm:text-sm text-gray-500 whitespace-nowrap">{(match.similarity * 100).toFixed(1)}% match</span>
                           </div>
                         ))}
                       </div>
@@ -905,26 +906,26 @@ const FactCheckLab = () => {
                   )}
                   
                   {activeTool === 'url-scanner' && (
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="p-4 bg-white rounded border">
-                        <h4 className="font-medium text-gray-900">Credibility</h4>
-                        <p className={`text-sm ${toolResults[activeTool].credibility === 'high' ? 'text-green-600' : 'text-red-600'}`}>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                      <div className="p-3 sm:p-4 bg-white rounded border">
+                        <h4 className="font-medium text-sm sm:text-base text-gray-900">Credibility</h4>
+                        <p className={`text-xs sm:text-sm ${toolResults[activeTool].credibility === 'high' ? 'text-green-600' : 'text-red-600'}`}>
                           {toolResults[activeTool].credibility.toUpperCase()}
                         </p>
                       </div>
-                      <div className="p-4 bg-white rounded border">
-                        <h4 className="font-medium text-gray-900">Safety</h4>
-                        <p className={`text-sm ${toolResults[activeTool].safety === 'safe' ? 'text-green-600' : 'text-red-600'}`}>
+                      <div className="p-3 sm:p-4 bg-white rounded border">
+                        <h4 className="font-medium text-sm sm:text-base text-gray-900">Safety</h4>
+                        <p className={`text-xs sm:text-sm ${toolResults[activeTool].safety === 'safe' ? 'text-green-600' : 'text-red-600'}`}>
                           {toolResults[activeTool].safety.toUpperCase()}
                         </p>
                       </div>
-                      <div className="p-4 bg-white rounded border">
-                        <h4 className="font-medium text-gray-900">Domain Age</h4>
-                        <p className="text-sm text-gray-600">{toolResults[activeTool].domainAge} years</p>
+                      <div className="p-3 sm:p-4 bg-white rounded border">
+                        <h4 className="font-medium text-sm sm:text-base text-gray-900">Domain Age</h4>
+                        <p className="text-xs sm:text-sm text-gray-600">{toolResults[activeTool].domainAge} years</p>
                       </div>
-                      <div className="p-4 bg-white rounded border">
-                        <h4 className="font-medium text-gray-900">SSL Valid</h4>
-                        <p className={`text-sm ${toolResults[activeTool].sslValid ? 'text-green-600' : 'text-red-600'}`}>
+                      <div className="p-3 sm:p-4 bg-white rounded border">
+                        <h4 className="font-medium text-sm sm:text-base text-gray-900">SSL Valid</h4>
+                        <p className={`text-xs sm:text-sm ${toolResults[activeTool].sslValid ? 'text-green-600' : 'text-red-600'}`}>
                           {toolResults[activeTool].sslValid ? 'YES' : 'NO'}
                         </p>
                       </div>
@@ -1067,16 +1068,16 @@ const FactCheckLab = () => {
               )}
               
               {/* Tools Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               {verificationTools.map((tool) => (
-                <div key={tool.name} className="border border-gray-200 rounded-lg p-6 hover:border-deepblue-300 transition-colors">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-gradient-to-r from-deepblue-100 to-violet-100 p-3 rounded-lg">
-                      <tool.icon className="h-6 w-6 text-deepblue-600" />
+                <div key={tool.name} className="border border-gray-200 rounded-lg p-4 sm:p-6 hover:border-deepblue-300 transition-colors">
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="bg-gradient-to-r from-deepblue-100 to-violet-100 p-2 sm:p-3 rounded-lg flex-shrink-0">
+                      <tool.icon className="h-5 w-5 sm:h-6 sm:w-6 text-deepblue-600" />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-gray-900 mb-2">{tool.name}</h3>
-                      <p className="text-gray-600 text-sm mb-4">{tool.description}</p>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-sm sm:text-base text-gray-900 mb-2">{tool.name}</h3>
+                      <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4">{tool.description}</p>
                         
                         {/* Interactive Inputs */}
                         {tool.type === 'file-upload' && (
@@ -1085,10 +1086,10 @@ const FactCheckLab = () => {
                               type="file"
                               accept="image/*"
                               onChange={tool.handler}
-                              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                              className="block w-full text-xs sm:text-sm text-gray-500 file:mr-2 sm:file:mr-4 file:py-1.5 sm:file:py-2 file:px-3 sm:file:px-4 file:rounded-full file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                             />
                             {isToolLoading && activeTool === 'reverse-image-search' && (
-                              <div className="flex items-center space-x-2 text-sm text-gray-600">
+                              <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-600">
                                 <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
                                 <span>Analyzing image...</span>
                               </div>
@@ -1103,15 +1104,15 @@ const FactCheckLab = () => {
                               placeholder={tool.placeholder}
                               value={tool.value}
                               onChange={(e) => tool.setValue(e.target.value)}
-                              className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              className="w-full p-2 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             />
                             <button 
                               onClick={tool.handler}
                               disabled={!tool.value || isToolLoading}
-                              className="btn-primary text-sm px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                              className="btn-primary text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
                             >
                               {isToolLoading && activeTool === tool.name.toLowerCase().replace(/\s+/g, '-') ? (
-                                <div className="flex items-center space-x-2">
+                                <div className="flex items-center justify-center space-x-2">
                                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                                   <span>Analyzing...</span>
                                 </div>
@@ -1129,15 +1130,15 @@ const FactCheckLab = () => {
                               value={tool.value}
                               onChange={(e) => tool.setValue(e.target.value)}
                               rows={3}
-                              className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              className="w-full p-2 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             />
                             <button 
                               onClick={tool.handler}
                               disabled={!tool.value || isToolLoading}
-                              className="btn-primary text-sm px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                              className="btn-primary text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
                             >
                               {isToolLoading && activeTool === 'ai-content-detector' ? (
-                                <div className="flex items-center space-x-2">
+                                <div className="flex items-center justify-center space-x-2">
                                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                                   <span>Analyzing...</span>
                                 </div>
@@ -1151,7 +1152,7 @@ const FactCheckLab = () => {
                         {tool.type === 'button' && (
                           <button 
                             onClick={tool.handler}
-                            className="btn-primary text-sm px-4 py-2"
+                            className="btn-primary text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 w-full sm:w-auto"
                           >
                         {tool.action}
                       </button>
@@ -1165,21 +1166,21 @@ const FactCheckLab = () => {
           )}
 
           {activeTab === 'sources' && (
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {trustedSources.map((source) => (
-                <div key={source.name} className="border border-gray-200 rounded-lg p-4 hover:border-deepblue-300 transition-colors">
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-3 mb-2">
-                        <h3 className="font-semibold text-gray-900">{source.name}</h3>
+                <div key={source.name} className="border border-gray-200 rounded-lg p-3 sm:p-4 hover:border-deepblue-300 transition-colors">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <div className="flex-1 w-full">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
+                        <h3 className="font-semibold text-sm sm:text-base text-gray-900">{source.name}</h3>
                         <span className="px-2 py-1 bg-gradient-to-r from-deepblue-100 to-violet-100 text-deepblue-700 text-xs rounded-full">
                           {source.category}
                         </span>
                       </div>
-                      <p className="text-gray-600 text-sm mb-2">{source.description}</p>
-                      <p className="text-blue-600 text-sm">{source.url}</p>
+                      <p className="text-gray-600 text-xs sm:text-sm mb-2">{source.description}</p>
+                      <p className="text-blue-600 text-xs sm:text-sm break-all">{source.url}</p>
                     </div>
-                    <button className="ml-4 btn-primary text-sm px-4 py-2 flex items-center space-x-2">
+                    <button className="w-full sm:w-auto btn-primary text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 flex items-center justify-center space-x-2">
                       <ExternalLink className="h-3 w-3" />
                       <span>Visit</span>
                     </button>
@@ -1596,10 +1597,10 @@ const AIProvenanceLab = ({ isLoadingModels, modelLoadProgress }) => {
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-5 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
         {/* Upload Area - 2 columns */}
-        <div className="lg:col-span-2 space-y-6">
-          <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-400 hover:bg-gray-50 transition-all duration-300">
+        <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+          <div className="border-2 border-dashed border-gray-300 rounded-xl p-4 sm:p-6 lg:p-8 text-center hover:border-blue-400 hover:bg-gray-50 transition-all duration-300">
             <input
               type="file"
               onChange={handleFileUpload}
@@ -1608,19 +1609,19 @@ const AIProvenanceLab = ({ isLoadingModels, modelLoadProgress }) => {
               id="file-upload"
             />
             <label htmlFor="file-upload" className="cursor-pointer">
-              <div className="flex flex-col items-center space-y-4">
-                <div className="flex space-x-3">
-                  <FileImage className="h-10 w-10 text-gray-400" />
-                  <FileVideo className="h-10 w-10 text-gray-400" />
-                  <FileAudio className="h-10 w-10 text-gray-400" />
+              <div className="flex flex-col items-center space-y-3 sm:space-y-4">
+                <div className="flex space-x-2 sm:space-x-3">
+                  <FileImage className="h-8 w-8 sm:h-10 sm:w-10 text-gray-400" />
+                  <FileVideo className="h-8 w-8 sm:h-10 sm:w-10 text-gray-400" />
+                  <FileAudio className="h-8 w-8 sm:h-10 sm:w-10 text-gray-400" />
                 </div>
                 
-                <Upload className="h-16 w-16 text-gray-400" />
+                <Upload className="h-12 w-12 sm:h-16 sm:w-16 text-gray-400" />
                 <div>
-                  <p className="text-xl font-medium text-gray-900 mb-2">
+                  <p className="text-base sm:text-lg lg:text-xl font-medium text-gray-900 mb-1 sm:mb-2">
                     Upload Media File
                   </p>
-                  <p className="text-gray-500">
+                  <p className="text-xs sm:text-sm lg:text-base text-gray-500 px-2">
                     Advanced AI analysis for images, videos, and audio
                   </p>
                 </div>
@@ -1629,39 +1630,39 @@ const AIProvenanceLab = ({ isLoadingModels, modelLoadProgress }) => {
           </div>
 
           {/* Test Files */}
-          <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-6">
-            <h3 className="font-bold text-gray-900 mb-4 flex items-center">
-              <FileText className="h-5 w-5 mr-2" />
+          <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-4 sm:p-6">
+            <h3 className="font-bold text-sm sm:text-base text-gray-900 mb-3 sm:mb-4 flex items-center">
+              <FileText className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
               AI Test Scenarios
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-2 sm:space-y-3">
               <button
                 onClick={() => onDrop([new File([''], 'ai_generated_deepfake.jpg', { type: 'image/jpeg' })])}
-                className="w-full text-left p-4 text-sm bg-white rounded-lg border hover:bg-red-50 hover:border-red-200 transition-colors"
+                className="w-full text-left p-3 sm:p-4 text-xs sm:text-sm bg-white rounded-lg border hover:bg-red-50 hover:border-red-200 transition-colors"
               >
-                <div className="flex items-center justify-between">
-                  <span>🔴 AI Deepfake Portrait</span>
-                  <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">HIGH RISK</span>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="truncate">🔴 AI Deepfake Portrait</span>
+                  <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded whitespace-nowrap">HIGH RISK</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">Synthetic face with multiple AI signatures</p>
               </button>
               <button
                 onClick={() => onDrop([new File([''], 'old_news_archive_2019.mp4', { type: 'video/mp4' })])}
-                className="w-full text-left p-4 text-sm bg-white rounded-lg border hover:bg-yellow-50 hover:border-yellow-200 transition-colors"
+                className="w-full text-left p-3 sm:p-4 text-xs sm:text-sm bg-white rounded-lg border hover:bg-yellow-50 hover:border-yellow-200 transition-colors"
               >
-                <div className="flex items-center justify-between">
-                  <span>🟡 Archive News Footage</span>
-                  <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">CONTEXT</span>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="truncate">🟡 Archive News Footage</span>
+                  <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded whitespace-nowrap">CONTEXT</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">Authentic but potentially misused content</p>
               </button>
               <button
                 onClick={() => onDrop([new File([''], 'authentic_photo_recent.jpg', { type: 'image/jpeg' })])}
-                className="w-full text-left p-4 text-sm bg-white rounded-lg border hover:bg-green-50 hover:border-green-200 transition-colors"
+                className="w-full text-left p-3 sm:p-4 text-xs sm:text-sm bg-white rounded-lg border hover:bg-green-50 hover:border-green-200 transition-colors"
               >
-                <div className="flex items-center justify-between">
-                  <span>🟢 Authentic Photo</span>
-                  <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">SAFE</span>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="truncate">🟢 Authentic Photo</span>
+                  <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded whitespace-nowrap">SAFE</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">Verified authentic content with full provenance</p>
               </button>
@@ -1670,25 +1671,25 @@ const AIProvenanceLab = ({ isLoadingModels, modelLoadProgress }) => {
 
           {/* Analysis Progress */}
           {isAnalyzing && (
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6">
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-                <span className="font-bold text-blue-700">Advanced AI Analysis in Progress</span>
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 sm:p-6">
+              <div className="flex items-center space-x-2 sm:space-x-3 mb-4 sm:mb-6">
+                <div className="animate-spin rounded-full h-5 w-5 sm:h-6 sm:w-6 border-b-2 border-blue-600"></div>
+                <span className="font-bold text-sm sm:text-base text-blue-700">Advanced AI Analysis in Progress</span>
               </div>
               
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 {analysisSteps.map((step, idx) => (
-                  <div key={idx} className={`flex items-center space-x-3 p-3 rounded-lg transition-all ${
+                  <div key={idx} className={`flex items-center space-x-2 sm:space-x-3 p-2 sm:p-3 rounded-lg transition-all ${
                     idx < currentStep ? 'bg-green-100 text-green-700' : 
                     idx === currentStep ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-500'
                   }`}>
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                    <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
                       idx < currentStep ? 'bg-green-500 text-white' :
                       idx === currentStep ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-600'
                     }`}>
                       {idx < currentStep ? '✓' : idx === currentStep ? '⟳' : idx + 1}
                     </div>
-                    <span className="text-sm font-medium">{step}</span>
+                    <span className="text-xs sm:text-sm font-medium">{step}</span>
                   </div>
                 ))}
               </div>

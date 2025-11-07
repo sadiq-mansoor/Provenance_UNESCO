@@ -43,7 +43,7 @@ const MediaLiteracyPlatform = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50">
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 py-8">
+      <main className="max-w-7xl mx-auto px-3 sm:px-6 py-4 sm:py-8">
         <AnimatePresence mode="wait">
           {activeSection === 'community-reports' && (
             <div role="tabpanel" id="community-reports-panel" aria-labelledby="community-reports-tab">
@@ -534,16 +534,16 @@ const CommunityReports = ({ userScore, setUserScore }) => {
   return (
     <div className="max-w-7xl mx-auto">
       {/* Learning Hub Style Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold bg-gradient-to-r from-deepblue-900 via-violet-900 to-deepblue-800 bg-clip-text text-transparent mb-6">Cases</h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+      <div className="text-center mb-6 sm:mb-12">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-deepblue-900 via-violet-900 to-deepblue-800 bg-clip-text text-transparent mb-3 sm:mb-6">Cases</h1>
+        <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
           Master media literacy through comprehensive training, expert videos, insightful
           podcasts, and real-world case studies
         </p>
       </div>
 
       {/* Learning Hub Style Filter Cards */}
-      <div className="flex flex-wrap justify-center gap-4 mb-8">
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 px-2">
         {filterOptions.map((option) => {
           const IconComponent = option.icon;
           const isActive = filter === option.value;
@@ -559,20 +559,20 @@ const CommunityReports = ({ userScore, setUserScore }) => {
             <button
               key={option.value}
               onClick={() => setFilter(option.value)}
-              className={`flex items-center space-x-3 px-6 py-4 rounded-2xl border transition-all duration-300 min-w-[200px] ${isActive
+              className={`flex items-center space-x-2 sm:space-x-3 px-3 py-2 sm:px-6 sm:py-4 rounded-xl sm:rounded-2xl border transition-all duration-300 min-w-[140px] sm:min-w-[200px] ${isActive
                 ? 'bg-gradient-to-r from-deepblue-900 via-violet-900 to-deepblue-800 border-white/20 text-white shadow-2xl'
                 : 'bg-white border-gray-200 text-gray-700 hover:border-violet-300 hover:shadow-lg hover:shadow-violet-500/10'
                 }`}
             >
-              <div className={`p-2 rounded-lg ${isActive ? 'bg-white/20 backdrop-blur-sm' : 'bg-gray-100'
+              <div className={`p-1.5 sm:p-2 rounded-lg ${isActive ? 'bg-white/20 backdrop-blur-sm' : 'bg-gray-100'
                 }`}>
-                <IconComponent className={`h-5 w-5 ${isActive ? 'text-white' : 'text-gray-600'}`} />
+                <IconComponent className={`h-4 w-4 sm:h-5 sm:w-5 ${isActive ? 'text-white' : 'text-gray-600'}`} />
               </div>
               <div className="text-left">
-                <div className={`font-semibold text-base ${isActive ? 'text-white' : 'text-gray-900'}`}>
+                <div className={`font-semibold text-xs sm:text-base ${isActive ? 'text-white' : 'text-gray-900'}`}>
                   {option.label}
                 </div>
-                <div className={`text-sm ${isActive ? 'text-white/80' : 'text-gray-500'}`}>
+                <div className={`text-xs sm:text-sm ${isActive ? 'text-white/80' : 'text-gray-500'}`}>
                   {count} {count === 1 ? 'case' : 'cases'}
                 </div>
               </div>
@@ -582,18 +582,18 @@ const CommunityReports = ({ userScore, setUserScore }) => {
       </div>
 
       {/* Report Content Button */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-6 sm:mb-8 px-4">
         <button
           onClick={() => setShowSubmitForm(true)}
-          className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-violet-500 to-electric-500 hover:from-violet-400 hover:to-electric-400 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg border border-white/20 hover:shadow-violet-500/25"
+          className="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-violet-500 to-electric-500 hover:from-violet-400 hover:to-electric-400 text-white text-sm sm:text-base font-semibold rounded-xl transition-all duration-300 shadow-lg border border-white/20 hover:shadow-violet-500/25"
         >
-          <Flag className="h-5 w-5 mr-2" />
+          <Flag className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
           <span>Report Content</span>
         </button>
       </div>
 
       {/* Professional Cases Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 px-2 sm:px-0">
         {filteredReports.length > 0 ? filteredReports.map((report) => (
           <motion.div
             key={report.id}
@@ -606,7 +606,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
             <div className="relative overflow-hidden bg-gray-100">
               <button
                 onClick={() => openMediaPreview(report)}
-                className="relative w-full h-40 group focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-inset"
+                className="relative w-full h-32 sm:h-40 group focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-inset"
                 aria-label={`View details for ${report.title}`}
               >
                 {report.type === 'video' ? (
@@ -651,33 +651,35 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                 )}
 
                 {/* Status Badges */}
-                <div className="absolute top-4 left-4 flex flex-col space-y-2">
-                  <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold shadow-sm ${report.verificationStatus === 'verified-fake' ? 'bg-red-100 text-red-800 border border-red-200' :
+                <div className="absolute top-2 left-2 sm:top-4 sm:left-4 flex flex-col space-y-1 sm:space-y-2">
+                  <span className={`inline-flex items-center px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold shadow-sm ${report.verificationStatus === 'verified-fake' ? 'bg-red-100 text-red-800 border border-red-200' :
                     report.verificationStatus === 'verified-real' ? 'bg-green-100 text-green-800 border border-green-200' :
                       report.verificationStatus === 'under-review' ? 'bg-yellow-100 text-yellow-800 border border-yellow-200' :
                         'bg-gray-100 text-gray-800 border border-gray-200'
                     }`}>
-                    {report.verificationStatus === 'verified-fake' && <AlertTriangle className="h-3 w-3 mr-1" />}
-                    {report.verificationStatus === 'verified-real' && <CheckCircle className="h-3 w-3 mr-1" />}
-                    {report.verificationStatus === 'under-review' && <Clock className="h-3 w-3 mr-1" />}
-                    {report.verificationStatus.replace('-', ' ').toUpperCase()}
+                    {report.verificationStatus === 'verified-fake' && <AlertTriangle className="h-2 w-2 sm:h-3 sm:w-3 mr-0.5 sm:mr-1" />}
+                    {report.verificationStatus === 'verified-real' && <CheckCircle className="h-2 w-2 sm:h-3 sm:w-3 mr-0.5 sm:mr-1" />}
+                    {report.verificationStatus === 'under-review' && <Clock className="h-2 w-2 sm:h-3 sm:w-3 mr-0.5 sm:mr-1" />}
+                    <span className="hidden sm:inline">{report.verificationStatus.replace('-', ' ').toUpperCase()}</span>
+                    <span className="sm:hidden">{report.verificationStatus === 'verified-fake' ? 'FAKE' : report.verificationStatus === 'under-review' ? 'REVIEW' : 'REAL'}</span>
                   </span>
 
-                  <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold shadow-sm ${report.impact === 'critical' ? 'bg-red-100 text-red-800 border border-red-200' :
+                  <span className={`inline-flex items-center px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold shadow-sm ${report.impact === 'critical' ? 'bg-red-100 text-red-800 border border-red-200' :
                     report.impact === 'high' ? 'bg-orange-100 text-orange-800 border border-orange-200' :
                       report.impact === 'medium' ? 'bg-yellow-100 text-yellow-800 border border-yellow-200' :
                         'bg-blue-100 text-blue-800 border border-blue-200'
                     }`}>
-                    {report.impact.toUpperCase()} IMPACT
+                    <span className="hidden sm:inline">{report.impact.toUpperCase()} IMPACT</span>
+                    <span className="sm:hidden">{report.impact.toUpperCase()}</span>
                   </span>
                 </div>
 
                 {/* Media Type Indicator */}
                 {report.type === 'video' && (
-                  <div className="absolute top-4 right-4">
-                    <div className="bg-black/70 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
-                      <Video className="h-3 w-3" />
-                      <span>VIDEO</span>
+                  <div className="absolute top-2 right-2 sm:top-4 sm:right-4">
+                    <div className="bg-black/70 backdrop-blur-sm text-white px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium flex items-center space-x-1">
+                      <Video className="h-2 w-2 sm:h-3 sm:w-3" />
+                      <span className="hidden sm:inline">VIDEO</span>
                     </div>
                   </div>
                 )}
@@ -685,52 +687,52 @@ const CommunityReports = ({ userScore, setUserScore }) => {
             </div>
 
             {/* Professional Content Section */}
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               {/* Title and Description */}
-              <div className="mb-4">
+              <div className="mb-3 sm:mb-4">
                 <h3
                   id={`case-title-${report.id}`}
-                  className="text-lg font-bold text-white mb-2 leading-tight line-clamp-2"
+                  className="text-base sm:text-lg font-bold text-white mb-2 leading-tight line-clamp-2"
                 >
                   {report.title}
                 </h3>
-                <p className="text-white/90 leading-relaxed text-sm line-clamp-3">
+                <p className="text-white/90 leading-relaxed text-xs sm:text-sm line-clamp-3">
                   {report.description}
                 </p>
               </div>
 
               {/* Simplified Metadata */}
-              <div className="flex items-center justify-between mb-4 text-sm text-white/80">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4 text-xs sm:text-sm text-white/80">
                 <div className="flex items-center space-x-1">
-                  <User className="h-4 w-4 text-violet-400" />
-                  <span>{report.submittedBy}</span>
+                  <User className="h-3 w-3 sm:h-4 sm:w-4 text-violet-400" />
+                  <span className="truncate max-w-[80px] sm:max-w-none">{report.submittedBy}</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <Globe className="h-4 w-4 text-violet-400" />
-                  <span>{report.location}</span>
+                  <Globe className="h-3 w-3 sm:h-4 sm:w-4 text-violet-400" />
+                  <span className="truncate max-w-[80px] sm:max-w-none">{report.location}</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <Clock className="h-4 w-4 text-violet-400" />
+                  <Clock className="h-3 w-3 sm:h-4 sm:w-4 text-violet-400" />
                   <span>{report.timestamp}</span>
                 </div>
               </div>
 
               {/* Simplified Action Bar */}
-              <div className="flex items-center space-x-4 pt-4">
+              <div className="flex items-center space-x-3 sm:space-x-4 pt-3 sm:pt-4">
                 {/* Voting Buttons */}
                 <button
                   onClick={() => handleVote(report.id, 'up')}
-                  className={`flex items-center space-x-1 text-sm ${userVotes[report.id] === 'up' ? 'text-green-400' : 'text-white/60 hover:text-green-400'}`}
+                  className={`flex items-center space-x-1 text-xs sm:text-sm ${userVotes[report.id] === 'up' ? 'text-green-400' : 'text-white/60 hover:text-green-400'}`}
                 >
-                  <ThumbsUp className="h-4 w-4" />
+                  <ThumbsUp className="h-3 w-3 sm:h-4 sm:w-4" />
                   <span>{report.upvotes}</span>
                 </button>
 
                 <button
                   onClick={() => handleVote(report.id, 'down')}
-                  className={`flex items-center space-x-1 text-sm ${userVotes[report.id] === 'down' ? 'text-red-400' : 'text-white/60 hover:text-red-400'}`}
+                  className={`flex items-center space-x-1 text-xs sm:text-sm ${userVotes[report.id] === 'down' ? 'text-red-400' : 'text-white/60 hover:text-red-400'}`}
                 >
-                  <ThumbsDown className="h-4 w-4" />
+                  <ThumbsDown className="h-3 w-3 sm:h-4 sm:w-4" />
                   <span>{report.downvotes}</span>
                 </button>
               </div>
@@ -747,21 +749,21 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                 >
                   {/* Verification Process for Under Review Items */}
                   {report.verificationStatus === 'under-review' && report.verificationDetails?.reviewProcess && (
-                    <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4">
+                    <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-3 sm:p-4">
                       <div className="flex items-center space-x-2 mb-3">
                         <RefreshCw className="h-4 w-4 text-violet-400 animate-spin" />
                         <h4 className="font-medium text-white">Verification in Progress</h4>
                       </div>
 
-                      <div className="space-y-3">
-                        <div className="flex justify-between text-sm">
+                      <div className="space-y-2 sm:space-y-3">
+                        <div className="flex justify-between text-xs sm:text-sm">
                           <span className="text-white/80">Current Stage:</span>
-                          <span className="font-medium text-white capitalize">
+                          <span className="font-medium text-white capitalize text-right">
                             {report.verificationDetails.reviewProcess.stage.replace('_', ' ')}
                           </span>
                         </div>
 
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between text-xs sm:text-sm">
                           <span className="text-white/80">Estimated Time:</span>
                           <span className="font-medium text-white">
                             {report.verificationDetails.reviewProcess.estimatedTime}
@@ -784,11 +786,11 @@ const CommunityReports = ({ userScore, setUserScore }) => {
 
                         {/* Next Steps */}
                         <div>
-                          <p className="text-xs text-blue-700 font-medium mb-2">Verification Process:</p>
-                          <div className="space-y-1">
+                          <p className="text-[10px] sm:text-xs text-blue-700 font-medium mb-1.5 sm:mb-2">Verification Process:</p>
+                          <div className="space-y-0.5 sm:space-y-1">
                             {report.verificationDetails.reviewProcess.nextSteps.map((step, index) => (
-                              <div key={index} className="flex items-center space-x-2 text-xs">
-                                <div className={`w-2 h-2 rounded-full ${index === 0 ? 'bg-violet-400 animate-pulse' :
+                              <div key={index} className="flex items-start space-x-1.5 sm:space-x-2 text-[10px] sm:text-xs">
+                                <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full mt-1 flex-shrink-0 ${index === 0 ? 'bg-violet-400 animate-pulse' :
                                   index < 1 ? 'bg-green-400' : 'bg-white/40'
                                   }`}></div>
                                 <span className={`${index === 0 ? 'text-violet-300 font-medium' :
@@ -801,7 +803,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                           </div>
                         </div>
 
-                        <div className="bg-white/10 backdrop-blur-sm rounded p-2 text-xs text-white/90 border border-white/20">
+                        <div className="bg-white/10 backdrop-blur-sm rounded p-2 text-[10px] sm:text-xs text-white/90 border border-white/20 leading-relaxed">
                           <strong>What happens next:</strong> Our AI systems will analyze your submission for technical indicators,
                           then expert moderators will review the findings and cross-reference with trusted fact-checking sources.
                           You'll be notified when verification is complete.
@@ -809,17 +811,17 @@ const CommunityReports = ({ userScore, setUserScore }) => {
                       </div>
                     </div>
                   )}
-                  <div className="space-y-6">
+                  <div className="space-y-3 sm:space-y-6">
                     {/* Enhanced Real Context Section */}
                     {report.realContext && (
-                      <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-6">
-                        <div className="flex items-start space-x-3">
-                          <div className="p-2 bg-amber-100 rounded-lg flex-shrink-0">
-                            <Lightbulb className="h-5 w-5 text-amber-600" />
+                      <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-lg sm:rounded-xl p-3 sm:p-6">
+                        <div className="flex items-start space-x-2 sm:space-x-3">
+                          <div className="p-1.5 sm:p-2 bg-amber-100 rounded-lg flex-shrink-0">
+                            <Lightbulb className="h-4 w-4 sm:h-5 sm:w-5 text-amber-600" />
                           </div>
                           <div className="flex-1">
-                            <h4 className="font-semibold text-amber-900 mb-2">Real Context & Background</h4>
-                            <p className="text-amber-800 leading-relaxed">
+                            <h4 className="font-semibold text-amber-900 mb-1 sm:mb-2 text-sm sm:text-base">Real Context & Background</h4>
+                            <p className="text-amber-800 leading-relaxed text-xs sm:text-sm">
                               {report.realContext}
                             </p>
                           </div>
@@ -829,37 +831,37 @@ const CommunityReports = ({ userScore, setUserScore }) => {
 
                     {/* Enhanced Verification Analysis */}
                     {report.verificationDetails && (
-                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6">
-                        <div className="flex items-start space-x-3 mb-4">
-                          <div className="p-2 bg-green-100 rounded-lg flex-shrink-0">
-                            <Microscope className="h-5 w-5 text-green-600" />
+                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg sm:rounded-xl p-3 sm:p-6">
+                        <div className="flex items-start space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                          <div className="p-1.5 sm:p-2 bg-green-100 rounded-lg flex-shrink-0">
+                            <Microscope className="h-4 w-4 sm:h-5 sm:w-5 text-green-600" />
                           </div>
                           <div className="flex-1">
-                            <h4 className="font-semibold text-green-900 mb-2">Verification Analysis</h4>
-                            <p className="text-green-700 text-sm">
+                            <h4 className="font-semibold text-green-900 mb-1 sm:mb-2 text-sm sm:text-base">Verification Analysis</h4>
+                            <p className="text-green-700 text-xs sm:text-sm">
                               How our experts identified and verified this case
                             </p>
                           </div>
                         </div>
 
-                        <div className="grid md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6">
                           {/* Detection Methods */}
                           {report.verificationDetails.detectionMethods && (
-                            <div className="bg-white/60 rounded-lg p-4">
-                              <h5 className="font-medium text-green-900 mb-3 flex items-center">
-                                <Search className="h-4 w-4 mr-2" />
+                            <div className="bg-white/60 rounded-lg p-3 sm:p-4">
+                              <h5 className="font-medium text-green-900 mb-2 sm:mb-3 flex items-center text-xs sm:text-sm">
+                                <Search className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                                 Detection Methods
                               </h5>
-                              <div className="flex flex-wrap gap-2">
+                              <div className="flex flex-wrap gap-1.5 sm:gap-2">
                                 {Array.isArray(report.verificationDetails.detectionMethods)
                                   ? report.verificationDetails.detectionMethods.map((method, index) => (
-                                    <span key={index} className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full border border-green-200">
-                                      <CheckCircle className="h-3 w-3 mr-1" />
+                                    <span key={index} className="inline-flex items-center px-2 py-0.5 sm:px-3 sm:py-1 bg-green-100 text-green-800 text-[10px] sm:text-xs font-medium rounded-full border border-green-200">
+                                      <CheckCircle className="h-2 w-2 sm:h-3 sm:w-3 mr-0.5 sm:mr-1" />
                                       {method.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
                                     </span>
                                   ))
-                                  : <span className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full border border-green-200">
-                                    <CheckCircle className="h-3 w-3 mr-1" />
+                                  : <span className="inline-flex items-center px-2 py-0.5 sm:px-3 sm:py-1 bg-green-100 text-green-800 text-[10px] sm:text-xs font-medium rounded-full border border-green-200">
+                                    <CheckCircle className="h-2 w-2 sm:h-3 sm:w-3 mr-0.5 sm:mr-1" />
                                     {String(report.verificationDetails.detectionMethods).replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
                                   </span>
                                 }
@@ -869,12 +871,12 @@ const CommunityReports = ({ userScore, setUserScore }) => {
 
                           {/* Educational Value */}
                           {report.verificationDetails.educationalValue && (
-                            <div className="bg-white/60 rounded-lg p-4">
-                              <h5 className="font-medium text-green-900 mb-3 flex items-center">
-                                <BookOpen className="h-4 w-4 mr-2" />
+                            <div className="bg-white/60 rounded-lg p-3 sm:p-4">
+                              <h5 className="font-medium text-green-900 mb-2 sm:mb-3 flex items-center text-xs sm:text-sm">
+                                <BookOpen className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                                 Key Learning
                               </h5>
-                              <p className="text-green-800 text-sm leading-relaxed">
+                              <p className="text-green-800 text-xs sm:text-sm leading-relaxed">
                                 {report.verificationDetails.educationalValue}
                               </p>
                             </div>
@@ -883,19 +885,19 @@ const CommunityReports = ({ userScore, setUserScore }) => {
 
                         {/* Sources */}
                         {report.sources && report.sources.length > 0 && (
-                          <div className="mt-4 bg-white/60 rounded-lg p-4">
-                            <h5 className="font-medium text-green-900 mb-3 flex items-center">
-                              <ExternalLink className="h-4 w-4 mr-2" />
+                          <div className="mt-3 sm:mt-4 bg-white/60 rounded-lg p-3 sm:p-4">
+                            <h5 className="font-medium text-green-900 mb-2 sm:mb-3 flex items-center text-xs sm:text-sm">
+                              <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                               Verification Sources
                             </h5>
-                            <div className="space-y-2">
+                            <div className="space-y-1.5 sm:space-y-2">
                               {report.sources.map((source, index) => (
                                 <a
                                   key={index}
                                   href={source}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="flex items-center space-x-2 text-green-700 hover:text-green-900 text-sm transition-colors"
+                                  className="flex items-center space-x-1.5 sm:space-x-2 text-green-700 hover:text-green-900 text-xs sm:text-sm transition-colors"
                                 >
                                   <Globe className="h-3 w-3 flex-shrink-0" />
                                   <span className="truncate">{source}</span>
@@ -919,30 +921,30 @@ const CommunityReports = ({ userScore, setUserScore }) => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 rounded-2xl border border-white/10 p-12 text-center shadow-2xl"
+              className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 rounded-xl sm:rounded-2xl border border-white/10 p-6 sm:p-12 text-center shadow-2xl"
             >
               <div className="max-w-md mx-auto">
-                <div className="p-4 bg-white/10 backdrop-blur-sm rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center border border-white/20">
-                  <Search className="h-10 w-10 text-violet-400" />
+                <div className="p-3 sm:p-4 bg-white/10 backdrop-blur-sm rounded-full w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center border border-white/20">
+                  <Search className="h-8 w-8 sm:h-10 sm:w-10 text-violet-400" />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3">No cases match your filter</h3>
-                <p className="text-white/90 mb-6 leading-relaxed">
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">No cases match your filter</h3>
+                <p className="text-white/90 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
                   We couldn't find any verified cases matching your current filter criteria.
                   Try adjusting your filters or explore all available cases.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center">
                   <button
                     onClick={() => setFilter('all')}
-                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-violet-500 to-electric-500 hover:from-violet-400 hover:to-electric-400 text-white font-medium rounded-lg transition-all duration-300 shadow-lg border border-white/20 hover:shadow-violet-500/25"
+                    className="inline-flex items-center justify-center px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-violet-500 to-electric-500 hover:from-violet-400 hover:to-electric-400 text-white text-sm sm:text-base font-medium rounded-lg transition-all duration-300 shadow-lg border border-white/20 hover:shadow-violet-500/25"
                   >
-                    <Filter className="h-4 w-4 mr-2" />
+                    <Filter className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                     Show All Cases
                   </button>
                   <button
                     onClick={() => setShowSubmitForm(true)}
-                    className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-medium rounded-lg hover:bg-white/20 transition-all duration-300 border border-white/20"
+                    className="inline-flex items-center justify-center px-4 py-2 sm:px-6 sm:py-3 bg-white/10 backdrop-blur-sm text-white text-sm sm:text-base font-medium rounded-lg hover:bg-white/20 transition-all duration-300 border border-white/20"
                   >
-                    <Flag className="h-4 w-4 mr-2" />
+                    <Flag className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                     Report New Case
                   </button>
                 </div>
@@ -967,28 +969,28 @@ const CommunityReports = ({ userScore, setUserScore }) => {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 rounded-xl p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto border border-white/10 shadow-2xl"
+              className="bg-gradient-to-br from-deepblue-900 via-violet-900 to-deepblue-800 rounded-xl p-4 sm:p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto border border-white/10 shadow-2xl"
             >
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-bold text-white">Report Suspicious Content</h3>
+              <div className="flex items-center justify-between mb-4 sm:mb-6">
+                <h3 className="text-lg sm:text-xl font-bold text-white">Report Suspicious Content</h3>
                 <button
                   onClick={closeSubmitForm}
                   className="text-white/60 hover:text-white transition-colors"
                 >
-                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {/* Content Type */}
                 <div>
-                  <label className="block text-sm font-medium text-white mb-2">Content Type</label>
+                  <label className="block text-xs sm:text-sm font-medium text-white mb-1.5 sm:mb-2">Content Type</label>
                   <select
                     value={newReport.type}
                     onChange={(e) => handleInputChange('type', e.target.value)}
-                    className="w-full p-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-white/10 backdrop-blur-sm text-white placeholder-white/60"
+                    className="w-full p-2 sm:p-3 text-sm border border-white/20 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-white/10 backdrop-blur-sm text-white placeholder-white/60"
                   >
                     <option value="image">Image</option>
                     <option value="video">Video</option>
@@ -1000,51 +1002,51 @@ const CommunityReports = ({ userScore, setUserScore }) => {
 
                 {/* Title */}
                 <div>
-                  <label className="block text-sm font-medium text-white mb-2">Title *</label>
+                  <label className="block text-xs sm:text-sm font-medium text-white mb-1.5 sm:mb-2">Title *</label>
                   <input
                     type="text"
                     value={newReport.title}
                     onChange={(e) => handleInputChange('title', e.target.value)}
                     placeholder="Brief title describing the suspicious content"
-                    className="w-full p-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-white/10 backdrop-blur-sm text-white placeholder-white/60"
+                    className="w-full p-2 sm:p-3 text-sm border border-white/20 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-white/10 backdrop-blur-sm text-white placeholder-white/60"
                     maxLength={100}
                   />
-                  <p className="text-xs text-white/60 mt-1">{newReport.title.length}/100 characters</p>
+                  <p className="text-[10px] sm:text-xs text-white/60 mt-1">{newReport.title.length}/100 characters</p>
                 </div>
 
                 {/* Description */}
                 <div>
-                  <label className="block text-sm font-medium text-white mb-2">Description *</label>
+                  <label className="block text-xs sm:text-sm font-medium text-white mb-1.5 sm:mb-2">Description *</label>
                   <textarea
-                    rows={4}
+                    rows={3}
                     value={newReport.description}
                     onChange={(e) => handleInputChange('description', e.target.value)}
                     placeholder="Describe what makes this content suspicious. Include details about why you think it might be fake, misleading, or harmful."
-                    className="w-full p-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-white/10 backdrop-blur-sm text-white placeholder-white/60"
+                    className="w-full p-2 sm:p-3 text-sm border border-white/20 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-white/10 backdrop-blur-sm text-white placeholder-white/60"
                     maxLength={500}
                   />
-                  <p className="text-xs text-white/60 mt-1">{newReport.description.length}/500 characters</p>
+                  <p className="text-[10px] sm:text-xs text-white/60 mt-1">{newReport.description.length}/500 characters</p>
                 </div>
 
                 {/* Location */}
                 <div>
-                  <label className="block text-sm font-medium text-white mb-2">Where did you find this?</label>
+                  <label className="block text-xs sm:text-sm font-medium text-white mb-1.5 sm:mb-2">Where did you find this?</label>
                   <input
                     type="text"
                     value={newReport.location}
                     onChange={(e) => handleInputChange('location', e.target.value)}
                     placeholder="e.g., Facebook, Twitter, WhatsApp, News website"
-                    className="w-full p-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-white/10 backdrop-blur-sm text-white placeholder-white/60"
+                    className="w-full p-2 sm:p-3 text-sm border border-white/20 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-white/10 backdrop-blur-sm text-white placeholder-white/60"
                   />
                 </div>
 
                 {/* Category */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                  <label className="block text-xs sm:text-sm font-medium text-white mb-1.5 sm:mb-2">Category</label>
                   <select
                     value={newReport.category}
                     onChange={(e) => handleInputChange('category', e.target.value)}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-2 sm:p-3 text-sm border border-white/20 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-white/10 backdrop-blur-sm text-white"
                   >
                     <option value="misinformation">General Misinformation</option>
                     <option value="health-misinformation">Health Misinformation</option>
@@ -2300,29 +2302,31 @@ const FactCheckLab = ({ userLevel, getUserLevelInfo }) => {
       className="space-y-6"
     >
       {/* Header */}
-      <div className="bg-white rounded-xl p-6 shadow-sm border">
-        <div className="flex items-center justify-between">
+      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Fact-Check Lab</h2>
-            <p className="text-gray-600">Tools and resources for verifying information</p>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">Fact-Check Lab</h2>
+            <p className="text-sm sm:text-base text-gray-600">Tools and resources for verifying information</p>
           </div>
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2 text-sm text-gray-600">
-              <Heart className="h-4 w-4 text-red-500" />
-              <span>Community Trust Score: 4.8/5</span>
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+            <div className="flex items-center space-x-1.5 sm:space-x-2 text-xs sm:text-sm text-gray-600">
+              <Heart className="h-3 w-3 sm:h-4 sm:w-4 text-red-500" />
+              <span className="hidden sm:inline">Community Trust Score: 4.8/5</span>
+              <span className="sm:hidden">Trust: 4.8/5</span>
             </div>
-            <div className="flex items-center space-x-2 text-sm text-gray-600">
-              <BarChart3 className="h-4 w-4 text-blue-500" />
-              <span>Accuracy: 94.2%</span>
+            <div className="flex items-center space-x-1.5 sm:space-x-2 text-xs sm:text-sm text-gray-600">
+              <BarChart3 className="h-3 w-3 sm:h-4 sm:w-4 text-blue-500" />
+              <span className="hidden sm:inline">Accuracy: 94.2%</span>
+              <span className="sm:hidden">94.2%</span>
             </div>
-            <div className="flex items-center space-x-2 text-sm text-gray-600">
+            <div className="flex items-center space-x-1.5 sm:space-x-2 text-xs sm:text-sm text-gray-600">
               {(() => {
                 const levelInfo = getUserLevelInfo(userLevel);
                 const IconComponent = levelInfo.icon;
                 return (
                   <>
-                    <IconComponent className={`h-4 w-4 ${levelInfo.color}`} />
-                    <span className={levelInfo.color}>Level: {userLevel}</span>
+                    <IconComponent className={`h-3 w-3 sm:h-4 sm:w-4 ${levelInfo.color}`} />
+                    <span className={levelInfo.color}>{userLevel}</span>
                   </>
                 );
               })()}
@@ -2332,20 +2336,20 @@ const FactCheckLab = ({ userLevel, getUserLevelInfo }) => {
       </div>
 
       {/* Tabs */}
-      <div className="bg-white rounded-xl shadow-sm border">
+      <div className="bg-white rounded-lg sm:rounded-xl shadow-sm border">
         <div className="border-b border-gray-200">
-          <div className="flex space-x-1 p-1">
+          <div className="flex flex-wrap sm:flex-nowrap gap-1 p-1">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-lg transition-colors ${activeTab === tab.id
+                className={`flex-1 min-w-[calc(50%-0.25rem)] sm:min-w-0 flex items-center justify-center space-x-1 sm:space-x-2 py-2 sm:py-3 px-2 sm:px-4 rounded-lg transition-colors ${activeTab === tab.id
                   ? 'bg-deepblue-100 text-deepblue-700 border border-deepblue-200'
                   : 'text-gray-600 hover:bg-deepblue-50 hover:text-deepblue-600'
                   }`}
               >
-                <tab.icon className="h-4 w-4" />
-                <span className="font-medium">{tab.name}</span>
+                <tab.icon className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                <span className="font-medium text-xs sm:text-sm truncate">{tab.name}</span>
               </button>
             ))}
           </div>
@@ -2798,22 +2802,23 @@ const AIProvenanceLab = () => {
     <div className="space-y-8">
       {/* Header */}
       <div className="text-center">
-        <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-deepblue-100 to-violet-100 text-deepblue-800 px-6 py-3 rounded-full text-sm font-semibold mb-6">
-          <Brain className="h-5 w-5" />
-          <span>AI-Powered Provenance Analysis</span>
-          {isLoadingModels && <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-deepblue-600 ml-2"></div>}
+        <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-deepblue-100 to-violet-100 text-deepblue-800 px-3 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
+          <Brain className="h-4 w-4 sm:h-5 sm:w-5" />
+          <span className="hidden sm:inline">AI-Powered Provenance Analysis</span>
+          <span className="sm:hidden">AI Analysis</span>
+          {isLoadingModels && <div className="animate-spin rounded-full h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-deepblue-600 ml-2"></div>}
         </div>
 
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-deepblue-600 via-violet-600 to-electric-600 bg-clip-text text-transparent mb-4">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-deepblue-600 via-violet-600 to-electric-600 bg-clip-text text-transparent mb-3 sm:mb-4 px-4">
           AI Provenance Lab
         </h1>
-        <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6">
+        <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-4 sm:mb-6 px-4">
           Enterprise-grade media authenticity analysis powered by ensemble AI models,
           advanced forensics, and comprehensive provenance verification
         </p>
 
         {/* Model Status Dashboard */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 max-w-3xl mx-auto mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3 max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
           {Object.entries(models).map(([modelName, model]) => (
             <div key={modelName} className={`p-2 rounded-lg border ${model.loaded ? 'bg-green-50 border-green-200' : 'bg-gray-50 border-gray-200'
               }`}>

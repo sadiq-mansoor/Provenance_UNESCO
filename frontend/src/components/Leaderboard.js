@@ -69,14 +69,14 @@ const Leaderboard = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-8"
       >
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">Leaderboard</h1>
-        <p className="text-gray-600">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Leaderboard</h1>
+        <p className="text-sm sm:text-base text-gray-600">
           Top media literacy champions and their achievements
         </p>
       </motion.div>
@@ -100,14 +100,14 @@ const Leaderboard = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="grid grid-cols-3 gap-4 mb-8"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8"
             >
               {/* Second Place */}
               <PodiumCard player={leaderboard[1]} rank={2} />
-              
+
               {/* First Place */}
               <PodiumCard player={leaderboard[0]} rank={1} isWinner />
-              
+
               {/* Third Place */}
               <PodiumCard player={leaderboard[2]} rank={3} />
             </motion.div>
@@ -119,7 +119,7 @@ const Leaderboard = () => {
               <Trophy className="h-6 w-6 text-blue-600" />
               <span>Full Rankings</span>
             </h2>
-            
+
             <div className="space-y-3">
               {leaderboard.map((player, index) => (
                 <motion.div
@@ -128,23 +128,23 @@ const Leaderboard = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
                   className={`
-                    flex items-center justify-between p-4 rounded-lg border
-                    ${player.rank <= 3 
-                      ? 'bg-gradient-to-r ' + getRankColor(player.rank) + ' text-white border-transparent' 
+                    flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-lg border gap-3 sm:gap-0
+                    ${player.rank <= 3
+                      ? 'bg-gradient-to-r ' + getRankColor(player.rank) + ' text-white border-transparent'
                       : 'bg-gray-50 border-gray-200'
                     }
                   `}
                 >
-                  <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-3 sm:space-x-4 w-full sm:w-auto">
                     <div className="flex items-center space-x-2">
                       {getRankIcon(player.rank)}
-                      <span className={`text-2xl font-bold ${player.rank > 3 ? 'text-gray-600' : ''}`}>
+                      <span className={`text-xl sm:text-2xl font-bold ${player.rank > 3 ? 'text-gray-600' : ''}`}>
                         #{player.rank}
                       </span>
                     </div>
-                    
-                    <div>
-                      <p className={`font-semibold ${player.rank > 3 ? 'text-gray-900' : ''}`}>
+
+                    <div className="flex-1 sm:flex-none">
+                      <p className={`font-semibold text-sm sm:text-base ${player.rank > 3 ? 'text-gray-900' : ''}`}>
                         {player.username}
                       </p>
                       <div className="flex flex-wrap gap-1 mt-1">
@@ -162,9 +162,9 @@ const Leaderboard = () => {
                       </div>
                     </div>
                   </div>
-                  
-                  <div className="text-right">
-                    <p className={`text-2xl font-bold ${player.rank > 3 ? 'text-gray-900' : ''}`}>
+
+                  <div className="text-left sm:text-right w-full sm:w-auto">
+                    <p className={`text-xl sm:text-2xl font-bold ${player.rank > 3 ? 'text-gray-900' : ''}`}>
                       {player.score}
                     </p>
                     <p className={`text-sm ${player.rank > 3 ? 'text-gray-600' : 'text-white text-opacity-80'}`}>
@@ -185,8 +185,8 @@ const Leaderboard = () => {
         transition={{ delay: 0.3 }}
         className="mt-8 card"
       >
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Achievement Badges</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">Achievement Badges</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <BadgeInfo
             name="First Steps"
             description="Score your first 10 points"
@@ -232,20 +232,20 @@ const PodiumCard = ({ player, rank, isWinner = false }) => {
         absolute inset-0 bg-gradient-to-br opacity-10
         ${getRankColor(rank)}
       `} />
-      
+
       <div className="relative z-10">
         <div className="mb-4">
           {getRankIcon(rank)}
         </div>
-        
+
         <h3 className="font-bold text-lg text-gray-900 mb-1">
           {player.username}
         </h3>
-        
+
         <p className="text-2xl font-bold text-blue-600 mb-2">
           {player.score}
         </p>
-        
+
         <div className="flex flex-wrap justify-center gap-1">
           {player.badges.slice(0, 2).map((badge, index) => (
             <span
