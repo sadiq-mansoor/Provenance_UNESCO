@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   Search, Shield, CheckCircle, Brain, Upload, FileImage, FileVideo, FileAudio,
   AlertTriangle, AlertCircle, Eye, Microscope, Clock, Camera, Link, Globe,
@@ -1206,7 +1206,6 @@ const AIProvenanceLab = ({ isLoadingModels, modelLoadProgress }) => {
   const [analysisSteps, setAnalysisSteps] = useState([]);
   const [currentStep, setCurrentStep] = useState(0);
   const [models, setModels] = useState({});
-  const [modelStatus, setModelStatus] = useState({});
   const [expandedSections, setExpandedSections] = useState({
     aiAnalysis: true,
     technical: false,

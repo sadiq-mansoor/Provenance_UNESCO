@@ -7,42 +7,18 @@ import {
   Video, 
   ExternalLink, 
   Clock, 
-  Users, 
-  Award, 
-  Lightbulb,
   Target,
   CheckCircle,
   ArrowRight,
   Youtube,
-  Share2,
-  Eye,
   Brain,
-  Shield,
-  AlertTriangle,
-  TrendingUp,
-  Globe,
-  Zap,
   Headphones,
-  FileText,
-  Mic,
-  Camera,
   Star,
-  Gamepad2,
-  Trophy,
   Bookmark,
-  MessageSquare,
-  Radio,
   Newspaper,
-  GraduationCap,
-  ChevronRight,
-  Timer,
   Download,
   Sparkles,
   Microscope,
-  Pause,
-  Volume2,
-  VolumeX,
-  Maximize,
   X
 } from 'lucide-react';
 
@@ -884,12 +860,7 @@ const LearningHub = () => {
       }
     };
 
-    const toggleMute = () => {
-      if (videoRef) {
-        videoRef.muted = !isMuted;
-        setIsMuted(!isMuted);
-      }
-    };
+
 
     return (
       <AnimatePresence>

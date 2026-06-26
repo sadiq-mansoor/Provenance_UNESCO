@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   Microscope, 
-  Upload, 
-  Play, 
   CheckCircle, 
   AlertTriangle, 
-  FileImage, 
-  FileAudio, 
   Database, 
   Brain, 
   Zap,
   Eye,
-  Download,
   BarChart3,
   Settings,
   ArrowRight,

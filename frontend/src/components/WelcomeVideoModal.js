@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Play, Pause } from 'lucide-react';
+import { X, Play } from 'lucide-react';
 
 const WelcomeVideoModal = ({ isOpen, onClose, onSkip }) => {
   const [isPlaying, setIsPlaying] = useState(false);
