@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   Play, 
+  Pause,
   BookOpen, 
   Video, 
   ExternalLink, 
