@@ -2,19 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  Upload, Brain, Users, Trophy, Home, Shield, Eye,
-  Zap, BookOpen, Award, CheckCircle2, AlertTriangle,
-  Microscope, Globe, Camera, X
+  Brain, Trophy, Home, Shield, Eye,
+  BookOpen, Award, CheckCircle2, AlertTriangle,
+  Microscope, Globe, X
 } from 'lucide-react';
 import UploadTest from './components/UploadTest';
 import Quiz from './components/Quiz';
 import ForensicLab from './components/ForensicLab';
-import ForensicsDemo from './components/ForensicsDemo';
 import LearningHub from './components/LearningHub';
 import SocialFeed from './components/SocialFeed';
 import Leaderboard from './components/Leaderboard';
 import WelcomeVideoModal from './components/WelcomeVideoModal';
-import SimpleVideoTest from './components/SimpleVideoTest';
 import './index.css';
 
 function App() {
@@ -55,16 +53,16 @@ function App() {
   }, [username]);
 
   // Debug function to test the modal
-  const testWelcomeVideo = () => {
-    console.log('Testing welcome video modal...');
-    setShowWelcomeVideo(true);
-  };
+  // const testWelcomeVideo = () => {
+  //   console.log('Testing welcome video modal...');
+  //   setShowWelcomeVideo(true);
+  // };
 
   // Debug function to reset welcome video
-  const resetWelcomeVideo = () => {
-    localStorage.removeItem('hasSeenWelcomeVideo');
-    console.log('Welcome video reset - will show on next page load');
-  };
+  // const resetWelcomeVideo = () => {
+  //   localStorage.removeItem('hasSeenWelcomeVideo');
+  //   console.log('Welcome video reset - will show on next page load');
+  // };
 
   if (!username) {
     return <UsernamePrompt onSubmit={handleUsernameSubmit} />;

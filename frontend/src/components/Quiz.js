@@ -35,40 +35,9 @@ import {
   Play,
   Pause,
   Volume2,
-  Download,
-  Share2,
-  BookOpen,
-  Award,
-  Settings,
-  HelpCircle,
-  BarChart3,
-  PieChart,
-  ArrowRight,
-  ChevronDown,
-  Filter,
-  RefreshCw,
-  ExternalLink,
-  Copy,
   Flag,
-  ThumbsUp,
-  ThumbsDown,
-  Heart,
-  MessageCircle,
-  Bookmark,
-  MoreHorizontal,
-  MapPin,
-  Calendar,
-  UserCheck,
-  Verified,
-  Info,
+  BarChart3,
   Wrench,
-  GameController2,
-  GraduationCap,
-  Certificate,
-  Progress,
-  Timer,
-  Lock,
-  Unlock,
   Layers,
   ScanLine,
   Microscope,
@@ -79,7 +48,6 @@ import {
 // Interactive Simulation Component for Media Analysis
 const InteractiveSimulation = ({ type, mediaUrl, onAnalysisComplete }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentFrame, setCurrentFrame] = useState(0);
   const [analysisTools, setAnalysisTools] = useState({
     frameByFrame: false,
     facialLandmarks: false,
@@ -894,7 +862,7 @@ const AdvancedMediaLiteracyQuiz = ({ username = "Student" }) => {
     else if (percentage >= 75) setMasteryLevel('advanced');
     else if (percentage >= 60) setMasteryLevel('intermediate');
     else setMasteryLevel('novice');
-  }, [score]);
+  }, [score, getTotalMaxScore]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -1050,13 +1018,13 @@ const AdvancedMediaLiteracyQuiz = ({ username = "Student" }) => {
     setTimeSpent(0);
   }, []);
 
-  const getTotalMaxScore = () => {
+  const getTotalMaxScore = useCallback(() => {
     return questions.reduce((total, question) => {
       const maxQuestionScore = question.options.reduce((max, option) => 
         Math.max(max, option.points || option.weight || 0), 0);
       return total + maxQuestionScore;
     }, 0);
-  };
+  }, [questions]);
 
   const getPerformanceLevel = (score) => {
     const totalMaxScore = getTotalMaxScore();
@@ -1078,41 +1046,6 @@ const AdvancedMediaLiteracyQuiz = ({ username = "Student" }) => {
     futurePreparedness: 'Future Threat Prep',
     crossPlatformTracking: 'Cross-platform Tracking',
     narrativeAnalysis: 'Narrative Analysis'
-  };
-
-  // Enhanced skill display with icons and descriptions
-  const getSkillDisplayInfo = (skillKey) => {
-    const iconMap = {
-      technicalAnalysis: Camera,
-      visualForensics: Video,
-      networkAnalysis: Network,
-      psychologicalDefense: Brain,
-      algorithmicLiteracy: Bot,
-      sourceVerification: Database,
-      realTimeFactCheck: Mic,
-      futurePreparedness: TrendingUp,
-      crossPlatformTracking: Hash,
-      narrativeAnalysis: MessageSquare
-    };
-
-    const descriptionMap = {
-      technicalAnalysis: 'AI detection and technical analysis skills',
-      visualForensics: 'Digital media forensics and manipulation detection',
-      networkAnalysis: 'Bot detection and network analysis',
-      psychologicalDefense: 'Psychological manipulation resistance',
-      algorithmicLiteracy: 'Algorithm awareness and understanding',
-      sourceVerification: 'Source credibility assessment',
-      realTimeFactCheck: 'Real-time information verification',
-      futurePreparedness: 'Future threat preparation',
-      crossPlatformTracking: 'Cross-platform information tracking',
-      narrativeAnalysis: 'Narrative and propaganda analysis'
-    };
-
-    return {
-      name: skillDisplayNames[skillKey],
-      icon: iconMap[skillKey],
-      description: descriptionMap[skillKey]
-    };
   };
 
   // Welcome Screen
