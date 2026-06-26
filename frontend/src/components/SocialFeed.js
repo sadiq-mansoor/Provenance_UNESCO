@@ -1,14 +1,12 @@
-﻿import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Heart, Share, AlertTriangle, CheckCircle, Eye,
-  BookOpen, TrendingUp, Shield, Camera, Video, Link,
-  FileText, BarChart3, Globe, User, Clock, ThumbsUp, ThumbsDown,
-  Flag, ExternalLink, Play, Pause, Volume2, VolumeX, RefreshCw,
-  Award, Target, Brain, Lightbulb, Search, Filter, Upload,
-  FileImage, FileVideo, FileAudio, AlertCircle, Microscope,
-  Zap, Info, ChevronDown, ChevronUp,
-  Cpu, Activity, Layers, Network, Gauge, Database
+  Share, AlertTriangle, CheckCircle, Eye,
+  BookOpen, TrendingUp, Shield, Video,
+  Globe, User, Clock, ThumbsUp, ThumbsDown,
+  Flag, ExternalLink, Play, RefreshCw,
+  Award, Lightbulb, Search, Filter, Upload,
+  Microscope, Info, Activity
 } from 'lucide-react';
 
 const MediaLiteracyPlatform = () => {
@@ -41,7 +39,7 @@ const CommunityReports = ({ userScore, setUserScore }) => {
   const [showSubmitForm, setShowSubmitForm] = useState(false);
   const [filter, setFilter] = useState('all');
   const [userVotes, setUserVotes] = useState({}); // Track user votes
-  const [expandedReports, setExpandedReports] = useState({}); // Track expanded details
+  const [expandedReports] = useState({}); // Track expanded details
   const [previewMedia, setPreviewMedia] = useState(null); // Track media preview modal
 
   // Form state for new report submission
@@ -1301,39 +1299,7 @@ const TrendingAlerts = () => {
   const [viewMode] = useState('grid'); // grid or list
   const [searchQuery, setSearchQuery] = useState('');
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const [alertStats, setAlertStats] = useState({
-    critical: 0,
-    high: 0,
-    medium: 0,
-    low: 0,
-    total: 0
-  });
   const [liveUpdates] = useState(true);
-
-  // Calculate alert statistics
-  useEffect(() => {
-    const stats = alerts.reduce((acc, alert) => {
-      acc[alert.severity] = (acc[alert.severity] || 0) + 1;
-      acc.total++;
-      return acc;
-    }, { critical: 0, high: 0, medium: 0, low: 0, total: 0 });
-    setAlertStats(stats);
-  }, [alerts]);
-
-  // Auto-refresh alerts every 30 seconds if live updates enabled
-  useEffect(() => {
-    if (!liveUpdates) return;
-
-    const interval = setInterval(() => {
-      loadTrendingAlerts();
-    }, 30000);
-
-    return () => clearInterval(interval);
-  }, [liveUpdates, loadTrendingAlerts]);
-
-  useEffect(() => {
-    loadTrendingAlerts();
-  }, [loadTrendingAlerts]);
 
   // Load real trending alerts from API
   const loadTrendingAlerts = useCallback(async () => {
@@ -1467,6 +1433,19 @@ const TrendingAlerts = () => {
       setIsRefreshing(false);
     }
   }, [isRefreshing]);
+
+  // Auto-refresh alerts every 30 seconds if live updates enabled
+  useEffect(() => {
+    if (!liveUpdates) return;
+    const interval = setInterval(() => {
+      loadTrendingAlerts();
+    }, 30000);
+    return () => clearInterval(interval);
+  }, [liveUpdates, loadTrendingAlerts]);
+
+  useEffect(() => {
+    loadTrendingAlerts();
+  }, [loadTrendingAlerts]);
 
   // Filter and sort functionality
   const filteredAndSortedAlerts = React.useMemo(() => {
