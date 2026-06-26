@@ -16,16 +16,8 @@ import {
   Star,
   Lightbulb,
   Target,
-  Camera,
-  MessageSquare,
-  TrendingUp,
   Zap,
-  Database,
-  Mic,
-  Video,
   Activity,
-  Network,
-  Bot,
   Fingerprint,
   Headphones,
   Smartphone,
@@ -853,6 +845,14 @@ const AdvancedMediaLiteracyQuiz = ({ username = "Student" }) => {
   const [startTime, setStartTime] = useState(Date.now());
   const [masteryLevel, setMasteryLevel] = useState('novice');
 
+  const getTotalMaxScore = useCallback(() => {
+    return questions.reduce((total, question) => {
+      const maxQuestionScore = question.options.reduce((max, option) => 
+        Math.max(max, option.points || option.weight || 0), 0);
+      return total + maxQuestionScore;
+    }, 0);
+  }, [questions]);
+
   // Calculate mastery level based on performance
   useEffect(() => {
     const totalMaxScore = getTotalMaxScore();
@@ -1018,14 +1018,6 @@ const AdvancedMediaLiteracyQuiz = ({ username = "Student" }) => {
     setTimeSpent(0);
   }, []);
 
-  const getTotalMaxScore = useCallback(() => {
-    return questions.reduce((total, question) => {
-      const maxQuestionScore = question.options.reduce((max, option) => 
-        Math.max(max, option.points || option.weight || 0), 0);
-      return total + maxQuestionScore;
-    }, 0);
-  }, [questions]);
-
   const getPerformanceLevel = (score) => {
     const totalMaxScore = getTotalMaxScore();
     const percentage = (score / totalMaxScore) * 100;
@@ -1033,19 +1025,6 @@ const AdvancedMediaLiteracyQuiz = ({ username = "Student" }) => {
     if (percentage >= 75) return { level: "Advanced Analyst", color: "text-green-600", desc: "Strong technical and analytical skills for modern threats", icon: Search };
     if (percentage >= 60) return { level: "Digital Detective", color: "text-blue-600", desc: "Solid foundation with room for advanced techniques", icon: Eye };
     return { level: "Media Literacy Student", color: "text-orange-600", desc: "Building essential skills - keep practicing!", icon: Brain };
-  };
-
-  const skillDisplayNames = {
-    technicalAnalysis: 'AI & Technical Analysis',
-    visualForensics: 'Digital Forensics',
-    networkAnalysis: 'Network & Bot Analysis',
-    psychologicalDefense: 'Psychological Defense',
-    algorithmicLiteracy: 'Algorithm Awareness',
-    sourceVerification: 'Source Verification',
-    realTimeFactCheck: 'Real-time Fact-checking',
-    futurePreparedness: 'Future Threat Prep',
-    crossPlatformTracking: 'Cross-platform Tracking',
-    narrativeAnalysis: 'Narrative Analysis'
   };
 
   // Welcome Screen

@@ -18,7 +18,6 @@ import {
   Bookmark,
   Newspaper,
   Download,
-  Sparkles,
   Microscope,
   X
 } from 'lucide-react';
@@ -847,7 +846,7 @@ const LearningHub = () => {
 
   const StoryVideoModal = ({ story, onClose }) => {
     const [isPlaying, setIsPlaying] = useState(false);
-    const [isMuted, setIsMuted] = useState(false);
+    const [isMuted] = useState(false);
     const [videoRef, setVideoRef] = useState(null);
 
     const togglePlay = () => {
