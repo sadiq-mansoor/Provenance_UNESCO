@@ -6,6 +6,7 @@ import {
   BookOpen, Award, CheckCircle2, AlertTriangle,
   Microscope, Globe, X
 } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 import UploadTest from './components/UploadTest';
 import Quiz from './components/Quiz';
 import ForensicLab from './components/ForensicLab';
@@ -92,6 +93,7 @@ function App() {
           onSkip={handleWelcomeVideoSkip}
         />
       </div>
+      <Analytics />
     </Router>
   );
 }

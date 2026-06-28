@@ -7,6 +7,7 @@
     "@radix-ui/react-progress": "^1.0.3",
     "@radix-ui/react-tabs": "^1.0.4",
     "@tensorflow/tfjs": "^4.10.0",
+    "@vercel/analytics": "^2.0.1",
     "framer-motion": "^10.16.5",
     "lucide-react": "^0.294.0",
     "react": "^18.2.0",

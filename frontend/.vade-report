@@ -1,0 +1,61 @@
+# Vercel Web Analytics Installation Report
+
+## Summary
+Successfully installed and configured Vercel Web Analytics for the Provenance UNESCO project.
+
+## Changes Made
+
+### 1. Package Installation
+- **Package**: `@vercel/analytics` version `^2.0.1`
+- **Method**: Installed using npm with `--legacy-peer-deps` flag to resolve peer dependency conflicts with Create React App
+- **Package Manager**: npm (project's default package manager)
+
+### 2. Code Implementation
+- **File Modified**: `frontend/src/App.js`
+- **Changes**:
+  1. Added import statement: `import { Analytics } from '@vercel/analytics/react';`
+  2. Added `<Analytics />` component inside the Router component, positioned after all main content to track all pages
+  
+### 3. Implementation Details
+- Followed official Vercel documentation for React/Create React App integration
+- Analytics component placed at the root level within the Router to track all routes:
+  - Home page (/)
+  - Upload Test (/upload)
+  - Quiz (/quiz)
+  - Forensic Lab (/forensic-lab)
+  - Learning Hub (/resources)
+  - Social Feed (/feed)
+  - Leaderboard (/leaderboard)
+
+### 4. Files Modified
+- `frontend/package.json` - Added @vercel/analytics dependency
+- `frontend/package-lock.json` - Updated with new package and dependencies
+- `frontend/src/App.js` - Added Analytics import and component
+
+## Verification Steps Completed
+✅ Package installed successfully with npm
+✅ Build completed without errors (`npm run build`)
+✅ Tests passed (no tests in project, but test runner executed successfully)
+✅ Code follows existing project patterns and conventions
+✅ Analytics component properly positioned to track all routes
+
+## Next Steps for Deployment
+1. Deploy the updated application to Vercel using `vercel deploy` or push to your connected git repository
+2. Enable Web Analytics in your Vercel dashboard:
+   - Navigate to your project in Vercel dashboard
+   - Select "Analytics" from the sidebar
+   - Click "Enable" button
+3. After deployment, verify installation by checking browser's Network tab for requests to `/<unique-path>/view`
+4. View analytics data in the Vercel dashboard after visitors access the site
+
+## Notes
+- The Analytics component is lightweight and will not impact application performance
+- Analytics data will only be collected when the application is deployed on Vercel
+- In local development, the Analytics component is present but won't send data
+- Used `--legacy-peer-deps` flag due to Create React App's TypeScript peer dependency constraints
+- This is a standard and recommended approach for CRA projects
+
+## Framework
+- **Project Type**: Create React App (CRA)
+- **React Version**: 18.2.0
+- **Framework-Specific Implementation**: Used `@vercel/analytics/react` as documented for React applications
