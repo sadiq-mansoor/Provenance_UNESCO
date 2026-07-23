@@ -18,6 +18,10 @@
   <img src="https://img.shields.io/badge/Tailwind-38B2AC?style=flat-square&logo=tailwindcss&logoColor=white" />
 </p>
 
+<p align="center">
+  A team project by <a href="https://sadiqmansoor.tech"><strong>Sadiq Mansoor</strong></a> &amp; <strong>Faisal Hakimi</strong>.
+</p>
+
 ## 🌟 Overview
 
 **Provenance** is an educational platform that teaches media literacy and AI-detection skills through
@@ -116,6 +120,8 @@ real **C2PA SDK** and production AI-detection models, and add rate limiting, log
 
 Educational framing follows the **UNESCO Media and Information Literacy** framework. Built with FastAPI,
 React, and the open-source community.
+
+Created by **[Sadiq Mansoor](https://sadiqmansoor.tech)** & **Faisal Hakimi**.
 
 ---
 <div align="center">
