@@ -13,6 +13,7 @@ import LearningHub from './components/LearningHub';
 import SocialFeed from './components/SocialFeed';
 import Leaderboard from './components/Leaderboard';
 import WelcomeVideoModal from './components/WelcomeVideoModal';
+import { Analytics } from '@vercel/analytics/react';
 import './index.css';
 
 function App() {
@@ -91,6 +92,7 @@ function App() {
           onClose={handleWelcomeVideoClose}
           onSkip={handleWelcomeVideoSkip}
         />
+        <Analytics />
       </div>
     </Router>
   );
