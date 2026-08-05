@@ -1,0 +1,20 @@
+# Provenance
+
+> Provenance is a media-literacy platform that helps people detect AI-generated media and protect information integrity, built to support the UNESCO Media & Information Literacy initiative.
+
+Provenance combines interactive tools and learning resources to help users recognise manipulated or synthetic media and think critically about the information they consume.
+
+## Pages
+
+- [Home](https://provenance.sadiqmansoor.tech/): Overview of the platform and its media-literacy mission.
+- [Upload Test](https://provenance.sadiqmansoor.tech/upload): Upload media to test for signals of AI generation.
+- [Quiz](https://provenance.sadiqmansoor.tech/quiz): Interactive quiz to test your ability to spot AI-generated media.
+- [Forensic Lab](https://provenance.sadiqmansoor.tech/forensic-lab): Hands-on media-forensics exercises and tooling.
+- [Learning Resources](https://provenance.sadiqmansoor.tech/resources): Educational resources on media and information literacy.
+- [Social Feed](https://provenance.sadiqmansoor.tech/feed): Community feed for sharing and discussing findings.
+- [Leaderboard](https://provenance.sadiqmansoor.tech/leaderboard): Rankings for platform activity and challenges.
+
+## About
+
+- Author: Sadiq Mansoor (https://sadiqmansoor.tech/)
+- Source/profile: https://github.com/sadiq-mansoor
