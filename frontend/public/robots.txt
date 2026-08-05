@@ -4,6 +4,15 @@
 User-agent: *
 Allow: /
 
+# Curated summary for LLMs / AI answer engines (https://llmstxt.org)
+# LLM-Index: https://provenance.sadiqmansoor.tech/llms.txt
+
+# Content Signals (draft-romm-aipref-contentsignals)
+# ai-input=yes -> AI assistants may use this content to answer questions
+# search=yes   -> allow AI/search indexing
+# ai-train=no  -> do not use this content for model training
+Content-Signal: ai-train=no, search=yes, ai-input=yes
+
 # --- AI / LLM crawlers (explicitly welcomed) ---
 User-agent: GPTBot
 Allow: /
